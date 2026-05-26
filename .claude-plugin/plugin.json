@@ -1,15 +1,16 @@
 {
-  "name": "king-framework",
+  "name": "king-core",
   "version": "1.9.2",
-  "description": "King Framework: protocolo RADAR/CASTLE/SDD/Chronicle, 10 agentes especializados, 39 skills de ciclo de vida completo. /genesis genera infraestructura adaptada a tu proyecto.",
+  "description": "King Core: SDLC completo con 47 skills — genesis, brainstorm, plan, build, review, qa, merge, release y pipeline SDD. 10 agentes especializados. Base del ecosistema King Framework.",
   "author": {
     "name": "InformatiK-AI",
     "email": "j.salgado2k@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/InformatiK-AI/king-framework",
-  "repository": "https://github.com/InformatiK-AI/king-framework",
+  "homepage": "https://github.com/InformatiK-AI/king-core",
+  "repository": "https://github.com/InformatiK-AI/king-core",
   "keywords": [
+    "king-core",
     "radar",
     "castle",
     "sdd",
