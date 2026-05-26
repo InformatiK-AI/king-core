@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.3] — 2026-05-25
+
+### Fixes
+- **plugin.json**: corregido nombre del plugin de `king-framework` a `king-core`. Actualizados `homepage`, `repository` y `description` para apuntar al repo correcto.
+
+---
+
 ## [1.9.2] — 2026-05-25
 
 ### Fixes
