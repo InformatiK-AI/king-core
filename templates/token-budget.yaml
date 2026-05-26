@@ -1,0 +1,31 @@
+# .king/token-budget.yaml
+# Performance Budget Gate — Control de tokens por componente
+#
+# Copia este archivo a .king/token-budget.yaml y ajusta los valores.
+# Referencia completa: king-framework/rules/token-budget-gate.md
+#
+# El gate se ejecuta automáticamente en:
+#   /audit  — Phase 6, step 6.2 (evalúa todos los componentes del proyecto)
+#   /build  — Phase 5, step 10  (siempre no-bloqueante, independientemente de mode)
+#   /review — conditional       (solo si LOAD-INDEX.md existe; siempre mode:warn)
+#
+# Nota: distinto de .king/performance-budget.yaml (que controla Lighthouse UX scores).
+
+# Modo de ejecución:
+#   warn  — muestra advertencia pero no bloquea (recomendado; el framework
+#           tiene skills que superan 2000 tokens por diseño: /build ~3310t,
+#           /brainstorm ~4000t, /promote ~4170t)
+#   error — bloquea /audit si algún componente excede threshold
+mode: warn
+
+# Thresholds de token budget por categoría de componente.
+# Floor values hardcodeados en la regla: skill≥100, agent≥100, rule≥50, claude_md≥100.
+# Valores debajo del floor se ignoran y se aplica el floor.
+thresholds:
+  skill: 2000      # tokens del entry point (SKILL.md) de cada skill
+  agent: 1500      # tokens del archivo .md de cada agent
+  rule: 500        # tokens de cada rule .md
+  claude_md: 3000  # tokens del CLAUDE.md del proyecto
+
+# Habilitar o deshabilitar completamente el gate
+enabled: true

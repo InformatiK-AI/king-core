@@ -1,0 +1,9 @@
+id,name,base_px,scale,use_case,tailwind_prefix
+1,micro,4,4/8/12/16/20/24,Dense data tables; compact badges; icon padding; chip internal spacing,p-1 p-2 p-3 p-4 p-5 p-6
+2,compact,8,8/16/24/32/40/48/64,Sidebar navigation; settings rows; form field groups; list items; card internals,p-2 p-4 p-6 p-8 p-10 p-12 p-16
+3,comfortable,16,16/24/32/48/64/80/96,Standard web app; SaaS product screens; content pages; form sections; modal padding,p-4 p-6 p-8 p-12 p-16 p-20 p-24
+4,spacious,24,24/40/56/80/112/160,Marketing pages; feature sections; card grids; section separators; hero areas,p-6 p-10 p-14 p-20 p-28 p-40
+5,editorial,32,32/48/72/96/128/192,Blog / editorial layouts; long-form reading; print-inspired designs; portfolio,p-8 p-12 p-18 p-24 p-32 p-48
+6,touch-optimized,44,44/56/72/88,Mobile-first interactions; tap targets; bottom navigation items; FAB; button height,h-11 h-14 h-18 h-22
+7,section-spacing,64,64/96/128/192/256,Landing page section gaps; above-fold separation; between major content blocks,py-16 py-24 py-32 py-48 py-64
+8,fluid-responsive,clamp,clamp(16px,4vw,48px),Responsive layouts that scale fluidly between breakpoints; avoids hard breakpoint jumps,Not Tailwind-native; use arbitrary [clamp(...)] or postcss-fluid

@@ -1,0 +1,35 @@
+# .king/health-check-setup.yaml
+# Configuración del Health Check Gate para este proyecto.
+# Generado por /health-check-setup — personalizar según las dependencias del proyecto.
+#
+# Copiar al proyecto: cp king-framework/templates/health-check-setup.yaml .king/health-check-setup.yaml
+
+enabled: true
+
+# Metadatos detectados por /health-check-setup (auto-rellenados por el skill).
+stack: ""         # node | python | go
+subframework: ""  # express | fastify | fastapi | flask | gin | chi
+port: 0           # Puerto del servidor principal (0 = no detectado)
+
+# Modo del gate en /promote:
+#   warn  → advierte si faltan health endpoints, pero no bloquea el promote (default)
+#   error → bloquea el promote si /health o /ready no están implementados con contrato correcto
+mode: warn
+
+# Ambientes donde aplica el gate. En dev y qa el gate es siempre SKIP.
+scope:
+  environments:
+    - prod
+
+# Dependencias que /ready debe verificar.
+# Cada dependencia habilitada genera un check en el endpoint /ready.
+dependencies:
+  db: true            # Verificar conexión a base de datos (DATABASE_URL)
+  cache: false        # Verificar conexión a Redis/cache (REDIS_URL)
+  external_apis: []   # Lista de URLs de APIs externas a verificar
+                      # Ejemplo: ["https://api.example.com/health"]
+
+# TTL en segundos para cachear el resultado de /ready.
+# Evita sobrecargar dependencias cuando Kubernetes hace probes frecuentes.
+# Configurable también via HEALTH_CACHE_TTL env var en el proyecto.
+cache_ttl: 5

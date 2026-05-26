@@ -1,0 +1,17 @@
+id,name,css_keyframes,properties_used,duration_ms,reduced_motion_alt
+1,fade-in,opacity 0 to 1,opacity,200,instant show (no animation)
+2,fade-out,opacity 1 to 0,opacity,150,instant hide (no animation)
+3,slide-up-in,translateY(16px)+opacity 0 to translateY(0)+opacity 1,transform opacity,250,fade-in only (opacity 0 to 1)
+4,slide-down-in,translateY(-16px)+opacity 0 to translateY(0)+opacity 1,transform opacity,250,fade-in only
+5,slide-right-in,translateX(-24px)+opacity 0 to translateX(0)+opacity 1,transform opacity,300,fade-in only
+6,slide-left-in,translateX(24px)+opacity 0 to translateX(0)+opacity 1,transform opacity,300,fade-in only
+7,scale-in-spring,scale(0.85)+opacity 0 to scale(1)+opacity 1 with overshoot at 95ms to scale(1.03),transform opacity,350,opacity 0 to 1 only; skip scale
+8,scale-out,scale(1)+opacity 1 to scale(0.9)+opacity 0,transform opacity,200,opacity 1 to 0 only
+9,shimmer-skeleton,background-position from -200% to 200% on linear-gradient,background-position,1500,static gray fill; no animation (prefers-reduced-motion: no-preference check)
+10,spin-loader,rotate(0deg) to rotate(360deg) continuous,transform,1000,static partial-circle SVG; text "Loading"
+11,bounce-in,translateY(0) → translateY(-8px) → translateY(0) with 3 oscillations decreasing amplitude,transform,500,static appearance; no bounce
+12,toast-slide-up,translateY(100%)+opacity 0 to translateY(0)+opacity 1; exit reverses,transform opacity,300,opacity crossfade only; no translate
+13,drawer-slide-right,translateX(100%) to translateX(0); exit reverses,transform,300,opacity fade; instant clip
+14,progress-fill,width 0% to N% or transform scaleX(0) to scaleX(target),transform,300,instant jump to value; no fill animation
+15,count-up-number,custom JS interpolation from 0 to target value; not CSS; use requestAnimationFrame,JS animation,1200,show final number instantly; no count-up
+16,ripple-touch,scale(0) to scale(2.5) + opacity 0.3 to 0 from touch point,transform opacity,400,background-color darken on active; no ripple

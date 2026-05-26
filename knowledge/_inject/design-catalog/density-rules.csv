@@ -1,0 +1,13 @@
+id,context,density_level,min_touch_target,line_height,padding_base
+1,mobile-web,comfortable,44x44px,1.6,16px vertical / 20px horizontal
+2,mobile-web-compact,compact,44x44px,1.5,12px vertical / 16px horizontal
+3,desktop-app,default,32x32px,1.5,12px vertical / 16px horizontal
+4,desktop-app-dense,dense,24x24px,1.4,8px vertical / 12px horizontal
+5,data-table-desktop,dense,24x24px,1.35,6px vertical / 12px horizontal
+6,data-table-mobile,comfortable,44x44px,1.6,14px vertical / 16px horizontal
+7,form-standard,comfortable,44x44px,1.6,14px vertical / 16px horizontal
+8,form-compact,compact,36x36px,1.5,10px vertical / 14px horizontal
+9,dashboard-widgets,default,32x32px,1.5,12px vertical / 16px horizontal
+10,settings-panel,default,40x40px,1.55,12px vertical / 16px horizontal
+11,command-palette,compact,36x36px,1.4,8px vertical / 12px horizontal
+12,dropdown-menu,comfortable,36x36px,1.5,10px vertical / 14px horizontal

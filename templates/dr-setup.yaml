@@ -1,0 +1,56 @@
+# dr-setup.yaml — Disaster Recovery Gate configuration
+# Copy to .king/dr-setup.yaml and complete with project values.
+# Used by /promote Phase 1b to verify DR is configured before deploying to production.
+
+# Set to false to skip the DR gate entirely in /promote (no error, no warn).
+enabled: true
+
+# warn  → report the issue but allow promote to continue (default — non-breaking)
+# error → hard-block /promote when DR gate fails (recommended for production-critical projects)
+mode: warn
+
+scope:
+  # DR gate only runs when promoting to these environments.
+  # Default: prod only. Add qa if your QA environment also requires DR certification.
+  environments: [prod]
+
+recovery:
+  # Recovery Time Objective — maximum acceptable downtime (hours)
+  rto_hours: 4
+  # Recovery Point Objective — maximum acceptable data loss window (hours)
+  rpo_hours: 1
+
+database:
+  # Script generation supported: postgres. Others (mysql, mongodb) → DR_SETUP_UNSUPPORTED_STACK (no script generated; runbook still produced).
+  engine: postgres
+  # Backup method: pg_dump (postgres), mysqldump (mysql), mongodump (mongodb), snapshot
+  backup_method: pg_dump
+
+storage:
+  # Cloud backends to use for backup storage. At least one required.
+  # Supported: s3, gcs, azure
+  backends: [s3]
+
+  retention:
+    # Number of backups to keep per frequency
+    daily: 7
+    weekly: 4
+    monthly: 12
+
+backup:
+  # Cron expression for backup schedule (default: 2:00 AM daily)
+  schedule: "0 2 * * *"
+  # Run an automatic restore dry-run after each backup to verify integrity
+  verify_restore: true
+
+runbook:
+  # Path to the failover runbook (relative to project root)
+  path: runbooks/dr-failover.md
+  # How often to run DR drills: never, monthly, quarterly
+  drill_frequency: quarterly
+
+# Set to true once a successful DR drill has been completed.
+recovery_tested: false
+
+# ISO date of the last successful DR drill (YYYY-MM-DD), or null if never tested.
+last_drill: null

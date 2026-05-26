@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-05-22",
+  "catalogs": [
+    {
+      "name": "styles",
+      "file": "styles.csv",
+      "count": 22,
+      "description": "Visual design styles with mood, color strategy, typography role, spacing, motion level and use cases"
+    },
+    {
+      "name": "palettes",
+      "file": "palettes.csv",
+      "count": 22,
+      "description": "WCAG-compliant color palettes per product type with hex values for primary, secondary, accent, bg and fg"
+    },
+    {
+      "name": "typography",
+      "file": "typography.csv",
+      "count": 17,
+      "description": "Heading and body font pairings with Google Fonts URLs, Tailwind snippets, mood and product type"
+    },
+    {
+      "name": "charts",
+      "file": "charts.csv",
+      "count": 17,
+      "description": "Chart types across recharts, chart.js, d3, nivo and tremor with accessibility notes and use cases"
+    },
+    {
+      "name": "ui-reasoning",
+      "file": "ui-reasoning.csv",
+      "count": 14,
+      "description": "Structured UI decision rationale for common design choices with explicit tradeoffs"
+    },
+    {
+      "name": "ux-guidelines",
+      "file": "ux-guidelines.csv",
+      "count": 18,
+      "description": "Animation guidelines with duration, easing functions and reduced-motion fallbacks per interaction category"
+    },
+    {
+      "name": "landing-patterns",
+      "file": "landing-patterns.csv",
+      "count": 17,
+      "description": "Landing page section patterns with components, vibe fit and conversion role"
+    },
+    {
+      "name": "product-patterns",
+      "file": "product-patterns.csv",
+      "count": 14,
+      "description": "In-product UI patterns for dashboards, settings, onboarding, data tables and more"
+    },
+    {
+      "name": "motion",
+      "file": "motion.csv",
+      "count": 16,
+      "description": "GPU-safe animation definitions using only transform and opacity with reduced-motion alternatives"
+    },
+    {
+      "name": "spacing-scales",
+      "file": "spacing-scales.csv",
+      "count": 8,
+      "description": "Spacing scales from micro (4px base) to editorial (32px base) with Tailwind class references"
+    },
+    {
+      "name": "density-rules",
+      "file": "density-rules.csv",
+      "count": 12,
+      "description": "UI density rules per context with minimum touch targets, line heights and padding base values"
+    }
+  ],
+  "total_records": 177
+}

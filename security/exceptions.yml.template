@@ -1,0 +1,13 @@
+# King Framework — Security Gate Exceptions
+# Use this file to document accepted security exceptions with expiry dates
+# DO NOT commit real secrets here. Only document WHY an exception was accepted.
+
+exceptions:
+  # Example:
+  # - id: "EXC-001"
+  #   rule: "secrets_detection"
+  #   path: "src/tests/fixtures/mock-token.ts"
+  #   reason: "Test fixture uses fake token format for unit testing"
+  #   approved_by: "@security"
+  #   expires: "2026-06-01"
+  #   ticket: "#123"

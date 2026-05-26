@@ -1,0 +1,70 @@
+#!/bin/bash
+# King Framework — Session Start Hook
+# Lee .king/registry.md y muestra estado del proyecto
+
+# Auto-update: pull latest changes from remote if available
+PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+if git -C "$PLUGIN_DIR" remote get-url origin &>/dev/null; then
+    UPDATE=$(git -C "$PLUGIN_DIR" pull --ff-only 2>/dev/null)
+    if echo "$UPDATE" | grep -q "Already up to date"; then
+        : # sin cambios, no mostrar nada
+    elif [ -n "$UPDATE" ]; then
+        echo "👑 King Framework actualizado"
+    fi
+fi
+
+ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+REGISTRY="$ROOT/.king/registry.md"
+
+VERSION=$(grep -o '"version"[[:space:]]*:[[:space:]]*"[^"]*"' "$PLUGIN_DIR/.claude-plugin/plugin.json" 2>/dev/null | grep -o '"[^"]*"$' | tr -d '"' || echo "1.0.0")
+echo "╔══════════════════════════════════════════════╗"
+echo "║  👑 King Framework v${VERSION}                    ║"
+echo "╚══════════════════════════════════════════════╝"
+echo ""
+echo "KING_FRAMEWORK_PATH=$PLUGIN_DIR"
+echo "Protocolos: RADAR · CASTLE · SDD · Chronicle"
+echo "Agentes:    @developer @architect @qa @frontend @security"
+echo "            @devops @api @mobile @performance"
+echo ""
+echo "Skills lifecycle: /genesis /brainstorm /plan /create-issues /build"
+echo "                  /review /qa /fix /merge /promote /release"
+echo "Skills tools:     /castle /radar /worktree /audit /refactor"
+echo "                  /frontend-design /gitflow /create-skill"
+echo "SDD:              /sdd-new /sdd-ff /sdd-continue"
+echo ""
+
+if [ -f "$REGISTRY" ]; then
+    BRANCH=$(git branch --show-current 2>/dev/null)
+    echo "📂 Branch: $BRANCH"
+    echo "📋 Registry: $REGISTRY"
+    echo ""
+
+    # Mostrar workflows activos
+    ACTIVE=$(awk '/^## Active Workflows/{found=1; next} /^## /{if(found) exit} found{print}' "$REGISTRY" 2>/dev/null | grep -v "^$" | grep -v "^|---" | head -10)
+    if [ -n "$ACTIVE" ]; then
+        echo "⚡ Workflows activos:"
+        echo "$ACTIVE"
+    else
+        echo "✓ Sin workflows activos"
+    fi
+
+    # Detectar workflows stale (>30 días) — portable (macOS + Linux)
+    STALE=$(awk '/^## Active Workflows/{found=1; next} /^## /{if(found) exit} found{print}' "$REGISTRY" 2>/dev/null | grep -o '[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}' | while read wf_date; do
+        today=$(date +%s)
+        # Portable date parsing: try GNU date (-d), fall back to BSD date (-j -f)
+        wf_ts=$(date -d "$wf_date" +%s 2>/dev/null) || wf_ts=$(date -j -f "%Y-%m-%d" "$wf_date" +%s 2>/dev/null) || wf_ts=$today
+        days=$(( (today - wf_ts) / 86400 ))
+        [ "$days" -gt 30 ] && echo "STALE ($days días)"
+    done)
+
+    # Validar tamaño del registry (seguridad: evitar token exhaustion por archivos anormalmente grandes)
+    REGISTRY_SIZE=$(wc -c < "$REGISTRY" 2>/dev/null || echo 0)
+    if [ "$REGISTRY_SIZE" -gt 102400 ]; then
+        echo "⚠️  ADVERTENCIA: .king/registry.md es inusualmente grande (${REGISTRY_SIZE} bytes). Considera archivar workflows completados."
+    fi
+    [ -n "$STALE" ] && echo "⚠️  Workflows posiblemente stale detectados — considera archivarlos"
+else
+    echo "ℹ️  Sin .king/registry.md — ejecuta /genesis para inicializar"
+fi
+
+echo ""

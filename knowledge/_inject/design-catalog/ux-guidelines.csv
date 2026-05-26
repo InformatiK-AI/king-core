@@ -1,0 +1,19 @@
+id,category,guideline,animation_duration_ms,easing,reduced_motion_fallback
+1,transition,Page route transitions should feel snappy not slow; slide or fade content in from the direction of navigation,200,cubic-bezier(0.4,0,0.2,1),opacity 0 to 1 only; no translation
+2,transition,Modal and dialog entry should emerge from trigger element using scale+opacity for spatial continuity,250,cubic-bezier(0.34,1.56,0.64,1),opacity fade only; skip scale
+3,transition,Drawer/sheet slide-in from edge should match the edge it enters from (right drawer slides from right),300,cubic-bezier(0.32,0.72,0,1),instant show; no slide
+4,feedback,Button press feedback (active state) must be immediate and tactile; scale-down 96% on active,100,cubic-bezier(0.4,0,1,1),background color darken only; no scale
+5,feedback,Form field focus ring should animate in to draw attention; use outline-offset expansion,150,ease-out,static focus ring; no animation
+6,feedback,Success checkmark animation after form submit provides emotional reward and confirms action completed,400,cubic-bezier(0.34,1.56,0.64,1),static checkmark icon; no draw animation
+7,feedback,Error shake animation on wrong input (login fail) gives physical metaphor for rejection; 3 oscillations max,350,cubic-bezier(0.36,0.07,0.19,0.97),static error state; no shake
+8,loading,Skeleton screens should pulse with subtle opacity cycle 0.6 to 1.0; not a spinner for content loading,1500,ease-in-out,static gray placeholder; no pulse
+9,loading,Spinner rotation for async actions should be 360deg continuous loop; use CSS custom property for speed,1000,linear,text "Loading..." shown; no spinner
+10,loading,Progress bar fill should animate smoothly as progress updates; avoid jumpy discrete steps,300,ease-out,show numeric percentage; no bar fill animation
+11,micro-interaction,Toggle switch should animate thumb slide + background color in sync; do not animate independently,200,cubic-bezier(0.4,0,0.2,1),instant state change; no slide
+12,micro-interaction,Accordion expand/collapse should animate height via max-height or grid-template-rows trick,250,cubic-bezier(0.4,0,0.2,1),instant show/hide; no height animation
+13,micro-interaction,Tooltip appear should be delayed 500ms (prevent flash on cursor travel) and fade in,150,ease-out,static tooltip; no fade; remove delay
+14,micro-interaction,Chip/tag remove animation should scale-out the chip before DOM removal to avoid layout jump,200,cubic-bezier(0.4,0,1,1),instant removal; no scale-out
+15,navigation,Tab switching should slide content horizontally matching direction of tab (right tab = slide from right),200,cubic-bezier(0.4,0,0.2,1),opacity crossfade; no slide
+16,navigation,Floating Action Button should scale up on entry with slight overshoot spring; scale-down on hide,300,cubic-bezier(0.34,1.56,0.64,1),instant appear/hide; no scale
+17,navigation,Scroll-triggered sticky header should transition smoothly from transparent to opaque with shadow,200,ease-in-out,instant switch; no transition
+18,transition,Color theme switch (light/dark) should crossfade all surfaces to avoid jarring flash,300,ease-in-out,instant switch; no crossfade

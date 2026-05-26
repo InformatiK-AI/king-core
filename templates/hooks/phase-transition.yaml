@@ -1,0 +1,49 @@
+# PhaseTransition Hook — Template de Configuración por Proyecto
+#
+# Copiar este archivo a: .king/hooks/phase-transition.yaml
+# Documentación completa: king-framework/hooks/phase-transition.md
+#
+# MECANISMO: El dispatcher se ejecuta en session-management Paso N+1.5
+# al completar cualquier skill del pipeline King. Solo se activa si
+# enabled: true y la transición actual matchea on_phases.
+
+# ──────────────────────────────────────────────────────────────
+# SEGURIDAD — LEER ANTES DE CONFIGURAR
+# ──────────────────────────────────────────────────────────────
+# 1. Campo `run`: solo caracteres [a-zA-Z0-9_.\-\/]. Sin ".." (path traversal), ; | & $() ` > <
+# 2. El script recibe el payload como ENV VARS — nunca interpoladas en shell:
+#      KING_FROM_PHASE, KING_TO_PHASE, KING_PROJECT_NAME,
+#      KING_BRANCH, KING_TIMESTAMP, KING_STATUS
+# 3. NUNCA hardcodear tokens, webhooks ni secrets en este archivo.
+#    Usar variables de entorno del sistema operativo en el script:
+#      export SLACK_WEBHOOK_URL="https://hooks.slack.com/..."  # en ~/.bashrc o CI
+# 4. El proceso hijo NO hereda el entorno del proceso padre.
+# ──────────────────────────────────────────────────────────────
+
+enabled: true
+
+# Transiciones a interceptar. Formato: "from_phase->to_phase"
+# Fases disponibles: plan | build | review | qa | merge | promote | release
+#
+# Ejemplo: interceptar build->review y qa->merge:
+on_phases:
+  - build->review
+  - qa->merge
+# - plan->build
+# - review->qa
+# - merge->promote
+# - promote->release
+
+# Comando o script a ejecutar. Debe pasar allowlist: [a-zA-Z0-9_\-\/]
+# Rutas relativas al directorio raíz del proyecto.
+# El script recibe el contexto completo via ENV VARS (ver SEGURIDAD arriba).
+run: .king/hooks/scripts/on-phase-transition.sh
+
+# Si true: el pipeline no espera que el script termine.
+# Si false: el pipeline espera hasta que el script complete (o timeout).
+# Recomendado true para notificaciones; false para gates bloqueantes.
+async: true
+
+# Timeout en segundos. Si el script supera este límite, se hace kill.
+# Máximo recomendado: 30s. El pipeline continúa después del kill.
+timeout: 30

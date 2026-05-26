@@ -1,0 +1,159 @@
+# Load Index
+
+<!-- PURPOSE: Archivo de sistema interno del framework King Framework.
+     Documenta qué recursos (skills, agents, knowledge) se cargan en cada contexto de ejecución.
+     Sirve como referencia para optimización de token budget.
+     Referenciado desde: CLAUDE.md (sección Estructura de carpetas) y /audit.
+     Actualizar al agregar nuevos skills, agents o knowledge resources. -->
+
+Documentacion de que recursos se cargan en cada contexto para optimizacion de tokens.
+
+---
+
+## Carga base (siempre)
+
+| Recurso | Tokens aprox | Notas |
+|---------|--------------|-------|
+| `CLAUDE.md` | ~800 | Configuración raíz |
+| `rules/*.md` | ~1500 | Reglas de código/commits/git (5 archivos) |
+
+---
+
+## Carga por skill
+
+> **Nota:** "Entry ~tokens" refleja el SKILL.md entry point. Sub-archivos (PHASES.md, REFERENCE.md, etc.) se cargan on-demand durante ejecución.
+
+| Skill | Recursos cargados | Entry ~tokens | Con sub-archivos |
+|-------|-------------------|---------------|------------------|
+| `/genesis` | validation/, security/, knowledge/, agents/templates/, context7/ | ~830 | ~2700 (GENERATION.md, DISCOVERY.md) |
+| `/brainstorm` | .king/docs/features/, .king/docs/architecture/ | ~3990 | ~4500 (REFERENCE.md) |
+| `/plan` | docs/plans/, .king/docs/features/ | ~TBD | ~TBD (monolítico) |
+| `/create-issues` | docs/features/, issues/ | ~2220 | ~2220 (monolítico) |
+| `/build` | validation/, agents/developer, docs/plans/ | ~3310 | ~3310 (monolítico) |
+| `/review` | review/CHECKS.md, knowledge/stacks/ | ~3220 | ~6800 (CHECKS.md, PR-MODE.md) |
+| `/qa` | security/SECURITY-GATE, validation/ | ~1580 | ~5600 (STANDARD.md, ENV-CHECKS.md, ENV-MODE.md) |
+| `/merge` | (verifica sesión QA existente) | ~1400 | ~4500 (PROCESS.md, REFERENCE.md) |
+| `/promote` | promotions.json, qa sessions | ~4170 | ~4170 (monolítico) |
+| `/release` | promotions.json, qa-env sessions, CHANGELOG.md | ~1130 | ~7500 (PHASES.md, REFERENCE.md) |
+| `/frontend-design` | docs/features/, knowledge/stacks/ | ~3010 | ~4200 (DESIGN-PRINCIPLES.md) |
+| `/worktree` | (self-contained) | ~3890 | ~3890 (monolítico) |
+| `/audit` | skills/, agents/, knowledge/, docs/ | ~2360 | ~6800 (PHASES.md, REFERENCE.md) |
+| `/react-best-practices` | knowledge/stacks/react/rules, knowledge/stacks/react/patterns | ~2030 | ~14850 (7 sub-archivos) |
+| `/add-test` | knowledge/_inject/testing-essentials | ~1370 | ~1370 (monolítico) |
+| `/generate-component` | knowledge/stacks/ | ~1050 | ~1050 (monolítico) |
+| `/create-endpoint` | knowledge/stacks/ | ~1360 | ~1360 (monolítico) |
+
+---
+
+## Carga por agent
+
+| Agent | Invocado por | Recursos adicionales |
+|-------|--------------|---------------------|
+| @developer | /build, /review | knowledge/_inject/*, patterns del proyecto, context7/library-registry.md |
+| @architect | /genesis, decisiones | knowledge/universal/*, ADRs, context7/library-registry.md |
+| @qa | /qa | security/SECURITY-GATE |
+| @security | bajo demanda | knowledge/*/security.md |
+| @frontend | /qa, /qa --env qa | knowledge/universal/accessibility.md |
+| @devops | bajo demanda | knowledge/domain/infrastructure.md |
+| @api | bajo demanda | knowledge/universal/api-design.md |
+| @mobile | bajo demanda | - |
+| @performance | bajo demanda | knowledge/universal/performance.md |
+
+---
+
+## Infraestructura compartida de agentes
+
+Recursos cargados bajo demanda durante interacciones inter-agente (no se cargan si el agente trabaja solo).
+
+| Recurso | Path | Cargado cuando |
+|---------|------|----------------|
+| Contrato developer-architect | `agents/_common/contracts/developer-architect.md` | @developer consulta a @architect o viceversa |
+| Contrato developer-qa | `agents/_common/contracts/developer-qa.md` | @developer entrega a @qa o @qa reporta issues |
+| Contrato developer-security | `agents/_common/contracts/developer-security.md` | @developer interactúa con @security |
+| Contrato developer-ux-accessibility | `agents/_common/contracts/developer-frontend.md` | @developer interactúa con @frontend |
+| Contrato qa-security | `agents/_common/contracts/qa-security.md` | @qa orquesta @security en env mode |
+| Communication Flowchart | `agents/_common/communication-flowchart.md` | Cualquier interacción multi-agente |
+
+---
+
+## Knowledge: Versiones
+
+| Contexto | Versión a usar | Path |
+|----------|----------------|------|
+| Inyección en agent | Slim | `knowledge/_inject/*.md` |
+| Consulta profunda | Completa | `knowledge/universal/*.md` o `stacks/*/*.md` |
+| Referencia en docs | Link a completa | - |
+| Context7 on-demand | Live via MCP | `resolve-library-id` + `query-docs` |
+
+### Knowledge Version por Agente
+
+| Agente | Versión | Fuente |
+|--------|---------|--------|
+| @developer | slim + context7 | `knowledge/_inject/testing-essentials.md`, `knowledge/_inject/security-essentials.md`, `knowledge/_inject/context7-essentials.md` |
+| @architect | slim + full (api-design) + context7 | `knowledge/_inject/` + `knowledge/universal/api-design.md`, `knowledge/_inject/context7-essentials.md` |
+| @qa | slim | `knowledge/_inject/testing-essentials.md` |
+| @frontend | full | `knowledge/universal/accessibility.md` |
+| @security | full | `knowledge/_inject/security-essentials.md` + `knowledge/domain/compliance/` (ver index.md) |
+| Otros especializados | slim + domain | `knowledge/_inject/` + `knowledge/domain/` relevante |
+
+---
+
+## Optimización de carga
+
+### Principios
+
+1. **Lazy loading**: Solo cargar cuando se necesita
+2. **Referencias > Duplicación**: Apuntar a archivos, no copiar contenido
+3. **Versiones slim**: Usar `_inject/` para agents
+4. **Session reuse**: Verificar sesiones existentes antes de re-ejecutar
+
+### Señales de sobrecarga
+
+- Skill/agent con >2000 tokens de contexto propio
+- Mismo contenido en múltiples archivos
+- Knowledge completo inyectado cuando slim bastaría
+
+---
+
+## Dependencias entre skills
+
+```
+/genesis
+    │
+    ├─► /brainstorm
+    │       │
+    │       ├─► /frontend-design (cuando señales UI detectadas)
+    │       │       │
+    │       │       └─► /plan
+    │       │
+    │       └─► /plan (sin UI)
+    │               │
+    │               └─► /create-issues
+    │                       │
+    │                       └─► /build
+    │                               │
+    │                               ├ ─ ► /review (opcional)
+    │                               │       │
+    │                               └─► /qa ◄┘
+    │                               │
+    │                               └─► /merge
+    │                                       │
+    │                                       └─► /promote --to qa
+    │                                               │
+    │                                               └─► /qa --env qa
+    │                                                       │
+    │                                                       └─► /release
+    │                                                               │
+    │                                                               └─► auto /promote --to prod
+    │
+    ├─► /frontend-design (standalone, independiente)
+    └─► /worktree (independiente, se integra con build/merge/qa/promote)
+```
+
+---
+
+## Cómo actualizar este índice
+
+1. Al agregar nuevo skill/agent, documentar aquí
+2. Al mover/eliminar recursos, actualizar paths
+3. Revisar tokens aproximados periódicamente

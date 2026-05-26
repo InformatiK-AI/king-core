@@ -1,0 +1,18 @@
+id,chart_type,library,a11y_notes,use_case,responsive
+1,line,recharts,Add aria-label to ResponsiveContainer; use title+desc inside SVG; provide data table alternative,Time-series KPI trends; revenue over time; user growth,true
+2,bar,recharts,Label each bar with value via label prop; use pattern fills for colorblind users; keyboard navigation via tabIndex,Categorical comparison; monthly revenue by product; A/B test results,true
+3,area,recharts,Distinguish fills with pattern not just color; provide CSV export; ensure 3:1 contrast for stroke,Cumulative metrics; stacked user segments over time; bandwidth usage,true
+4,pie,recharts,Never use pie for >6 segments; always show legend with values; add aria-label per slice,Market share; plan distribution; single-category breakdown,true
+5,donut,recharts,Same as pie; center label must pass 4.5:1 contrast; avoid thin slices <5%,Resource allocation; completion percentage; billing breakdown,true
+6,scatter,recharts,Provide tooltip with both axis values; use shape+color encoding; include regression line description,Correlation analysis; performance vs cost; user cluster mapping,true
+7,bar-stacked,chart.js,Use pattern fills via chartjs-plugin-datalabels; announce total on focus; provide data table,Composition over time; traffic sources stacked; revenue breakdown by category,true
+8,radar,chart.js,Add axis labels with sufficient contrast; provide numeric table fallback; limit to 6-8 axes,Skill assessment; product feature comparison; performance profiling,true
+9,bubble,chart.js,Encode size in aria-label (not just visually); min bubble size 8px for touch; legend required,3D correlation; market size vs growth vs share; risk matrix,true
+10,histogram,d3,Use color + pattern; label every bin; screen reader description of distribution shape,Distribution analysis; latency percentiles; score frequency,true
+11,treemap,d3,Minimum cell area 40x40px; on-focus tooltip; provide list view toggle,Hierarchical data; file size breakdown; org budget allocation,true
+12,sankey,d3,Annotate flow values; provide link list as alternative; high contrast node borders,User flow analysis; funnel drop-off; energy/budget allocation,false
+13,heatmap,nivo,Use sequential accessible palette (ColorBrewer); provide value on focus; include legend scale,Activity calendars; cohort retention; feature usage matrix,true
+14,funnel,nivo,Label each stage with value and %; announce conversion rates; RTL support,Conversion funnels; onboarding steps completion; sales pipeline,true
+15,sparkline,tremor,Minimum height 32px; always pair with numeric value; tooltip on hover/focus,Compact KPI cards; inline trend indicators; dashboard widgets,true
+16,combo-bar-line,recharts,Dual axis requires clear legend; announce which axis each series uses; provide data table,Revenue + growth rate; impressions + CTR; cost + conversion,true
+17,gauge,recharts,Announce current value and thresholds verbally; use color + position encoding; avoid relying on color alone,NPS score; system health; single metric dashboards,true

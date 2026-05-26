@@ -1,0 +1,41 @@
+# .king/performance-budget.yaml
+# Performance Budget Gate — Configuración por proyecto
+#
+# Colocar este archivo en .king/performance-budget.yaml del proyecto.
+# Si no existe, se usan los defaults del framework (ver rules/performance-gate.md).
+#
+# Referencia: king-framework/rules/performance-gate.md
+
+# Modo de ejecución del gate:
+#   error — bloquea /build y /promote si algún score falla (default)
+#   warn  — muestra advertencia pero no bloquea el skill
+mode: error
+
+# Thresholds por categoría de Lighthouse (0-100)
+# Default del framework: performance:90, accessibility:90, best-practices:90, seo:85
+thresholds:
+  performance: 90
+  accessibility: 90
+  best-practices: 90
+  seo: 85
+
+# Habilitar/deshabilitar el gate completamente
+# Útil para deshabilitar temporalmente sin eliminar la configuración
+enabled: true
+
+# URL del frontend a auditar (si es diferente al default detectado)
+# Default: http://localhost detectado por el skill
+# url: http://localhost:3000
+
+# Core Web Vitals — thresholds de display en el reporte de fallo
+# Estos valores son informativos: se muestran en el output del gate pero no se
+# usan como assertions directas. El score de Performance ya los pondera implícitamente.
+# Cambiarlos aquí afecta solo el formato del reporte, no el criterio de bloqueo.
+core-web-vitals:
+  lcp: 2500    # Largest Contentful Paint en ms (referencia Google: < 2500ms = bueno)
+  cls: 0.1     # Cumulative Layout Shift ratio (referencia Google: < 0.1 = bueno)
+  inp: 200     # Interaction to Next Paint en ms (referencia Google: < 200ms = bueno)
+
+# Para configuración avanzada de LHCI (número de runs, URLs múltiples, etc.),
+# crear .lhcirc.json en la raíz del proyecto — es independiente de este archivo.
+# Ver: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md

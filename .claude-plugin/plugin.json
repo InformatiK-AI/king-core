@@ -1,0 +1,23 @@
+{
+  "name": "king-framework",
+  "version": "1.9.1",
+  "description": "King Framework: protocolo RADAR/CASTLE/SDD/Chronicle, 10 agentes especializados, 39 skills de ciclo de vida completo. /genesis genera infraestructura adaptada a tu proyecto.",
+  "author": {
+    "name": "InformatiK-AI",
+    "email": "j.salgado2k@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/InformatiK-AI/king-framework",
+  "repository": "https://github.com/InformatiK-AI/king-framework",
+  "keywords": [
+    "radar",
+    "castle",
+    "sdd",
+    "chronicle",
+    "agents",
+    "quality",
+    "genesis",
+    "workflow",
+    "claude-code"
+  ]
+}

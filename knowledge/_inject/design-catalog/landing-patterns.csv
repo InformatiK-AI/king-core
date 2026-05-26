@@ -1,0 +1,18 @@
+id,pattern_name,section_type,components,vibe_fit,conversion_role
+1,hero-problem-solution,hero,H1 headline + subheadline + dual CTA (primary/ghost) + hero image or demo video,saas-product; ai-tool; startup,First impression + primary conversion entry; reduce bounce rate
+2,social-proof-logos,trust-bar,Row of client/partner logos with subtle grayscale filter; "Trusted by N+ companies",b2b-saas; enterprise; fintech,Trust establishment; reduces skepticism immediately after hero
+3,benefit-columns,features,3-column grid with icon + short title + 1-2 sentence description; no screenshots,simple products; early-stage startup; service,Communicate value props quickly; scannable above the fold
+4,feature-showcase-alternating,features,Alternating left/right layout: screenshot/video + benefit copy; each row one feature,complex product; developer tool; dashboard,Educate on specific capabilities; reduce support tickets
+5,bento-feature-grid,features,Asymmetric bento grid with feature tiles of varied sizes; icons + short labels + optional demo gif,modern saas; ai product; design tool,Visual differentiation; shareability; feels premium
+6,social-proof-testimonials,testimonials,Quote cards with avatar + name + role + company; star rating optional; 3-4 visible with carousel,b2c; saas; e-learning; marketplace,Overcome objections; peer validation; authority building
+7,pricing-table,pricing,3-column (Starter/Pro/Enterprise); highlighted middle tier; feature checklist; annual/monthly toggle,saas; subscription; freemium model,Primary revenue conversion point; anchoring with middle tier
+8,faq-accordion,faq,Accordion with 6-10 common questions; schema markup for SEO; search input optional,all products,Reduce support load; address last-mile objections before purchase
+9,final-cta-banner,cta,Full-width section with headline + single primary CTA + optional email input; contrasting background,all products,Last conversion attempt; captures scrollers who didn't convert above
+10,stats-bar,social-proof,3-5 bold metrics (users; revenue; uptime; NPS) with labels; animated count-up optional,b2b-saas; scale-stage startup; marketplace,Credibility signal; demonstrates traction
+11,video-demo-embed,features,Centered video with play button overlay; auto-pause; captions required; thumbnail must be compelling,complex products; developer tools; enterprise,Dramatically increases time-on-page; show not tell
+12,comparison-table,competitor,Feature matrix vs 2-3 named competitors; honest gaps shown in small print; CTA after table,competitive market; switching product; challenger brand,Converts comparison shoppers; SEO value for "[product] vs [competitor]" queries
+13,interactive-demo,hero-or-features,Embedded sandbox or click-through prototype; no signup required; guided tooltip sequence,developer tools; complex saas; ai product,Highest-intent conversion action; removes fear of commitment
+14,use-case-tabs,features,Tab bar with 3-4 personas/roles; each tab shows tailored copy + screenshot,multi-persona product; platform,Personalized relevance; reduces pogo-sticking for non-primary persona
+15,integration-grid,social-proof,Logo grid of compatible tools/APIs with count badge; "Connects with N+ tools",saas; platform; api product,Reduces integration risk objection; captures existing-toolchain buyers
+16,newsletter-signup,cta,Minimal email field + CTA; value prop copy (e.g. "Weekly tips for..."); privacy reassurance,content; newsletter; blog; tool,Builds owned audience; lower commitment than full signup
+17,sticky-header-cta,navigation,Transparent to frosted header on scroll; logo + nav links + primary CTA button always visible,all products,Persistent conversion entry point; recovers scrollers who missed hero CTA
