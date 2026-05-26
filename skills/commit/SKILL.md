@@ -2,12 +2,12 @@
 name: commit
 version: 2.0
 internal: true
-description: "Crear commits con conventional commits y co-authoring automático. Analiza los cambios staged y genera un mensaje de commit semántico."
+description: "Crear commits con conventional commits. Analiza los cambios staged y genera un mensaje de commit semántico."
 ---
 
 # Commit — Conventional Commits
 
-Crea commits siguiendo el estándar de Conventional Commits con co-authoring automático de Claude.
+Crea commits siguiendo el estándar de Conventional Commits.
 
 ## QUICK REFERENCE
 
@@ -21,7 +21,6 @@ Crea commits siguiendo el estándar de Conventional Commits con co-authoring aut
 > 📦 Resultados que DEBEN producirse al finalizar
 
 - [ ] Commit creado con mensaje en formato Conventional Commits
-- [ ] Co-authoring `Co-Authored-By: Claude <noreply@anthropic.com>` incluido
 
 ---
 
@@ -31,8 +30,6 @@ Crea commits siguiendo el estándar de Conventional Commits con co-authoring aut
 type(scope): descripción corta en imperativo
 
 [Cuerpo opcional: contexto del cambio]
-
-Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
 ### Tipos válidos
