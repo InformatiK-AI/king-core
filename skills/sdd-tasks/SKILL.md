@@ -1,12 +1,9 @@
 ---
 name: sdd-tasks
+version: 2.0
 description: >
   Break down a change into an implementation task checklist.
   Trigger: When the orchestrator launches you to create or update the task breakdown for a change.
-license: MIT
-metadata:
-  author: gentleman-programming
-  version: "2.0"
 ---
 
 ## Purpose

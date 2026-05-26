@@ -1,4 +1,4 @@
-﻿---
+---
 name: performance
 color: orange
 description: "Agente de rendimiento. Usar cuando se necesite: analizar latencia, optimizar throughput, perfilar uso de recursos, identificar bottlenecks, evaluar escalabilidad, o auditar tiempos de respuesta de API y renderizado de UI."

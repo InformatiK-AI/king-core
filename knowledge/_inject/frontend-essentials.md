@@ -1,4 +1,4 @@
-﻿# UX/Accessibility Essentials (para inyección)
+# UX/Accessibility Essentials (para inyección)
 
 > **Nota**: Este archivo complementa `knowledge/universal/accessibility.md` con contenido específico para inyección en el agente @frontend. El knowledge universal cubre fundamentos; este archivo cubre checklists de acción.
 

@@ -1,4 +1,4 @@
-﻿---
+---
 name: sdd-continue
 description: "Continuar el SDD en la siguiente fase disponible del DAG. Detecta automáticamente qué fases están listas para ejecutar."
 argument-hint: "[change-name]"

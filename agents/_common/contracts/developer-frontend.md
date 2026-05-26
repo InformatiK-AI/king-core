@@ -1,4 +1,4 @@
-﻿# Developer-Frontend Contract
+# Developer-Frontend Contract
 
 ## Propósito
 Define el protocolo de interacción entre @developer y @frontend para implementación accesible, consultas de patrones ARIA y validación de WCAG compliance durante desarrollo.

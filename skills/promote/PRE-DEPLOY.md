@@ -1,4 +1,4 @@
-﻿# Promote — Pre-Deploy Gates (v2.0)
+# Promote — Pre-Deploy Gates (v2.0)
 
 > Fases 1-3: gates de calidad antes del deploy. Entry point: [SKILL.md](SKILL.md)
 

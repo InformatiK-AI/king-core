@@ -1,4 +1,4 @@
-﻿---
+---
 name: brainstorm
 description: "Explorar ideas y enfoques antes de planificar. Genera opciones con trade-offs, riesgos y recomendación. Primera etapa del pipeline de ideación."
 argument-hint: "[topic or problem description]"

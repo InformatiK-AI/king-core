@@ -1,4 +1,4 @@
-﻿---
+---
 name: worktree
 version: 2.0
 structure: command-based

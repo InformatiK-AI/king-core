@@ -1,4 +1,4 @@
-﻿---
+---
 name: castle
 description: "Evaluación de calidad CASTLE (Contracts, Architecture, Security, Testing, Logging, Environment). Usar para auditorías de calidad, pre-merge, pre-release, o cuando se necesite evaluar el estado del proyecto."
 version: "2.0"

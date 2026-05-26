@@ -1,4 +1,4 @@
-﻿# Genesis - Generation + Setup + Onboarding
+# Genesis - Generation + Setup + Onboarding
 
 > Fases 3-5 del skill `/genesis`. Router principal: [SKILL.md](SKILL.md)
 

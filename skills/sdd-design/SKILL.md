@@ -1,12 +1,9 @@
 ---
 name: sdd-design
+version: 2.0
 description: >
   Create technical design document with architecture decisions and approach.
   Trigger: When the orchestrator launches you to write or update the technical design for a change.
-license: MIT
-metadata:
-  author: gentleman-programming
-  version: "2.0"
 ---
 
 ## Purpose

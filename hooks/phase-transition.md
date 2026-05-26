@@ -1,4 +1,4 @@
-﻿# PhaseTransition Hook
+# PhaseTransition Hook
 
 > Mecanismo convention-based de King Framework para interceptar transiciones entre fases del pipeline.  
 > Implementado como dispatcher en `session-management/SKILL.md` (Paso N+1.5).  

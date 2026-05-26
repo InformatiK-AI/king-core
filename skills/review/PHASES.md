@@ -1,4 +1,4 @@
-﻿# Code Review — Phases (v2.0)
+# Code Review — Phases (v2.0)
 
 > Lógica detallada de las fases 1-6. Entry point: [SKILL.md](SKILL.md)
 

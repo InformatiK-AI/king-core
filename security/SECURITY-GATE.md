@@ -1,4 +1,4 @@
-﻿# Security Gate
+# Security Gate
 
 ## Propósito
 Gate de seguridad OBLIGATORIO antes de merge a branches protegidos.

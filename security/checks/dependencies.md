@@ -1,4 +1,4 @@
-﻿# Dependency Audit
+# Dependency Audit
 
 ## Propósito
 Verificar que las dependencias del proyecto no tienen vulnerabilidades conocidas.

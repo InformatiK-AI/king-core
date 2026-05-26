@@ -1,4 +1,4 @@
-﻿---
+---
 name: radar
 description: "Protocolo de razonamiento RADAR para toma de decisiones estructurada. Usar cuando se necesite analizar antes de actuar, razonar sobre alternativas, o tomar decisiones arquitectónicas."
 version: "2.0"

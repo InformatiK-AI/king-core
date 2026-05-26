@@ -1,4 +1,4 @@
-﻿---
+---
 name: build
 description: "Workflow guiado para desarrollar features completas. Usar cuando se necesite: construir una feature nueva, implementar funcionalidad, desarrollar un componente, o agregar una capacidad al sistema."
 version: 2.0

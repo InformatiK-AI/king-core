@@ -1,4 +1,4 @@
-﻿---
+---
 name: qa
 description: "QA estándar para una feature o cambio individual. Usar cuando se necesite: ejecutar QA, verificar calidad de una feature, validar una implementación, o hacer quality assurance de un cambio."
 version: 2.0

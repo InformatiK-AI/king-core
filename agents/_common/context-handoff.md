@@ -1,4 +1,4 @@
-﻿# Context Handoff Standard
+# Context Handoff Standard
 
 > **Token budget note**: Este archivo (~1800 tokens) excede el umbral warning (1500)
 > por incluir template completo + ejemplo ilustrativo. Justificado: el ejemplo

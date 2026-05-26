@@ -1,4 +1,4 @@
-﻿# Developer-Performance Contract
+# Developer-Performance Contract
 
 ## Propósito
 Define el protocolo de interacción entre @developer y @performance para identificación de cuellos de botella, optimizaciones de código y validación de cambios con impacto en rendimiento.

@@ -1,4 +1,4 @@
-﻿---
+---
 name: gitflow
 description: "GitFlow y gestión de worktrees. Usar cuando se necesite: ver estado de branches, crear branches feature/hotfix/release, sincronizar worktrees, verificar estado de ambientes, o gestionar el flujo GitFlow del proyecto."
 version: "2.0"

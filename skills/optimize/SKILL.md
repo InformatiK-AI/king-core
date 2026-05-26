@@ -1,4 +1,4 @@
-﻿---
+---
 name: optimize
 version: 2.0
 description: "Workflow de optimización de rendimiento. Usar cuando se necesite: optimizar algoritmos, mejorar complejidad Big O, aplicar design patterns, auditar buenas prácticas de rendimiento, reducir uso de recursos, o mejorar eficiencia sin cambiar comportamiento."

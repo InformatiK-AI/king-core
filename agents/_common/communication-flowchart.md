@@ -1,4 +1,4 @@
-﻿# Communication Flowchart
+# Communication Flowchart
 
 ## Propósito
 Diagrama visual de qué skills invocan a qué agentes y cómo fluye la comunicación.

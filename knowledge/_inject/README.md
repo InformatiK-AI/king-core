@@ -1,4 +1,4 @@
-﻿# Knowledge Inject
+# Knowledge Inject
 
 Versiones compactas de knowledge para inyección lazy en skills y agents.
 

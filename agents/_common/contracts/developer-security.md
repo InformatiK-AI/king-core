@@ -1,4 +1,4 @@
-﻿# Developer-Security Contract
+# Developer-Security Contract
 
 ## Propósito
 Define el protocolo de interacción entre @developer y @security para remediación de vulnerabilidades, consultas de código seguro y validación de patrones de seguridad.

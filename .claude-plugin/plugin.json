@@ -1,6 +1,6 @@
 {
   "name": "king-core",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "description": "King Core: SDLC completo con 47 skills — genesis, brainstorm, plan, build, review, qa, merge, release y pipeline SDD. 10 agentes especializados. Base del ecosistema King Framework.",
   "author": {
     "name": "InformatiK-AI",

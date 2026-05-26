@@ -1,4 +1,4 @@
-﻿---
+---
 name: release
 description: "Release GitFlow completo. Usar cuando se necesite: crear un release, publicar una versión, hacer release vX.Y.Z, certificar y publicar una versión del proyecto."
 version: 2.0

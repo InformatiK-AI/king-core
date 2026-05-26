@@ -1,4 +1,4 @@
-﻿---
+---
 name: architect
 color: blue
 description: "Agente de arquitectura. Usar cuando se necesite: revisar arquitectura, tomar decisiones arquitectónicas, evaluar diseño de sistema, crear ADRs, verificar dependency direction, analizar coupling, o validar que el código sigue patrones establecidos."

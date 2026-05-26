@@ -1,4 +1,4 @@
-﻿# Build Feature — Phases (v2.0)
+# Build Feature — Phases (v2.0)
 
 > Lógica detallada de las fases 1-9. Entry point: [SKILL.md](SKILL.md)
 

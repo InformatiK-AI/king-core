@@ -1,4 +1,4 @@
-﻿# Developer-Architect Contract
+# Developer-Architect Contract
 
 ## Propósito
 Define el protocolo de interacción entre @developer y @architect para consultas de factibilidad y decisiones arquitectónicas.

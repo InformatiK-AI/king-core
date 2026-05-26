@@ -1,4 +1,4 @@
-﻿---
+---
 name: fix
 description: "Workflow sistemático para corregir bugs. Usar cuando se necesite: fix de bug, corregir un error, resolver un issue, debugging, o arreglar un problema reportado."
 version: 2.0
