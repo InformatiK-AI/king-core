@@ -110,6 +110,7 @@ Antes de terminar, verificar:
 
 - [ ] CLAUDE.md existe y esta completo
 - [ ] `.gitignore` creado (si no existía) o preservado con warning (si ya existía)
+- [ ] `.env.example` generado con secciones de variables del stack detectado
 - [ ] `.king/knowledge/stack.md` creado y confirmado
 - [ ] `.king/knowledge/architecture.md` creado y confirmado
 - [ ] `.king/knowledge/conventions.md` creado y confirmado

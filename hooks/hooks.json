@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'INPUT=$(cat); CONTENT=$(echo \"$INPUT\" | jq -r \".content // .new_string // empty\" 2>/dev/null); if [ -z \"$CONTENT\" ]; then exit 0; fi; PATTERNS=\"sk-ant-api[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{36}|ghs_[0-9A-Za-z]{36}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|sk_live_[0-9A-Za-z]{24}|sk_test_[0-9A-Za-z]{24,}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59}\"; if echo \"$CONTENT\" | grep -qEe \"$PATTERNS\"; then echo \"[King Security] BLOCKED: Hardcoded secret pattern detected. Review content before writing.\"; exit 2; fi; exit 0'",
+            "command": "bash -c 'INPUT=$(cat); CONTENT=$(echo \"$INPUT\" | jq -r \".content // .new_string // empty\" 2>/dev/null); if [ -z \"$CONTENT\" ]; then exit 0; fi; PATTERNS=\"sk-ant-api[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{36}|ghs_[0-9A-Za-z]{36}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|sk_live_[0-9A-Za-z]{24}|sk_test_[0-9A-Za-z]{24,}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-[0-9]{10,12}-[0-9]{10,12}-[a-zA-Z0-9]{24,}|eyJ[A-Za-z0-9_-]{20,}\\.[A-Za-z0-9_-]{20,}\\.[A-Za-z0-9_-]{20,}\"; if echo \"$CONTENT\" | grep -qEe \"$PATTERNS\"; then echo \"[King Security] BLOCKED: Hardcoded secret pattern detected. Review content before writing.\"; exit 2; fi; exit 0'",
             "async": false
           },
           {
@@ -86,6 +86,16 @@
           {
             "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/conductor-invoke"
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); PROMPT=$(echo \"$INPUT\" | jq -r \".prompt // empty\" 2>/dev/null); if [ -z \"$PROMPT\" ]; then exit 0; fi; PATTERNS=\"sk-ant-api[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{36}|ghs_[0-9A-Za-z]{36}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|sk_live_[0-9A-Za-z]{24}|sk_test_[0-9A-Za-z]{24,}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-[0-9]{10,12}-[0-9]{10,12}-[a-zA-Z0-9]{24,}|eyJ[A-Za-z0-9_-]{20,}\\\\.[A-Za-z0-9_-]{20,}\\\\.[A-Za-z0-9_-]{20,}\"; if echo \"$PROMPT\" | grep -qEe \"$PATTERNS\"; then echo \"[King CASTLE E] WARNING: posible secret hardcodeado en prompt. Verificá que no estás exponiendo credenciales en la conversación.\"; fi; exit 0'",
+            "async": false
           }
         ]
       }
