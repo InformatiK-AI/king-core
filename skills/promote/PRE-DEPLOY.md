@@ -161,6 +161,18 @@ Recovery:
 
 ---
 
+### Phase 2b: Accessibility Gate (M-28)
+
+> Gate BLOQUEANTE. Requiere `/a11y-audit` antes de continuar a Phase 2c.
+
+1. Si `.king/castle/a11y-report.json` existe Y fue generado hace < 24h → usar el report existente
+2. Si no existe o es stale (>= 24h) → ejecutar `/a11y-audit`
+3. Si `violations.critical > 0 OR violations.serious > 0` → **BLOCK** Phase 2c y promote
+4. Si violations solo moderate/minor → WARN (no block), continuar a Phase 2c
+5. Mensaje de block: "A11y gate FAILED: {N} critical + {M} serious violations. Run /a11y-fix and re-promote."
+
+---
+
 ## Fase 3: Database Migration Check (via /db-migrate)
 
 ### MUST DO
