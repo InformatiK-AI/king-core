@@ -32,3 +32,10 @@ logs/
 *.tmp
 *.temp
 .cache/
+
+# King Framework — archivos sensibles (no versionar)
+.king/knowledge/environments.md
+.king/sessions/
+.king/.genesis-merge-mode
+.env
+.env.*

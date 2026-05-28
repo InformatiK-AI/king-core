@@ -44,3 +44,10 @@ coverage/
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
+
+# King Framework — archivos sensibles (no versionar)
+.king/knowledge/environments.md
+.king/sessions/
+.king/.genesis-merge-mode
+.env
+.env.*
