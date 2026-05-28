@@ -20,6 +20,10 @@
 | `create-issues` | ✓ | ✓ | - | - | - | - | C·A·_·_·_·_ | CONDITIONAL |
 | `frontend-design` | - | ✓ | - | ✓ | - | - | _·A·_·T·_·_ | CONDITIONAL |
 | `test-plan` | ✓ | ✓ | ✓ | ✓ | - | - | C·A·S·T·_·_ | CONDITIONAL |
+| `contract-test` | ✓ | ✓ | - | ✓ | - | - | C·A·_·T·_·_ | CONDITIONAL |
+| `mutation-test` | - | ✓ | - | ✓ | - | - | _·A·_·T·_·_ | CONDITIONAL |
+| `property-test` | - | ✓ | - | ✓ | - | - | _·A·_·T·_·_ | CONDITIONAL |
+| `perf-test` | - | ✓ | - | ✓ | - | ✓ | _·A·_·T·_·E | CONDITIONAL |
 | `promote` | - | - | ✓ | - | - | ✓ | _·_·S·_·_·E | CONDITIONAL |
 | `db-migrate` | ✓ | ✓ | ✓ | ✓ | - | ✓ | C·A·S·T·_·E | CONDITIONAL |
 
