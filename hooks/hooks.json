@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd\" session-start",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start",
             "async": false
           }
         ]
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd\" recovery.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/recovery.sh",
             "async": false
           }
         ]
@@ -53,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd\" conductor-invoke"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/conductor-invoke"
           }
         ]
       }
