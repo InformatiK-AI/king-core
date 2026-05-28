@@ -37,6 +37,7 @@ Read the following files BEFORE Phase 1. If a file does not exist, log a warning
 
 - [ ] `.king/docs/audits/YYYY-MM-DD-audit-report.md`
 - [ ] `.king/docs/audits/YYYY-MM-DD-improvement-backlog.md`
+- [ ] `.king/docs/audits/trends.json` → appended each run (created on first run)
 - [ ] Health Score calculado y comunicado (registrado en reporte y sesión)
 - [ ] Session document creado (via session-management Phase N+1)
 
@@ -58,6 +59,10 @@ de archivos v2.0/RADAR cruzadas   ACs       Escalation Token       priorizado
 | `--focus {agents\|skills\|security\|quality\|all}` | Area especifica | `all` |
 | `--dry-run` | Preview sin escribir reportes | `false` |
 | `--fix-suggestions` | Incluir snippets de codigo para fixes | `true` |
+| `--auto-fix` | Run auto-fixable issues (additive-only). See AUTOFIX.md. | `false` |
+| `--compare-baseline {tag}` | Diff current audit vs stored baseline tag in trends.json. | _(none)_ |
+| `--ci-threshold {N}` | Emit CI_RESULT marker with EXIT_CODE: 1 if health_score < N. | _(none)_ |
+| `--tag {label}` | Tag this audit run in trends.json for future `--compare-baseline` lookups. | _(none)_ |
 
 ### HEALTH SCORE FORMULA
 ```
@@ -187,11 +192,14 @@ Tabla de flujo para audit:
 
 ## Archivos del skill
 
-| Archivo | Contenido | Descripcion |
-|---------|-----------|-------------|
-| `SKILL.md` | Router, QUICK REFERENCE, pointers a sub-archivos | Este archivo (~230 lineas) |
-| `PHASES.md` | Fases 1-6 con GATE IN, MUST DO, CHECKPOINT, IF FAILS | Fases de analisis (~350 lineas) |
-| `REFERENCE.md` | Severidades, issues baseline, patrones, comandos | Material de referencia (~150 lineas) |
+| Archivo | Contenido | Descripcion | Condicion de carga |
+|---------|-----------|-------------|--------------------|
+| `SKILL.md` | Router, QUICK REFERENCE, pointers a sub-archivos | Este archivo (~230 lineas) | Siempre |
+| `PHASES.md` | Fases 1-6 con GATE IN, MUST DO, CHECKPOINT, IF FAILS | Fases de analisis (~350 lineas) | Siempre |
+| `REFERENCE.md` | Severidades, issues baseline, patrones, comandos | Material de referencia (~150 lineas) | Siempre |
+| `SUBDIMENSIONS.md` | 25 sub-dims: ID, peso, criterios, autofix class | Catálogo de sub-dimensiones (~80 líneas) | Siempre (Phases 1–7) |
+| `AUTOFIX.md` | Catálogo de fixes auto/guided/manual (≥10 entradas) | Safety contract + catalog de operaciones aditivas (~100 líneas) | Solo con `--auto-fix` |
+| `TRENDS.md` | Schema trends.json, algoritmo prepend, baseline diff | Motor de histórico y comparación (~200 líneas) | Phase 7 (escritura y baseline diff) |
 
 ---
 
