@@ -210,6 +210,9 @@ _check_int() {
   local actual="$2"
   local budget="$3"
   if [ "$actual" != "null" ] && [ -n "$actual" ]; then
+    # Validate numeric before awk to prevent injection.
+    [[ "$actual" =~ ^[0-9]+(\.[0-9]+)?$ ]] || return 0
+    [[ "$budget" =~ ^[0-9]+(\.[0-9]+)?$ ]] || return 0
     if awk "BEGIN { exit ($actual > $budget) ? 0 : 1 }"; then
       local delta
       delta=$(awk "BEGIN { printf \"%d\", $actual - $budget }")
@@ -229,6 +232,9 @@ _check_float() {
   local actual="$2"
   local budget="$3"
   if [ "$actual" != "null" ] && [ -n "$actual" ]; then
+    # Validate numeric before awk to prevent injection.
+    [[ "$actual" =~ ^[0-9]+(\.[0-9]+)?$ ]] || return 0
+    [[ "$budget" =~ ^[0-9]+(\.[0-9]+)?$ ]] || return 0
     if awk "BEGIN { exit ($actual > $budget) ? 0 : 1 }"; then
       local delta
       delta=$(awk "BEGIN { printf \"%.3f\", $actual - $budget }")

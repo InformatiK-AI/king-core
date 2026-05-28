@@ -90,6 +90,10 @@ fi
 
 # ── 5. Compute delta and status ──────────────────────────────────────────────
 
+# Guard against injection: validate both values are pure floats before awk arithmetic.
+[[ "$COVERAGE_PCT" =~ ^[0-9]+(\.[0-9]+)?$ ]] || { echo "[King/Coverage] WARN: unparseable coverage value — skipping gate"; exit 0; }
+[[ "$THRESHOLD"    =~ ^[0-9]+(\.[0-9]+)?$ ]] || { echo "[King/Coverage] WARN: invalid threshold in config — skipping gate"; exit 0; }
+
 # Arithmetic in bash requires integer ops; use awk for floats.
 DELTA=$(awk "BEGIN { printf \"%.1f\", $COVERAGE_PCT - $THRESHOLD }")
 STATUS="pass"

@@ -310,21 +310,21 @@ Recovery:
 
 ---
 
-## FINAL CHECKPOINT
-
-- [ ] TODOS los REQUIRED OUTPUTS existen
-- [ ] TODOS los CHECKPOINTS de cada fase pasaron
-- [ ] Sesión registrada
-
----
-
 ## Phase 6b: CASTLE Score Report
 
-> Ejecutar SIEMPRE al final del QA, después del CASTLE Assessment cualitativo.
+> Ejecutar SIEMPRE al final del QA, después del CASTLE Assessment cualitativo, ANTES del cierre.
 
 1. Invocar `/castle-report`
 2. El score numérico complementa (no reemplaza) el veredicto cualitativo del CASTLE Assessment
 3. Si `castle_score < 60` (BREACHED): elevar como warning adicional al veredicto final
+
+---
+
+## FINAL CHECKPOINT
+
+- [ ] TODOS los REQUIRED OUTPUTS existen
+- [ ] TODOS los CHECKPOINTS de cada fase pasaron (incluyendo Phase 6b)
+- [ ] Sesión registrada
 
 ---
 
