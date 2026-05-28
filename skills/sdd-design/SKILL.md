@@ -1,6 +1,7 @@
 ---
 name: sdd-design
 version: 2.0
+api_version: 1.0.0
 description: >
   Create technical design document with architecture decisions and approach.
   Trigger: When the orchestrator launches you to write or update the technical design for a change.

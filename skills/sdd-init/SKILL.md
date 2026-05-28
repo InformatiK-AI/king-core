@@ -1,6 +1,7 @@
 ---
 name: sdd-init
 version: 3.0
+api_version: 1.0.0
 description: >
   Initialize Spec-Driven Development context in any project. Detects stack, conventions, testing capabilities, and bootstraps the active persistence backend.
   Trigger: When user wants to initialize SDD in a project, or says "sdd init", "iniciar sdd", "openspec init".

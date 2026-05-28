@@ -1,6 +1,7 @@
 ---
 name: audit
 version: 2.0
+api_version: 1.0.0
 description: "Auditoria comprehensiva del framework. Detecta inconsistencias, verifica comunicacion agent-skill, y genera backlog de mejoras."
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: solid-check
 version: 1.0
+api_version: 1.0.0
 description: "Analiza el código del proyecto buscando violaciones de los 5 principios SOLID. Produce solid-report.json que alimenta el CASTLE A2 sub-score."
 ---
 

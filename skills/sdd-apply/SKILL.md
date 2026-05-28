@@ -1,6 +1,7 @@
 ---
 name: sdd-apply
 version: 3.0
+api_version: 1.0.0
 description: >
   Implement tasks from the change, writing actual code following the specs and design.
   Trigger: When the orchestrator launches you to implement one or more tasks from a change.

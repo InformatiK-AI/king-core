@@ -2,6 +2,7 @@
 name: visual-evidence
 description: "Skill auxiliar interno. Proporciona instrucciones reutilizables para capturar evidencia visual con Playwright MCP. NO invocar directamente — es referenciado por otros skills."
 version: 2.0
+api_version: 1.0.0
 internal: true
 user-invocable: false
 ---

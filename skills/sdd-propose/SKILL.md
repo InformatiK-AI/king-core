@@ -1,6 +1,7 @@
 ---
 name: sdd-propose
 version: 2.0
+api_version: 1.0.0
 description: >
   Create a change proposal with intent, scope, and approach.
   Trigger: When the orchestrator launches you to create or update a proposal for a change.

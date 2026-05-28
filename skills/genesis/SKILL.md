@@ -1,6 +1,7 @@
 ---
 name: genesis
 version: 2.0
+api_version: 1.0.0
 description: "Skill de genesis. Discovery estructurado que genera la infraestructura completa de Claude Code para un proyecto."
 ---
 

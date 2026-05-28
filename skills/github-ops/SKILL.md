@@ -2,6 +2,7 @@
 name: github-ops
 description: "Automatización de operaciones GitHub. Usar cuando se necesite: crear PRs, hacer commits con conventional commits, push branches, comentar en PRs, gestionar issues, o cualquier operación de GitHub."
 version: 2.0
+api_version: 1.0.0
 internal: true
 ---
 

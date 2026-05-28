@@ -2,6 +2,7 @@
 name: sdd-ff
 description: "Fast-forward SDD: ejecuta propose → spec → design → tasks en secuencia para cambios bien entendidos."
 version: 1.0.0
+api_version: 1.0.0
 argument-hint: "<change-name>"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Agent]
 ---

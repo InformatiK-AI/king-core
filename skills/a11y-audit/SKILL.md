@@ -1,6 +1,7 @@
 ---
 name: a11y-audit
 version: 1.0
+api_version: 1.0.0
 description: "Audita accesibilidad WCAG 2.2 AA del proyecto. Produce a11y-report.json que alimenta el CASTLE S sub-score y el gate de /promote."
 ---
 

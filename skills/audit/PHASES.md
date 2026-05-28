@@ -258,17 +258,17 @@ FORMAT: Skill no sigue v2.0
 #### 2.4 Sub-Dimension Scoring — Format Group
 
 - Score sub-dimensions F-01..F-05 per criteria in SUBDIMENSIONS.md. Record individual scores (0.0–1.0).
-- F-01: directory-structure (6%) — required directories present per manifest
-- F-02: entrypoint-exists (6%) — declared entrypoint file exists and is non-empty
-- F-03: skill-file-present (5%) — SKILL.md exists in skill root
-- F-04: api-version-present (0%* WARNING-only) — score reported as null; does NOT contribute to health_score
+- F-01: directory-structure (5%) — required directories present per manifest
+- F-02: entrypoint-exists (5%) — declared entrypoint file exists and is non-empty
+- F-03: skill-file-present (4%) — SKILL.md exists in skill root
+- F-04: api-version-present (3%) — score 1.0 if api_version present and valid semver; 0.5 if present but invalid; null if absent
 - F-05: frontmatter-validity (3%) — frontmatter parses as valid YAML
 
 ### CHECKPOINT
 - [ ] Lista de skills no-compliant con detalle
 - [ ] Lista de agentes no-compliant con detalle
 - [ ] `format_score` calculado
-- [ ] Sub-dimension scores F-01..F-05 recorded (F-04 score = null, WARNING-only)
+- [ ] Sub-dimension scores F-01..F-05 recorded (F-04 scored at 3%)
 
 ### IF FAILS
 ```
@@ -698,12 +698,12 @@ final_score = max(0, base_score - penalties)
 
 - For each parent dimension, compute weighted sum from individual sub-dim scores (weights in SUBDIMENSIONS.md):
   - `inventory_score = (I-01*8 + I-02*4 + I-03*4 + I-04*4) / 20 * 100`
-  - `format_score = (F-01*6 + F-02*6 + F-03*5 + F-05*3) / 20 * 100`
+  - `format_score = (F-01*5 + F-02*5 + F-03*4 + F-04*3 + F-05*3) / 20 * 100`
+  - When F-04 is null (api_version absent): `format_score = (F-01*5 + F-02*5 + F-03*4 + F-05*3) / 17 * 100`
   - `cross_refs_score = (X-01*7 + X-02*5 + X-03*4 + X-04*4) / 20 * 100`
   - `instructions_quality_score = (Q-01*5 + Q-02*4 + Q-03*3 + Q-04*3) / 15 * 100`
   - `communication_score = (C-01*5 + C-02*4 + C-03*3 + C-04*3) / 15 * 100`
   - `efficiency_score = (E-01*3 + E-02*3 + E-03*2 + E-04*2) / 10 * 100`
-- F-04 is always excluded from format_score computation (weight: 0%)
 - Resulting 6 dimension scores feed the existing health_score formula unchanged
 
 #### 7.1c Trends Write (always, unless --dry-run)
@@ -715,7 +715,7 @@ final_score = max(0, base_score - penalties)
   3. Prepend to entries array (entries.unshift)
   4. Write back to file
 - Create `.king/docs/audits/` directory if absent
-- Include all 25 current sub-dim scores in entry (F-04 value = null)
+- Include all 25 current sub-dim scores in entry (F-04 scored, or null when api_version absent)
 
 #### 7.1d Baseline Diff (conditional: --compare-baseline {tag})
 
@@ -724,7 +724,7 @@ final_score = max(0, base_score - penalties)
   1. Search entries[] for most recent entry with `entry.tag === {tag}`
   2. If not found: emit `ERROR: "Baseline tag '{tag}' not found in trends.json"` — exit non-zero — continue (non-blocking for report)
   3. Compute delta per sub-dim: `current_score - baseline_score`
-  4. F-04: delta = "N/A"
+  4. F-04: delta = current_score - baseline_score (or "N/A" if both null)
 - Append diff table to audit report under section "Baseline Diff — vs. {tag}"
 
 #### 7.1e CI Threshold Check (conditional: --ci-threshold {N})
@@ -787,10 +787,10 @@ final_score = max(0, base_score - penalties)
 | I-02 | description-quality | Inventory | {score} | {score × 4%} | guided |
 | I-03 | author-present | Inventory | {score} | {score × 4%} | auto |
 | I-04 | license-declared | Inventory | {score} | {score × 4%} | auto |
-| F-01 | directory-structure | Format | {score} | {score × 6%} | guided |
-| F-02 | entrypoint-exists | Format | {score} | {score × 6%} | auto |
-| F-03 | skill-file-present | Format | {score} | {score × 5%} | auto |
-| F-04 | api-version-present | Format | WARNING | 0% (WARNING-only) | auto |
+| F-01 | directory-structure | Format | {score} | {score × 5%} | guided |
+| F-02 | entrypoint-exists | Format | {score} | {score × 5%} | auto |
+| F-03 | skill-file-present | Format | {score} | {score × 4%} | auto |
+| F-04 | api-version-present | Format | {score} | {score × 3%} | auto |
 | F-05 | frontmatter-validity | Format | {score} | {score × 3%} | guided |
 | X-01 | command-declarations | Cross-refs | {score} | {score × 7%} | manual |
 | X-02 | command-descriptions | Cross-refs | {score} | {score × 5%} | guided |

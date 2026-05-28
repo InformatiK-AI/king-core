@@ -1,6 +1,7 @@
 ---
 name: sdd-explore
 version: 2.0
+api_version: 1.0.0
 description: >
   Explore and investigate ideas before committing to a change.
   Trigger: When the orchestrator launches you to think through a feature, investigate the codebase, or clarify requirements.

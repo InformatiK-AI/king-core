@@ -2,6 +2,7 @@
 name: plan
 description: "Planificación de features con agentes especializados. Usar cuando se necesite: planificar una feature, diseñar una solución, analizar impacto de un cambio, o generar un plan de implementación robusto."
 version: 2.0
+api_version: 1.0.0
 ---
 
 # Plan Feature — Planificación Multi-Agente

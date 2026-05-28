@@ -1,6 +1,7 @@
 ---
 name: sdd-onboard
 version: 1.0
+api_version: 1.0.0
 description: >
   Guided end-to-end walkthrough of the SDD workflow using the real codebase.
   Trigger: When the orchestrator launches you to onboard a user through the full SDD cycle.

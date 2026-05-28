@@ -2,6 +2,7 @@
 name: promote
 description: "Promoción entre ambientes con worktree. Usar cuando se necesite: promover a QA, promover a producción, deploy entre ambientes, sincronizar worktrees, o mover código de develop a qa o de qa a prod."
 version: 2.0
+api_version: 1.0.0
 ---
 
 # Promote — Promoción entre Ambientes

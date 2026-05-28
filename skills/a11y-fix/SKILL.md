@@ -1,6 +1,7 @@
 ---
 name: a11y-fix
 version: 1.0
+api_version: 1.0.0
 description: "Remedia violaciones de accesibilidad encontradas por /a11y-audit. Lee a11y-report.json y aplica fixes automáticos donde sea posible."
 ---
 

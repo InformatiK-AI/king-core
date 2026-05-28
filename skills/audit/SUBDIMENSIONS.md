@@ -18,10 +18,10 @@ part-of: audit
 | I-02 | description-quality | Inventory | 4% | 1.0 if description is non-empty and ≥10 words; 0.5 if present but short (<10 words); 0.0 if absent or placeholder | guided | |
 | I-03 | author-present | Inventory | 4% | 1.0 if `author` field present and non-empty; 0.0 if absent | auto | |
 | I-04 | license-declared | Inventory | 4% | 1.0 if `license` field present and non-empty; 0.0 if absent | auto | |
-| F-01 | directory-structure | Format | 6% | 1.0 if all required directories exist per plugin manifest; 0.5 if ≥50% present; 0.0 if <50% | guided | |
-| F-02 | entrypoint-exists | Format | 6% | 1.0 if declared entrypoint file exists and is non-empty; 0.0 if missing or empty | auto | |
-| F-03 | skill-file-present | Format | 5% | 1.0 if `SKILL.md` exists in skill root; 0.0 if absent | auto | |
-| F-04 | api-version-present | Format | 0%* | 1.0 if `api_version` field present in frontmatter; 0.0 if absent | auto | *WARNING-only — pending M-71 (api_version field). Weight 0% — does NOT contribute to health_score. |
+| F-01 | directory-structure | Format | 5% | 1.0 if all required directories exist per plugin manifest; 0.5 if ≥50% present; 0.0 if <50% | guided | |
+| F-02 | entrypoint-exists | Format | 5% | 1.0 if declared entrypoint file exists and is non-empty; 0.0 if missing or empty | auto | |
+| F-03 | skill-file-present | Format | 4% | 1.0 if `SKILL.md` exists in skill root; 0.0 if absent | auto | |
+| F-04 | api-version-present | Format | 3% | 1.0 if `api_version` field present and valid semver; 0.5 if present but invalid semver; null if absent | auto | activated M-71 |
 | F-05 | frontmatter-validity | Format | 3% | 1.0 if frontmatter parses as valid YAML with no syntax errors; 0.5 if present but has warnings; 0.0 if malformed or absent | guided | |
 | X-01 | command-declarations | Cross-refs | 7% | 1.0 if all commands declared in manifest are present in skill files; 0.5 if ≥50% declared; 0.0 if <50% | manual | |
 | X-02 | command-descriptions | Cross-refs | 5% | 1.0 if all declared commands have non-empty descriptions; 0.5 if ≥50% have descriptions; 0.0 if <50% | guided | |
@@ -47,14 +47,12 @@ part-of: audit
 | Group | IDs | Partial Weights | Group Total |
 |-------|-----|-----------------|-------------|
 | Inventory (I) | I-01, I-02, I-03, I-04 | 8 + 4 + 4 + 4 | **20%** |
-| Format (F) | F-01, F-02, F-03, F-04*, F-05 | 6 + 6 + 5 + 0* + 3 | **20%** |
+| Format (F) | F-01, F-02, F-03, F-04, F-05 | 5 + 5 + 4 + 3 + 3 | **20%** |
 | Cross-refs (X) | X-01, X-02, X-03, X-04 | 7 + 5 + 4 + 4 | **20%** |
 | Instructions quality (Q) | Q-01, Q-02, Q-03, Q-04 | 5 + 4 + 3 + 3 | **15%** |
 | Communication (C) | C-01, C-02, C-03, C-04 | 5 + 4 + 3 + 3 | **15%** |
 | Efficiency (E) | E-01, E-02, E-03, E-04 | 3 + 3 + 2 + 2 | **10%** |
 | **TOTAL** | | | **100%** |
-
-> *F-04 weight is 0% in health_score computation. The face-value partial weight (3%) is excluded; Format group contributes via F-01+F-02+F-03+F-05 = 6+6+5+3 = 20%.
 
 ---
 
@@ -62,8 +60,8 @@ part-of: audit
 
 1. **Binary sub-dimensions** (present/absent): score is exactly `1.0` or `0.0`.
 2. **Graduated sub-dimensions**: score is in `{0.0, 0.5, 1.0}` per criteria above.
-3. **F-04 special case**: score is computed and reported (for visibility), but its contribution to `health_score` is always `0.0` regardless of score value, until M-71 is implemented.
-4. **health_score contribution** per sub-dim: `score × weight_pct` (F-04 excluded).
+3. **health_score contribution** per sub-dim: `score × weight_pct`.
+4. **Null-exclusion (F-04 only)**: when F-04 score is `null` (api_version absent), exclude F-04 from the FORMAT group sum AND reduce the denominator to 17. Full formula: `(F-01*5 + F-02*5 + F-03*4 + F-05*3) / 17 * 100`. See PHASES.md §7.1b.
 
 ---
 

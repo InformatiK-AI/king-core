@@ -1,6 +1,7 @@
 ---
 name: test-plan
 version: 2.0
+api_version: 1.0.0
 description: "Generador de planes de pruebas HTML interactivos. Usar cuando se necesite: crear plan de pruebas, generar test plan HTML, documentar casos de prueba, generar reporte de QA, crear suite de testing estructurada, exportar plan pruebas con tema King."
 ---
 

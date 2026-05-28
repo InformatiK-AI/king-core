@@ -1,6 +1,7 @@
 ---
 name: refine
 version: 2.0
+api_version: 1.0.0
 description: "Optimiza prompts aplicando Prompt Engineering para Claude Sonnet. Adaptativo: Quick mode inline (~850 tokens) o Deep mode con agentes (~2200 tokens)."
 ---
 

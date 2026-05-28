@@ -1,6 +1,7 @@
 ---
 name: sdd-orchestrator
 version: 1.0
+api_version: 1.0.0
 description: Agent Teams Lite orchestrator for SDD workflow. Trigger on /sdd-new, /sdd-ff, /sdd-continue.
 ---
 

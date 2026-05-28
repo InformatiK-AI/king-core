@@ -2,6 +2,7 @@
 name: sdd-new
 description: "Iniciar un nuevo cambio SDD. Crea la estructura OpenSpec y ejecuta sdd-init → sdd-explore → sdd-propose en secuencia."
 version: 1.0.0
+api_version: 1.0.0
 argument-hint: "<change-name>"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Agent]
 ---

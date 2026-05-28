@@ -2,6 +2,7 @@
 name: refactor
 description: "Workflow de refactoring guiado. Usar cuando se necesite: refactorizar código, limpiar código, extraer componentes, reorganizar funciones, mejorar estructura del código, o reducir deuda técnica."
 version: 2.0
+api_version: 1.0.0
 ---
 
 # Refactor — Refactoring Guiado

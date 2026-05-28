@@ -1,6 +1,7 @@
 ---
 name: castle-report
 version: 1.0
+api_version: 1.0.0
 description: "Genera el CASTLE Score numérico reproducible leyendo sub-reports JSON. Agrega coverage, SOLID, a11y y performance en un score 0-100."
 ---
 
