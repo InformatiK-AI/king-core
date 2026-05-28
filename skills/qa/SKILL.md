@@ -46,8 +46,8 @@ Read the following files BEFORE Phase 1. If a file does not exist, log a warning
 
 ### PHASES OVERVIEW
 ```
-Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 3b → Phase 4 → Phase 5 → Phase 6 → Phase 7 → Phase 8
-Load      Strategy  Execution  Coverage  SpecComp   SecGate   CASTLE   Report   Session   Guide
+Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 3b → Phase 4 → Phase 5 → Phase 6b → Phase 6 → Phase 7 → Phase 8
+Load      Strategy  Execution  Coverage  SpecComp   SecGate   CASTLE   CastleScore Report  Session   Guide
 ```
 
 ---
@@ -235,6 +235,9 @@ Recovery:
    - Todos COMPLIANT → T: ✅ PASS (combinado con Fase 3)
 3. [ ] Documentar resultado por capa
 
+### CASTLE Assessment Enhancement (M-34)
+> Si `.king/castle/solid-report.json` existe, leer e incorporar como A2 sub-score en el CASTLE Assessment. Si no existe, continuar normalmente — el CASTLE Assessment procede sin el sub-score numérico de SOLID.
+
 #### CHECKPOINT
 - [ ] CASTLE C·A·S·T·L evaluado — veredicto determinado
 
@@ -312,6 +315,16 @@ Recovery:
 - [ ] TODOS los REQUIRED OUTPUTS existen
 - [ ] TODOS los CHECKPOINTS de cada fase pasaron
 - [ ] Sesión registrada
+
+---
+
+## Phase 6b: CASTLE Score Report
+
+> Ejecutar SIEMPRE al final del QA, después del CASTLE Assessment cualitativo.
+
+1. Invocar `/castle-report`
+2. El score numérico complementa (no reemplaza) el veredicto cualitativo del CASTLE Assessment
+3. Si `castle_score < 60` (BREACHED): elevar como warning adicional al veredicto final
 
 ---
 
