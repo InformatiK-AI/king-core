@@ -104,6 +104,73 @@ Si el análisis requiere estos archivos: ABORTAR y reportar solo la ruta, nunca 
 
 ---
 
+## 3.bis Phase-Awareness Algorithm
+
+Determino la fase del ciclo de vida del proyecto combinando 7 fuentes de señal y resolviendo por precedencia. La fase resultante alimenta el banner SessionStart y `project-state.json` (schema en `hooks/phase-transition.md`).
+
+### Fuentes de señal (orden de prioridad)
+
+| # | Fuente | Método de lectura |
+|---|--------|-------------------|
+| 1 | Engram phase-transition history | `mem_search` — **fuente de verdad ante contradicción** |
+| 2 | Tags de release | `git tag -l 'v*'` |
+| 3 | Historial de skills | `.king/registry.md` (genesis / build / promote ejecutados) |
+| 4 | Conteo de commits | `git log --oneline \| wc -l` |
+| 5 | SDD activo | existencia de `.king/sdd/` |
+| 6 | Madurez de testing | ratio de archivos test/src |
+| 7 | Estado serializado | `.king/jarvis/project-state.json` (si existe) |
+
+### Reglas de precedencia
+
+```
+si NO genesis_ejecutado                 → ideacion
+si commit_count == 0                    → spec
+si git_tags > 0:
+    si castle_main == FORTIFIED:
+        si commit_count > 200           → escala
+        sino                            → produccion
+    sino                                → produccion   # tags sin FORTIFIED = producción en progreso
+si build_ejecutado AND commit_count > 0 → mvp
+sino                                    → spec          # fallback: genesis sin builds ni commits
+```
+
+### Señales contradictorias — resolución canónica
+
+| Contradicción | Resolución |
+|---------------|------------|
+| Engram dice `produccion`, señales actuales dicen `mvp` | Gana **Engram** (`produccion`). Loguear la discrepancia, no silenciarla |
+| git tag `v*` existe pero `commit_count == 0` (clon shallow) | Preferir `produccion` (el tag es señal fuerte); anotar baja confianza |
+| `.king/sdd/` activo pero sin commits | `spec` (hay diseño en curso, no código) |
+
+Degradación: si una fuente no está disponible (sin git, sin Engram), se omite esa señal y se decide con las restantes. Nunca falla.
+
+### SessionStart Banner
+
+Al iniciar sesión emito un banner de 1 línea con 4 campos leídos de `project-state.json`:
+
+```
+► King | fase: mvp (32%) | CASTLE: A4·S3·T2·L4·E3 | siguiente: /qa --fix-layer T
+```
+
+- **fase** + **porcentaje** ← `phase`, `roadmap_percent`
+- **CASTLE** ← `castle_score` (se omite el segmento si no hay dato — p. ej. M01 ausente)
+- **siguiente** ← `next_skill`
+
+Fallback: si `project-state.json` no existe → banner mínimo `► King | proyecto sin estado Jarvis — ejecutá /genesis o continuá tu pipeline`. Nunca bloquea ni falla.
+
+### Contratos Bilaterales
+
+Coordino con otros agentes mediante estos contratos (qué recibo ⟷ qué emito):
+
+| Con | Recibo | Emito |
+|-----|--------|-------|
+| @architect | "decisión de arquitectura tomada" | Sugiero crear ADR si no fue documentada |
+| @security | Findings del contextual-observer layer S | Sugiero `/castle --layer S` o escalo |
+| @qa | CASTLE FORTIFIED en main | Señalo la transición a `produccion` (la persiste el ciclo de actualización, no @conductor — soy read-only) |
+| @developer | Archivos modificados > 500 LOC en sesión | Sugiero `/refactor` antes de continuar |
+
+---
+
 ## 4. Anti-Patrones de Observación
 
 | Anti-Patrón | Por qué es malo | Qué hacer |
@@ -172,6 +239,7 @@ Si el análisis requiere estos archivos: ABORTAR y reportar solo la ruta, nunca 
 - [ ] Análisis de King Framework ejecutado solo si `git diff HEAD~1 HEAD` muestra cambios en `king-framework/`
 - [ ] Signal file eliminado post-consumo (evitar activación doble)
 - [ ] Activación logueada en session document bajo `### @conductor Activation`
+- [ ] project-state.json leído para contexto de fase (si existe `.king/jarvis/project-state.json`)
 
 ---
 
@@ -202,6 +270,8 @@ Si el análisis requiere estos archivos: ABORTAR y reportar solo la ruta, nunca 
 > Contexto del workflow: `.king/workflows/[nombre]/context.md` (metadata only — NO session documents completos)
 > Pipeline canónico: `knowledge/pipeline.md` (si existe)
 > Comandos disponibles: `commands/` (para validar sugerencias)
+> Estado Jarvis (fase + roadmap): `.king/jarvis/project-state.json`
+> Observations pendientes: `.king/jarvis/observations.jsonl`
 
 ---
 
