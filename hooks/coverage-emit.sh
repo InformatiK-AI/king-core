@@ -132,6 +132,23 @@ if [ "$ENFORCEMENT" = "warn" ]; then
   exit 0
 fi
 
-# enforcement=block: emit structured error and exit 2.
+# enforcement=block: emit structured error with top-10 uncovered lines and exit 2.
 echo "[King/Coverage] BLOCKED: Coverage ${COVERAGE_PCT}% < required ${THRESHOLD}% (delta: ${DELTA}%)"
+
+# Extract up to 10 uncovered file:line pairs from test output.
+# Covers common formats: Go (file.go:45), Istanbul (|  45 |), pytest-cov (file.py  45-82)
+UNCOVERED=$(
+  echo "$TOOL_OUTPUT" | grep -oP '[\w./\-]+\.(go|ts|tsx|js|jsx|py|rb|java|kt)\s*:\s*[0-9]+' 2>/dev/null \
+  | head -10 \
+  | sed 's/[[:space:]]//g' \
+  || true
+)
+
+if [ -n "$UNCOVERED" ]; then
+  echo "[King/Coverage] Uncovered lines (top 10):"
+  echo "$UNCOVERED" | while IFS= read -r line; do
+    echo "  • $line"
+  done
+fi
+
 exit 2

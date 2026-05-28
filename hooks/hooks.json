@@ -72,7 +72,7 @@
     ],
     "UserPromptSubmit": [
       {
-        "matcher": "/genesis|/brainstorm|/plan|/create-issues|/build|/review|/qa(?!-)|/fix|/merge|/promote|/release|/castle|/radar|/refactor|/refine|/gitflow|/worktree|/audit|/github-ops|/pr|/commit|/frontend-design|/create-skill|/sdd|/blog-setup|/headless-cms-setup|/coverage-report|/a11y-audit|/a11y-fix|/optimize",
+        "matcher": "/genesis|/brainstorm|/plan|/create-issues|/build|/review|/qa(?!-)|/fix|/merge|/promote|/release|/castle|/radar|/refactor|/refine|/gitflow|/worktree|/audit|/github-ops|/pr|/commit|/frontend-design|/create-skill|/sdd|/blog-setup|/headless-cms-setup|/coverage-report|/a11y-audit|/a11y-fix|/optimize|/solid-check|/castle-report",
         "hooks": [
           {
             "type": "command",

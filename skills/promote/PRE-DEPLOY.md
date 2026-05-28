@@ -161,9 +161,9 @@ Recovery:
 
 ---
 
-### Phase 2b: Accessibility Gate (M-28)
+#### Phase 2b Extension: /a11y-audit Gate (M-28)
 
-> Gate BLOQUEANTE. Requiere `/a11y-audit` antes de continuar a Phase 2c.
+> Extiende el Accessibility Gate cualitativo de arriba con el gate numérico `/a11y-audit`. Requiere que Phase 2b cualitativo haya pasado.
 
 1. Si `.king/castle/a11y-report.json` existe Y fue generado hace < 24h → usar el report existente
 2. Si no existe o es stale (>= 24h) → ejecutar `/a11y-audit`
