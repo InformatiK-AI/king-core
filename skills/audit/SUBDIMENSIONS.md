@@ -72,3 +72,11 @@ part-of: audit
 | `auto` | Executed silently when `--auto-fix` is passed. See AUTOFIX.md. |
 | `guided` | Step-by-step instructions shown. User executes manually. |
 | `manual` | Issue reported only. Requires human judgment. |
+
+---
+
+## See Also
+
+- `knowledge/universal/skill-versioning.md` — api_version bump rules (governs F-04)
+- `knowledge/universal/deprecation-policy.md` — timelines and compatibility-mode for deprecated skills
+- `skills/audit/PHASES.md` §7.1b — format_score formula with null-exclusion for F-04

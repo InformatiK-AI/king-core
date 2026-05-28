@@ -56,6 +56,10 @@ The CHANGELOG format for skill `api_version` bumps is reserved for M-72. When M-
 
 Until M-72 ships, authors are encouraged (not required) to document MAJOR changes inline.
 
+MAJOR bumps that deprecate a feature MUST also follow the deprecation process defined in
+`knowledge/universal/deprecation-policy.md` — specifically: MINOR bump first (announcement),
+6-month warning period, then MAJOR bump for removal.
+
 ## §6 — Audit Scoring
 
 F-04 (`api-version-present`) evaluates the `api_version` field at **3%** weight in the FORMAT group.
