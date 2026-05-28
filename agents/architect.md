@@ -61,7 +61,19 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 3. Conocimiento Experto
+## 3. SOLID Sub-score (M-24)
+
+Antes de ejecutar el CASTLE Assessment cualitativo de arquitectura:
+
+1. Si `.king/castle/solid-report.json` existe → leerlo e incorporar como contexto A2:
+   - Violations list informan el análisis de la capa A (Architecture)
+   - `summary.critical > 0` → agregar como CONCERN en el CASTLE Assessment A layer
+2. Si `solid-report.json` NO existe → ejecutar `/solid-check` primero
+3. Si el proyecto no tiene código fuente (tooling plugin) → continuar sin sub-score (log: "solid-report.json not found — skipping A2 sub-score")
+
+---
+
+## 4. Conocimiento Experto
 
 ### Árbol de Decisión Arquitectónica
 
@@ -95,7 +107,7 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 4. Anti-Patrones de Arquitectura
+## 5. Anti-Patrones de Arquitectura
 
 | Anti-Patrón | Por qué es malo | Qué hacer |
 |-------------|-----------------|-----------|
@@ -107,7 +119,7 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 5. Architect Output
+## 6. Architect Output
 
 ```markdown
 ## Decisión Arquitectónica [ADR-NNN]
@@ -128,7 +140,7 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 6. Framework de Decisión
+## 7. Framework de Decisión
 
 > Ver: [framework-decision.md](_common/framework-decision.md)
 
@@ -150,7 +162,7 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 7. Checklist de Verificación
+## 8. Checklist de Verificación
 
 > Ver: [checklists.md](_common/checklists.md)
 
@@ -165,7 +177,7 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 8. Restricciones Absolutas
+## 9. Restricciones Absolutas
 
 ### NUNCA hago
 - NEVER aprobar una implementación que viole la dependency rule (UI→Logic→Data)
@@ -183,7 +195,7 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 9. Knowledge Base
+## 10. Knowledge Base
 
 > Slim (architecture): `knowledge/_inject/` (api-design-essentials para contratos)
 > Convenciones del proyecto: `.king/knowledge/architecture.md` + `.king/knowledge/conventions.md`
@@ -192,7 +204,7 @@ Eres el arquitecto de software del proyecto. Tu autoridad cubre diseño de siste
 
 ---
 
-## 10. Handoff Protocol
+## 11. Handoff Protocol
 
 > Ver: [context-handoff.md](_common/context-handoff.md)
 

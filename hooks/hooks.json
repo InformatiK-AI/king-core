@@ -38,9 +38,41 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/coverage-emit.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/a11y-check.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/perf-check.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
-        "matcher": "/genesis|/brainstorm|/plan|/create-issues|/build|/review|/qa(?!-)|/fix|/merge|/promote|/release|/castle|/radar|/refactor|/refine|/gitflow|/worktree|/audit|/github-ops|/pr|/commit|/frontend-design|/create-skill|/sdd|/blog-setup|/headless-cms-setup",
+        "matcher": "/genesis|/brainstorm|/plan|/create-issues|/build|/review|/qa(?!-)|/fix|/merge|/promote|/release|/castle|/radar|/refactor|/refine|/gitflow|/worktree|/audit|/github-ops|/pr|/commit|/frontend-design|/create-skill|/sdd|/blog-setup|/headless-cms-setup|/coverage-report|/a11y-audit|/a11y-fix|/optimize|/solid-check|/castle-report",
         "hooks": [
           {
             "type": "command",

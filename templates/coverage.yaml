@@ -1,44 +1,40 @@
-# .king/coverage.yaml
-# Coverage Gate — Configuración por proyecto
+# .king/coverage.yaml — generado por /genesis
+# King Framework Coverage Gate (M-12)
 #
 # Copia este archivo a .king/coverage.yaml y ajusta los valores.
-# Referencia completa: king-framework/rules/coverage-gate.md
+# Referencia: knowledge/universal/coverage-gate.md
 #
-# El gate se ejecuta automáticamente en:
-#   /build  — Fase 5, step 5.8 (scope: diff, solo archivos del branch)
-#   /promote — Fase 1, step 1.4 (scope: full, cobertura total del proyecto)
+# El gate se evalúa automáticamente vía PostToolUse hook cada vez que
+# Claude Code ejecuta una herramienta Bash que produce output de test runner.
 
-# Modo de ejecución:
-#   warn  — muestra advertencia pero no bloquea (recomendado para proyectos nuevos)
-#   error — bloquea /build y /promote si la cobertura está por debajo del threshold
-mode: warn
-
-# Thresholds mínimos de cobertura (0–100, enteros)
 thresholds:
-  overall: 80    # % mínimo de líneas cubiertas en todo el proyecto
-  branches: 70   # % mínimo de branches (ramas condicionales) cubiertas
+  # Threshold global del proyecto (0–100). Default: 80.
+  global: 80
 
-  # critical: 90  # OPCIONAL — se evalúa SOLO si critical_paths está definido abajo.
-  #               # Si critical_paths no está definido, este valor se ignora.
+  # Overrides por paquete/directorio (opcional).
+  # Ejemplo: src/core: 95  (código crítico requiere cobertura más alta)
+  per_package: {}
 
-# Paths críticos (threshold crítico aplica solo a estos directorios/archivos)
-# critical_paths:
-#   - src/core/
-#   - src/auth/
-#   - src/payments/
+  # Threshold por tipo de branch (opcional, hereda global si ausente).
+  per_branch_type:
+    feature: 80
+    hotfix: 70
+    release: 90
 
-# Habilitar o deshabilitar completamente el gate
-enabled: true
+  # enforcement: block → exit 2 (bloquea la operación)
+  #              warn  → exit 0 + entrada en audit log (audited bypass)
+  enforcement: block
 
-# Scope de cobertura por skill:
-#   diff — solo archivos modificados en el branch actual (rápido, usado en /build)
-#   full — cobertura total del proyecto (preciso, usado en /promote)
-build_scope: diff
-promote_scope: full
+  # Patrones de archivos excluidos del análisis.
+  # Mantener mínimo — excluir demasiado oculta deuda real.
+  exclude:
+    - "**/*.generated.*"
+    - "**/mocks/**"
+    - "**/testdata/**"
 
-# Patrones a excluir del análisis de cobertura (opcional)
-# exclude:
-#   - "**/*.test.ts"
-#   - "**/*.spec.js"
-#   - "**/mocks/**"
-#   - "**/fixtures/**"
+audit:
+  # Ruta del log de bypasses auditados (enforcement: warn).
+  # Cada entrada incluye timestamp ISO-8601 + cobertura real + threshold.
+  log: .king/audit/coverage-bypass.log
+  # Si true, require una justificación en el log al hacer bypass.
+  require_justification: true

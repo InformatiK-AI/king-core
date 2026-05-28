@@ -1,0 +1,34 @@
+# .king/performance.yaml — generado por /genesis
+# King Framework Performance Budget Gate (M-27)
+#
+# Copia este archivo a .king/performance.yaml y ajusta los valores.
+# Referencia: knowledge/universal/performance-budget.md
+#
+# El gate se evalúa automáticamente vía PostToolUse hook cada vez que
+# Claude Code ejecuta una herramienta Bash que produce output con métricas
+# de performance (LCP, CLS, INP, bundle size, Lighthouse, benchmarks).
+
+budgets:
+  web_vitals:
+    lcp_ms: 2500      # Largest Contentful Paint — bueno: < 2500ms (Google)
+    cls: 0.1          # Cumulative Layout Shift — bueno: < 0.1 (Google)
+    inp_ms: 200       # Interaction to Next Paint — bueno: < 200ms (Google)
+  bundle_size:
+    js_kb: 200        # Total JS bundle comprimido
+    css_kb: 50        # Total CSS bundle comprimido
+    image_kb: 500     # Por imagen máxima individual
+
+# enforcement: block → exit 2 (bloquea la operación)
+#              warn  → exit 0 + entrada en audit log (audited bypass)
+enforcement: block
+
+audit:
+  # Ruta del log de bypasses auditados (enforcement: warn).
+  log: .king/audit/performance-bypass.log
+  # Si true, require una justificación en el log al hacer bypass.
+  require_justification: true
+
+# Alias de backward compatibility — DEPRECATED.
+# Si solo existe .king/performance-budget.yaml, el hook emite WARN y usa
+# ese archivo temporalmente. Renombrar a .king/performance.yaml.
+legacy_alias: performance-budget.yaml
