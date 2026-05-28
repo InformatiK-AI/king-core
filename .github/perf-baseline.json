@@ -1,0 +1,10 @@
+{
+  "_comment": "Baseline captured 2026-05-28. Update after each intentional perf change.",
+  "_threshold_regression_pct": 20,
+  "metrics": {
+    "score_calc_1000_iterations_ms": 10,
+    "semver_parse_10000_iterations_ms": 5,
+    "audit_self_full_scan_ms": 2000,
+    "skill_md_count": 49
+  }
+}

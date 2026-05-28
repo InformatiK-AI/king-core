@@ -2,9 +2,9 @@ name: framework-quality
 
 on:
   pull_request:
-    branches: [develop, main]
+    branches: [develop, master, "release/**"]
   push:
-    branches: [develop, main]
+    branches: [develop, master]
 
 jobs:
   test-suite:
@@ -32,3 +32,80 @@ jobs:
         with:
           name: test-results
           path: test-results.xml
+
+  lint-format:
+    name: Lint & Format (ruff + markdownlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: pip install ruff
+      - name: Run ruff (Python)
+        run: ruff check src/ scripts/ tests/ --output-format=github
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+      - name: Run markdownlint (SKILL.md files)
+        run: markdownlint 'skills/**/*.md' --disable MD013 MD033 MD041 || true
+        # MD013: line-length, MD033: inline HTML, MD041: first-heading — disabled for skill docs
+
+  security-scan:
+    name: Security Scan (semgrep)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install semgrep
+        run: pip install semgrep
+      - name: Run semgrep on Python sources
+        run: semgrep --config=p/python src/ scripts/ --error --quiet || true
+        # Non-blocking initially — becomes blocking once baseline is clean
+
+  license-check:
+    name: License & Dependency Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pip-audit
+        run: pip install pip-audit
+      - name: Audit test dependencies
+        run: pip-audit -r requirements-test.txt --desc || true
+        # Non-blocking until first findings are triaged
+
+  performance-benchmark:
+    name: Performance Benchmark
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install -r requirements-test.txt
+      - name: Run benchmarks
+        run: python tests/benchmarks/bench_score_calc.py
+
+  audit-self:
+    name: King Self-Audit (health >= 80%)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run self-audit
+        run: python scripts/audit_self.py --ci-threshold 80
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-self-report
+          path: audit-report.md
+          if-no-files-found: ignore

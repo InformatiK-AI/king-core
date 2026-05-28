@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "schedule": ["every weekend"],
+  "packageRules": [
+    {
+      "matchManagers": ["pip_requirements"],
+      "groupName": "Python test dependencies",
+      "automerge": false,
+      "labels": ["dependencies", "python"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["dependencies", "major-bump"],
+      "addLabels": ["needs-review"]
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": false,
+      "labels": ["dependencies"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "automerge": false
+  },
+  "ignorePaths": [".github/workflows/*.yml"]
+}
