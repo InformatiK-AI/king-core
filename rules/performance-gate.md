@@ -20,7 +20,7 @@ description: "Gate formal de performance budget basado en Lighthouse. Bloquea /b
 | Best Practices | ≥ 90 | Uso correcto de APIs web y seguridad |
 | SEO | ≥ 85 | Optimización para motores de búsqueda |
 
-Override via `.king/performance-budget.yaml` en el directorio raíz del proyecto.
+Override via `.king/performance.yaml` en el directorio raíz del proyecto.
 
 ---
 
@@ -45,7 +45,7 @@ Performance gate skipped: no frontend detected
 | `error` (default) | Bloquea la ejecución del skill si algún score está por debajo del threshold |
 | `warn` | Muestra advertencia en el output pero no bloquea — continúa el skill |
 
-Configurar en `.king/performance-budget.yaml`:
+Configurar en `.king/performance.yaml`:
 ```yaml
 mode: warn  # o error
 ```
@@ -71,7 +71,7 @@ Performance gate skipped: no frontend detected
 
 ### Paso 2: Cargar thresholds
 
-Leer `.king/performance-budget.yaml` y extraer los valores configurados. Si el archivo no existe, usar defaults del framework:
+Leer `.king/performance.yaml` y extraer los valores configurados. Si el archivo no existe, usar defaults del framework:
 
 | Campo YAML | Default | Equivalente LHCI (÷100) |
 |------------|---------|------------------------|
@@ -161,10 +161,10 @@ Ver cada skill para el flujo de decisión específico.
 Las condiciones de omisión están documentadas en el Proceso de Evaluación (Pasos 1 y 3).
 Excepción adicional no cubierta en el proceso:
 
-- Existe `.king/performance-budget.yaml` con `enabled: false` → gate omitido globalmente sin ejecutar ningún paso
+- Existe `.king/performance.yaml` con `enabled: false` → gate omitido globalmente sin ejecutar ningún paso
 
 ---
 
 ## Configuración Completa
 
-Ver template en `templates/performance-budget.yaml`.
+Ver template en `templates/performance.yaml`.
