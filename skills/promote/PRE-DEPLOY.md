@@ -173,6 +173,43 @@ Recovery:
 
 ---
 
+### Phase 2c: Lighthouse Gate + Mobile-First (M-50+M-51)
+
+> Gate BLOQUEANTE en CI. Requiere que Phase 2b (a11y) haya pasado.
+> Si Phase 2b bloqueó → esta fase NO ejecuta (log: "Phase 2c skipped — Phase 2b blocked").
+
+#### Prerequisitos
+
+- `CI=true` (o `KING_LIGHTHOUSE=true`) — **solo ejecuta en CI**. En dev → exit 0 + WARN "Lighthouse gate skipped in non-CI environment"
+- Si `.king/lighthouse-baseline.json` NO existe → **grace period**: exit 0 + WARN "No Lighthouse baseline found — first /promote will create it. Run in CI to establish baseline."
+
+#### Mobile-First Check (ejecutar ANTES del audit de desktop)
+
+1. Verificar que el proyecto tiene `<meta name="viewport" content="width=device-width, initial-scale=1">` en todos los HTML/template entry points
+2. Verificar que los breakpoints CSS siguen mobile-first pattern (media queries `min-width`, no solo `max-width`)
+3. Si FALLA → BLOCK con mensaje: "Mobile-first check FAILED: {issue}. Fix before running Lighthouse."
+
+#### Lighthouse Audit
+
+1. Ejecutar Lighthouse CLI: `lighthouse {url} --output=json --quiet --chrome-flags="--headless --no-sandbox"`
+   - Si Lighthouse CLI no disponible → WARN "Lighthouse CLI not installed. Skip gate or run: npm i -g lighthouse" → exit 0
+2. Parsear score de `categories.performance.score * 100`
+3. Comparar vs threshold en `.king/lighthouse.yaml` (default: 95)
+4. Si score < threshold Y baseline existe → BLOCK: "Lighthouse score {actual} < required {threshold} (delta: -{gap})"
+5. Si score >= threshold Y NO hay baseline → crear `.king/lighthouse-baseline.json`:
+   ```json
+   { "score": X.X, "url": "...", "created_at": "ISO8601", "environment": "CI" }
+   ```
+6. Si score >= threshold Y hay baseline → actualizar baseline si mejora >= 2 puntos
+
+#### Mensajes
+
+- Block: `[King/Lighthouse] BLOCKED: Score {actual}/100 < required {threshold}/100 (delta: -{gap}). Run /optimize or check bundle size.`
+- Grace period: `[King/Lighthouse] WARN: No baseline found — establishing baseline on first successful run.`
+- Pass: `[King/Lighthouse] ✅ Lighthouse {actual}/100 (threshold: {threshold}) — PASS`
+
+---
+
 ## Fase 3: Database Migration Check (via /db-migrate)
 
 ### MUST DO
