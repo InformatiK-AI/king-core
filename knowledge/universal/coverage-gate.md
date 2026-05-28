@@ -19,6 +19,8 @@ The `/castle-report` command (M-34) reads that JSON to compute the CASTLE aggreg
 | `thresholds.per_branch_type` | map | see template | Different thresholds by git branch prefix. |
 | `thresholds.enforcement` | `block\|warn` | `block` | `block` exits 2 and stops the operation; `warn` logs and exits 0. |
 | `thresholds.exclude` | list | see template | Glob patterns excluded from the coverage count. |
+| `thresholds.mutation_score_threshold` | integer | `80` | **(M05)** Minimum mutation score (%) for CASTLE T PASS — read by `/mutation-test`. |
+| `thresholds.mutation_enforcement` | `block\|warn` | `warn` | **(M05)** `block` vetoes merge/promote on a failing mutation gate; `warn` logs only. |
 | `audit.log` | path | `.king/audit/coverage-bypass.log` | File where audited bypasses are recorded. |
 | `audit.require_justification` | bool | `true` | Whether the bypass log must include a reason. |
 

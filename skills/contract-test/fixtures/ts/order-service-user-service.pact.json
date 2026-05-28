@@ -1,0 +1,28 @@
+{
+  "consumer": { "name": "order-service" },
+  "provider": { "name": "user-service" },
+  "interactions": [
+    {
+      "description": "a request for user 42",
+      "providerState": "user 42 exists",
+      "request": {
+        "method": "GET",
+        "path": "/users/42"
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "body": { "id": 42, "name": "Ada" },
+        "matchingRules": {
+          "body": {
+            "$.id": { "matchers": [{ "match": "integer" }] },
+            "$.name": { "matchers": [{ "match": "type" }] }
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": { "version": "3.0.0" }
+  }
+}

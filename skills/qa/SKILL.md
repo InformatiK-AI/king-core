@@ -234,7 +234,12 @@ Recovery:
    - UNTESTED en Compliance Matrix → T: ⚠️ WARNING
    - FAILING en Compliance Matrix → T: ❌ BREACH
    - Todos COMPLIANT → T: ✅ PASS (combinado con Fase 3)
-3. [ ] Documentar resultado por capa
+   - **(M05) Mutation score**: si existe `.king/mutation/*-summary.md`, incorporar el último mutation score.
+     `mutation_score < mutation_score_threshold` (`.king/coverage.yaml`, default 80) → T: ⚠️ WARNING (o ❌ BREACH si `mutation_enforcement: block`)
+   - **(M05) Property evidence**: contraejemplos sin resolver de `/property-test` → T: ⚠️ WARNING
+3. [ ] **(M05)** Para capa C: si existe `.king/pact/contract-summary.md`, incorporar la cobertura de contratos.
+   Integración HTTP sin contrato → C: ⚠️ WARNING (`"Integration without contract detected"`)
+4. [ ] Documentar resultado por capa
 
 ### CASTLE Assessment Enhancement (M-34)
 > Si `.king/castle/solid-report.json` existe, leer e incorporar como A2 sub-score en el CASTLE Assessment. Si no existe, continuar normalmente — el CASTLE Assessment procede sin el sub-score numérico de SOLID.
