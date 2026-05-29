@@ -1,0 +1,8 @@
+# Normalización de fin de línea — king-core
+# Por defecto todo el texto se almacena con LF
+# (incluye los hooks .sh: el shebang se rompe con CRLF en Linux/macOS).
+* text=auto eol=lf
+
+# Scripts batch de Windows: DEBEN conservar CRLF (p. ej. run-hook.cmd).
+*.cmd       text eol=crlf
+*.bat       text eol=crlf
