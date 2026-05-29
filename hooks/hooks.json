@@ -55,7 +55,7 @@
         ]
       },
       {
-        "matcher": "Bash",
+        "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
