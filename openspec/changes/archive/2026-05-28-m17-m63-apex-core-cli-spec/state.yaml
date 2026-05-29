@@ -14,14 +14,16 @@ phases:
   tasks: completed
   apply: completed
   verify: completed
-  archive: pending         # tras merge a develop (CP4)
-castle_verdict: pending    # gate antes del merge
+  archive: completed
+castle_verdict: PASS       # ~92/100 — cambio aditivo spec-only, 59 tests estructurales verdes
+merge_commit: "447c45a"
 verification:
   gherkin_coverage: "M-17 5/5, M-63 6/6"
   cross_refs: pass
   secrets_scan: pass
   scope_creep: none
   adversarial_review: "98% — fixes aplicados"
+  pytest: "59 passed"
 delivery:
   execution_mode: step      # paso a paso con checkpoint humano antes de cada merge (CP4)
   delivery_strategy: per-change
