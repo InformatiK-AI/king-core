@@ -7,6 +7,11 @@ auditables, y los criterios objetivos de evaluación. El skill `/certification`
 el temario, lo referencia. Cuando un skill del framework evoluciona, este documento se
 actualiza y el programa de certificación queda automáticamente al día.
 
+> **Plataforma de exámenes (A7.2, 2026-05-29)**: decisión build-vs-buy resuelta = **BUY/integrar SaaS** (no build).
+> Stack por fases: Stripe (king-entrepreneur) para el cobro · assessment SaaS dedicado (ClassMarker) para examen+scoring ·
+> emisor verificable barato → Credly cuando el volumen lo justifique · review humano (Airtable/form) para KFCA/KFCSA.
+> Operación **diferida hasta validar demanda** (~50 Pro subscribers, M14). Ver `king-certification-platform-adr.md`.
+
 > Idioma canónico: español. Las traducciones del badge y materiales siguen
 > `knowledge/universal/i18n-framework.md`.
 

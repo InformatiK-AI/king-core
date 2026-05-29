@@ -1,0 +1,31 @@
+change: "a7-1-king-hub-backend"
+backlog_item: "A7.1"
+started: "2026-05-29"
+persistence: openspec
+owner_plugin: king-core
+source_of_truth: "king-hub-spec.md (§6) + trust-model.md + king-hub-hosting-adr.md"
+deliverable: "repo standalone D:/King Framework/king-hub-backend (servicio Go)"
+hosting: "Railway (ADR A7.1)"
+toolchain: "Go 1.26.3 (scoop)"
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: completed
+  verify: completed
+  archive: completed
+castle_verdict: FORTIFIED  # tras validación de integración e2e (2026-05-29): 8 endpoints contra Postgres+MinIO+GPG reales
+verification:
+  go_mod_tidy: "OK (chi v5.3.0, pgx/v5 v5.9.2, aws-sdk-go-v2, go-crypto v1.4.1)"
+  go_build: "0 errores"
+  go_vet: "limpio"
+  go_test: "PASS (api: download-302/revoked-410/ratelimit; quality+invariante-40; manifest; semver)"
+  gofmt: "limpio"
+  deferred_runtime: "integración Postgres/S3/GPG + e2e + deploy Railway (requiere DATABASE_URL+bucket+claves GPG)"
+notes: "Scaffold verificado (build+vet+unit+handler). Más fuerte que A7.3 (que solo verificó build). Interfaces Catalog/ObjectStore hacen el 302 testeable sin DB/S3."
+delivery:
+  push_github: "diferido — confirmar usuario (InformatiK-AI/king-hub-backend)"
+last_updated: "2026-05-29"

@@ -354,6 +354,9 @@ verificada, pero no domina el score: un Tier 3 excelente supera a un Tier 1 medi
 ## §6 — Backend Architecture (implementación futura)
 
 > Esta sección especifica el backend para la implementación posterior. **No se implementa en M13.**
+>
+> **Hosting decidido (A7.1, 2026-05-29)**: **Railway** (primaria; Fly.io runner-up) — compute Go always-on +
+> Railway Postgres + Railway Buckets (egress $0, descargas vía presigned URL 302). Ver `king-hub-hosting-adr.md`.
 
 ### §6.1 — Stack y endpoint base
 
