@@ -1,0 +1,30 @@
+change: "m14-licensing-core"
+milestone: "M14"
+started: "2026-05-28"
+persistence: openspec
+source_of_truth: "mejora/planes-detallados/M14-business-model-monetization.md"
+enables: "m14-billing-entrepreneur"
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: completed
+  verify: completed
+  archive: completed
+castle_verdict: FORTIFIED
+verification:
+  pytest: "59 passed"
+  genesis_diff: "14 added / 0 removed (aditivo)"
+  secrets_scan: "clean (no sk_live_/whsec_/price IDs)"
+  specs_compliant: "4/4 capabilities"
+delivery:
+  execution_mode: auto
+  delivery_strategy: single-pr
+  size_exception: true
+  chain_strategy: n/a
+  merge_commit: "931282b"
+  rationale: "M14-core = 4 knowledge/skill nuevos (business-model, license-management, license-check, soc2-compliance) + 1 extensión aditiva a genesis; merge único a develop tras CASTLE."
+last_updated: "2026-05-28"
