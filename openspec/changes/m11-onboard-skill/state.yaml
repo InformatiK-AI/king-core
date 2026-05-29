@@ -1,0 +1,25 @@
+change: "m11-onboard-skill"
+started: "2026-05-28"
+persistence: openspec
+source_of_truth: "mejora/planes-detallados/M12-developer-experience-tooling.md"
+module: "M12 Developer Experience & Tooling"
+items: ["M-11 Onboarding TUI 5 Niveles"]
+nature: buildable          # skill nativo ejecutable (distinto de king-onboard)
+depends_on: "C1 m17-m63-apex-core-cli-spec (doctor/status/hint en cli-architecture.md)"
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: completed
+  verify: completed
+  archive: pending
+castle_verdict: PASS         # ~91/100 — anatomía v2.0, 59 tests verdes
+verification:
+  gherkin_coverage: "6/6"
+  pytest: "59 passed"
+  refs_valid: "genesis/brainstorm/qa/sdd-new/sdd-ff/promote/king-onboard"
+  adversarial_review: "100% — 2 fixes aplicados"
+last_updated: "2026-05-28"
