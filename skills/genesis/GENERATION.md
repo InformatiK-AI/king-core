@@ -404,6 +404,34 @@
      - `.king/sdd/specs/` (directorio vacio)
      - `.king/sdd/archive/` (directorio vacio)
 
+13. [ ] **Activar Jarvis proactivo (DEFAULT-ON)**
+
+   > Scaffoldea el hook PhaseTransition para que `@conductor` se active automáticamente
+   > tras cada transición del pipeline. Esto deja Jarvis **ACTIVADO POR DEFECTO**
+   > (modo proactivo) en el proyecto generado.
+
+   a. Crear `.king/hooks/phase-transition.yaml` copiando desde `templates/hooks/phase-transition.yaml`:
+      - Si ya existe → mostrar "Jarvis ya configurado — preservando phase-transition.yaml" y NO sobreescribir.
+      - Si NO existe → copiar el template (viene con `enabled: true` y las transiciones principales del pipeline).
+
+   b. Crear `.king/hooks/scripts/write-phase-context.sh` copiando desde `templates/hooks/scripts/write-phase-context.sh`:
+      - Crear el directorio `.king/hooks/scripts/` si no existe (idempotente).
+      - Dar permiso de ejecución: `chmod +x .king/hooks/scripts/write-phase-context.sh`.
+      - Si ya existe → preservar sin sobreescribir.
+
+   c. Confirmar al usuario:
+      ```
+      ✓ Jarvis proactivo ACTIVADO por defecto. @conductor sugerirá el próximo paso
+        tras cada transición del pipeline (plan→build→review→qa→merge→promote→release).
+
+        Para desactivarlo:
+          - Global (kill-switch, sin editar archivos): export KING_JARVIS=off
+          - Por proyecto: poné enabled: false en .king/hooks/phase-transition.yaml
+      ```
+
+   > **Idempotencia**: Si `.king/hooks/phase-transition.yaml` ya existe, se preserva intacto
+   > (no se sobreescribe). Mismo patrón que `.gitignore` y `.env.example`.
+
 ### CHECKPOINT
 > Verificar antes de continuar
 
@@ -420,6 +448,7 @@
 - [ ] Skills de stack detectados y documentados
 - [ ] `library-registry.md` creado (si Context7 disponible y dependencias detectadas)
 - [ ] SDD pipeline inicializado (`.king/sdd/config.yaml` creado o ya existia)
+- [ ] Jarvis proactivo activado por defecto (`.king/hooks/phase-transition.yaml` + `write-phase-context.sh` creados o preservados si ya existían)
 - [ ] Si BATCH_MODE activo: resumen consolidado de todos los archivos creados mostrado al usuario
 
 ### OUTPUTS
@@ -437,6 +466,8 @@
 - `.claude/agents/{especializados}.md` (segun deteccion)
 - `.claude/knowledge/context7/library-registry.md` (si Context7 disponible)
 - `.king/sdd/config.yaml` (si no existia)
+- `.king/hooks/phase-transition.yaml` (Jarvis default-on; si no existia)
+- `.king/hooks/scripts/write-phase-context.sh` (handler de Jarvis, chmod +x; si no existia)
 
 ### IF FAILS
 > Si falla la generacion

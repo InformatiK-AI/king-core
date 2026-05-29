@@ -16,7 +16,7 @@ En ese punto del pipeline, el dispatcher tiene acceso completo a:
 - El resultado CASTLE de la sesión (`status`)
 - El contexto del workflow activo (`project_name`, `branch`, `timestamp`)
 
-El hook es **opt-in por proyecto**: solo se activa si existe `.king/hooks/phase-transition.yaml` en el proyecto con `enabled: true`.
+El hook viene **activado por defecto**: `/genesis` instala `.king/hooks/phase-transition.yaml` con `enabled: true`. Se puede desactivar globalmente con la env var `KING_JARVIS=off` (kill-switch, sin editar archivos) o por proyecto con `enabled: false`.
 
 ---
 
@@ -83,6 +83,7 @@ El dispatcher PhaseTransition es **completamente fail-safe**. Ningún error en e
 
 | Situación | Comportamiento |
 |-----------|----------------|
+| `KING_JARVIS=off` (env) | No-op silencioso global (precede a la config por proyecto). Pipeline continúa. |
 | `.king/hooks/phase-transition.yaml` no existe | No-op silencioso. Pipeline continúa. |
 | `enabled: false` | No-op silencioso. Pipeline continúa. |
 | Transición no listada en `on_phases` | No-op. Solo se ejecuta si la transición matchea. |

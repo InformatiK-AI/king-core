@@ -6,6 +6,10 @@
 # MECANISMO: El dispatcher se ejecuta en session-management Paso N+1.5
 # al completar cualquier skill del pipeline King. Solo se activa si
 # enabled: true y la transición actual matchea on_phases.
+#
+# DEFAULT-ON: /genesis instala este archivo por defecto (enabled: true)
+# para activar Jarvis proactivo. Kill-switch global: exportar KING_JARVIS=off
+# para desactivar sin editar este archivo.
 
 # ──────────────────────────────────────────────────────────────
 # SEGURIDAD — LEER ANTES DE CONFIGURAR
@@ -27,17 +31,17 @@ enabled: true
 #
 # Ejemplo: interceptar build->review y qa->merge:
 on_phases:
+  - plan->build
   - build->review
+  - review->qa
   - qa->merge
-# - plan->build
-# - review->qa
-# - merge->promote
-# - promote->release
+  - merge->promote
+  - promote->release
 
 # Comando o script a ejecutar. Debe pasar allowlist: [a-zA-Z0-9_\-\/]
 # Rutas relativas al directorio raíz del proyecto.
 # El script recibe el contexto completo via ENV VARS (ver SEGURIDAD arriba).
-run: .king/hooks/scripts/on-phase-transition.sh
+run: .king/hooks/scripts/write-phase-context.sh
 
 # Si true: el pipeline no espera que el script termine.
 # Si false: el pipeline espera hasta que el script complete (o timeout).
