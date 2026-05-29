@@ -6,6 +6,22 @@ _(no changes yet)_
 
 ---
 
+## [1.10.0] — 2026-05-28
+
+### Added (M13 — Ecosystem & Community, parte king-core)
+- **Trust Model** (`knowledge/universal/trust-model.md`): 4 tiers (Official/Trusted/Community/Local), firma GPG, scanning (Semgrep+Trivy+Snyk), revocación <48h con CRL, e invariante de no-override de gates CASTLE.
+- **CASTLE Spec v1.0** (`knowledge/universal/castle-spec-v1.md`): estándar abierto de las 6 capas (C·A·S·T·L·E) con métricas/thresholds numéricos, contratos bilaterales, mappings SOC2/ISO 27001/NIST 800-53 y governance (Technical Committee, comment period 60 días, 2/3 supermayoría).
+- **Community Templates** (`knowledge/universal/community-templates/01..10-*-starter.md`): 10 template specs oficiales (SaaS B2B/B2C, Marketplace, Mobile, API-only, Data Pipeline, AI Agent, CLI, Browser Ext, Desktop).
+- **Certification Curriculum** (`knowledge/universal/certification-curriculum.md`): KFCD (8 módulos), KFCA (4), KFCSA (portfolio).
+- **King Hub Spec** (`knowledge/universal/king-hub-spec.md`): spec del marketplace (manifest, 7 CLI commands, Quality Score, governance) — solo especificación, sin backend.
+- **i18n Framework** (`knowledge/universal/i18n-framework.md`) y **Platform Adapters Roadmap** (`knowledge/universal/platform-adapters-roadmap.md`).
+- **Contributor Guide** (`knowledge/universal/contributor-guide.md`) y **LOAD-INDEX.md** generado.
+
+### Changed
+- **create-skill** (`skills/create-skill/SKILL.md`): extendido aditivamente con "Scaffolding Automatizado" y "Checklist de Publicación (Tier 3 Hub)".
+
+---
+
 ## [1.9.4] — 2026-05-26
 
 ### Fixes
