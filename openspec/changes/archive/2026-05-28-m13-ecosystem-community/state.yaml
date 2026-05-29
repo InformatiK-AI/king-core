@@ -13,7 +13,7 @@ phases:
   tasks: completed
   apply: completed
   verify: completed
-  archive: pending
+  archive: completed
 delivery:
   execution_mode: auto
   delivery_strategy: single-pr
