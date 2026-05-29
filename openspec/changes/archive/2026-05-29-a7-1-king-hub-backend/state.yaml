@@ -17,7 +17,7 @@ phases:
   apply: completed
   verify: completed
   archive: completed
-castle_verdict: CONDITIONAL
+castle_verdict: FORTIFIED  # tras validación de integración e2e (2026-05-29): 8 endpoints contra Postgres+MinIO+GPG reales
 verification:
   go_mod_tidy: "OK (chi v5.3.0, pgx/v5 v5.9.2, aws-sdk-go-v2, go-crypto v1.4.1)"
   go_build: "0 errores"

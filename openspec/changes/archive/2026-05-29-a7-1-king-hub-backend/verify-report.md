@@ -39,15 +39,35 @@ no se validó en este ciclo. No se afirma que "pasa" lo que no se corrió.
 - **GPG** vía go-crypto (`CheckArmoredDetachedSignature`); resolución de pubkey contra keyserver = runtime (en el scaffold
   se recibe `public_key` en el publish).
 
-## Veredicto CASTLE: **CONDITIONAL**
-- **C (Contracts)**: 6 endpoints + health/ready implementados; interfaces tipadas; build limpio ✅
-- **A (Architecture)**: layout cmd/internal idiomático; capas separadas; dependency-injection vía interfaces ✅
-- **S (Security)**: GPG verify + tier derivado + CRL + namespace + rate limiting implementados (verificación real vs keyserver = runtime) ⚠️
-- **T (Testing)**: build+vet+unit+handler verdes; integración Postgres/S3/GPG no ejecutada (runtime) → CONDITIONAL, no FORTIFIED
-- **L (Logging)**: chi Recoverer + RequestID; structured logging básico ✅
-- **E (Environment)**: Dockerfile multi-stage + railway.json + config fail-fast + migraciones ✅
+## Validación de integración e2e (2026-05-29) — local Docker-first
 
-Sube a FORTIFIED cuando la integración (DB/S3/GPG) y el e2e se validen con un entorno real (Railway + Postgres + bucket).
+Infra: Postgres 16 (docker :5433) + MinIO (S3-compatible :9000) + keypair GPG RSA 4096 de prueba. Harness reproducible:
+`scripts/validate.sh`. **Fixes aplicados en la validación**: (1) `storage.PutObject` + subir el package en publish (faltaba
+→ download apuntaba a objeto inexistente); (2) usar `m.Name` (namespace completo `autor/skill`) en publish, no `m.Namespace()`
+(solo autor) → alineado con download/search/info.
+
+| Check | Resultado e2e |
+|-------|---------------|
+| `migrate` | ✅ 0001_init.sql aplicada contra Postgres real |
+| `/health` · `/ready` | ✅ 200 · `{db:ok, storage:ok}` (pgx + MinIO HeadBucket) |
+| `POST /skills` | ✅ 201 — GPG verify real + manifest + tier 3 + QS 40 + upload a MinIO + insert pgx |
+| `GET /skills?query` | ✅ 200 (devuelve el skill, QS≥40) |
+| `GET /skills/{a}/{n}` | ✅ 200 (detalle + versiones) |
+| `GET .../download/{v}` | ✅ **302 → presigned MinIO**; `curl -L` bajó el objeto real (138 B == original) |
+| `POST .../rate` | ✅ 200 (5.0) · 400 (6.0) |
+| `GET /crl` | ✅ 200 JSON |
+
+Ciclo **publish→upload→presign→download** validado. Diferido (producción): GPG vs keyservers (la prueba usa `public_key` directo) y deploy Railway.
+
+## Veredicto CASTLE: **FORTIFIED**
+- **C (Contracts)**: 6 endpoints + health/ready; contratos validados e2e ✅
+- **A (Architecture)**: layout cmd/internal; DI vía interfaces; namespace consistente (fix) ✅
+- **S (Security)**: GPG verify **ejecutado contra firma real**; tier derivado; CRL; namespace; rate limiting ✅
+- **T (Testing)**: build+vet+unit+handler verdes **+ integración Postgres/S3/GPG validada e2e** ✅
+- **L (Logging)**: chi Recoverer + RequestID ✅
+- **E (Environment)**: Dockerfile + railway.json + docker-compose + config fail-fast + migrate subcommand ✅
+
+(GPG vs keyservers y deploy Railway = producción; no degradan el veredicto del scaffold validado.)
 
 ## Pendiente (outward-facing)
 - Push a GitHub (`InformatiK-AI/king-hub-backend`) + deploy Railway → confirmación del usuario.
