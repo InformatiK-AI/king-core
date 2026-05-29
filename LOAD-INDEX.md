@@ -21,9 +21,9 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 
 ## Skills (`skills/`)
 
-65 skills + 2 directorios de soporte (`_shared`, `_templates`). Agrupados por dominio.
+51 skills + 2 directorios de soporte (`_shared`, `_templates`). Agrupados por dominio.
 
-> Skills de diseño/accesibilidad (`frontend-design`, `a11y-audit`, `a11y-fix`) movidos a **king-content**; optimización de DB (`db-optimize`, `explain-query`) movida a **king-infra**. king-core los referencia de forma opcional (solo si esos plugins están instalados).
+> Skills de diseño/accesibilidad (`frontend-design`, `a11y-audit`, `a11y-fix`) movidos a **king-content**; optimización de DB (`db-optimize`, `explain-query`) movida a **king-infra**; las 12 skills de arquitectura y sistemas distribuidos movidas a **king-arch** (decouple A6). king-core los referencia de forma opcional (solo si esos plugins están instalados).
 
 ### SDLC / Orquestación
 
@@ -64,28 +64,18 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 | Skill | Recursos cargados | Notas |
 |-------|-------------------|-------|
 | `/contract-test` | knowledge/_inject/testing-essentials | Contract testing |
-| `/contract-test-pact` | knowledge/_inject/testing-essentials | Pact consumer/provider |
 | `/mutation-test` | knowledge/_inject/testing-essentials | Mutation testing |
 | `/property-test` | knowledge/_inject/testing-essentials | Property-based testing |
 | `/perf-test` | knowledge/universal/performance.md | Performance testing |
 | `/test-plan` | (HTML template) | Planes de prueba HTML |
 
-### Arquitectura (M04)
+### Arquitectura → king-arch (decouple A6)
+
+> Las 12 skills de arquitectura y sistemas distribuidos (`/clean-arch-setup`, `/hexagonal-setup`, `/cqrs-setup`, `/ddd-tactical`, `/event-sourcing`, `/event-broker-setup`, `/saga-design`, `/microservice-extract`, `/api-contract-first`, `/contract-test-pact`, `/idempotency`, `/resilience-weave`) movidas a **king-arch**. king-core las referencia de forma opcional (solo si king-arch está instalado). El knowledge `architecture-patterns.md` y `resilience-patterns.md` QUEDA en king-core (kernel compartido con @architect/sdd-apply/hooks); `saga-patterns.md` y `distributed-systems.md` se movieron con las skills.
 
 | Skill | Recursos cargados | Notas |
 |-------|-------------------|-------|
-| `/clean-arch-setup` | knowledge/domain/architecture-patterns.md | Clean Architecture |
-| `/hexagonal-setup` | knowledge/domain/architecture-patterns.md | Arquitectura hexagonal |
-| `/cqrs-setup` | knowledge/domain/architecture-patterns.md | CQRS |
-| `/ddd-tactical` | knowledge/domain/architecture-patterns.md | DDD táctico |
-| `/event-sourcing` | knowledge/domain/saga-patterns.md | Event sourcing |
-| `/event-broker-setup` | knowledge/domain/distributed-systems.md | Broker de eventos |
-| `/saga-design` | knowledge/domain/saga-patterns.md | Sagas distribuidas |
-| `/microservice-extract` | knowledge/domain/distributed-systems.md | Extracción de microservicio |
-| `/api-contract-first` | knowledge/_inject/api-design-essentials | OpenAPI-first |
-| `/idempotency` | knowledge/domain/resilience-patterns.md | Idempotencia |
-| `/resilience-weave` | knowledge/domain/resilience-patterns.md | Patrones de resiliencia |
-| `/solid-check` | knowledge/domain/architecture-patterns.md | Verificación SOLID |
+| `/solid-check` | knowledge/domain/architecture-patterns.md | Verificación SOLID (queda en king-core) |
 
 ### Rendimiento / Datos
 
@@ -170,7 +160,7 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 | Universal | `knowledge/universal/*.md` | api-design, accessibility, a11y-wcag22, performance, performance-budget, observability, coverage-gate, lighthouse-gate, testing, testing-pyramid, skill-versioning, deprecation-policy, git-mastery, framework-performance-targets, project-roadmap-template, **contributor-guide** |
 | Universal (M13) | `knowledge/universal/community-templates/` | 10 specs de community templates (M-61) |
 | Inyección (slim) | `knowledge/_inject/*.md` | Versiones slim para agentes: testing, security, api-design, devops, frontend, mobile, payments, auth, observability, prompt-engineering, audit-ledger, context7, design, seo, secrets, multi-tenancy, db-migrations, resilience, onboarding, sdd-boundary |
-| Dominio | `knowledge/domain/*.md` | architecture-patterns, distributed-systems, resilience-patterns, saga-patterns, multi-tenancy-patterns, orm-patterns, infrastructure + `compliance/` (`design/` movido a **king-content**) |
+| Dominio | `knowledge/domain/*.md` | architecture-patterns, resilience-patterns, multi-tenancy-patterns, orm-patterns, infrastructure + `compliance/` (`saga-patterns`, `distributed-systems` movidos a **king-arch**; `design/` a **king-content**) |
 | Stacks | `knowledge/stacks/{node,python,go,java,rust,react}/` | Convenciones y patrones por stack |
 | Context7 | `knowledge/context7/` | library-registry.md (docs live vía MCP) |
 
@@ -190,12 +180,12 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 | Hook | Evento | Función |
 |------|--------|---------|
 | `a11y-check.sh` | PostToolUse | Verifica accesibilidad en cambios de UI |
-| `api-change-check.sh` | PostToolUse | Avisa de validar contrato OpenAPI tras cambios en handlers (M04) |
+| `api-change-check.sh` | PostToolUse | Avisa de validar contrato OpenAPI tras cambios en handlers (sugiere `/api-contract-first` de king-arch) |
 | `coverage-emit.sh` | PostToolUse | Emite señal de cobertura |
 | `instrument-emit-check.sh` | PostToolUse | Verifica instrumentación/observabilidad |
 | `logging-emit-check.sh` | PostToolUse | Verifica emisión de logs |
 | `perf-check.sh` | PostToolUse | Verifica presupuesto de rendimiento |
-| `resilience-check.sh` | PostToolUse | Verifica patrones de resiliencia (M04) |
+| `resilience-check.sh` | PostToolUse | Verifica patrones de resiliencia (sugiere `/resilience-weave` de king-arch) |
 | `recovery.sh` | (recuperación) | Rutina de recuperación |
 | `session-start/` | SessionStart | Carga de contexto de sesión |
 | `conductor-invoke/` | (orquestación) | Invocación del conductor |

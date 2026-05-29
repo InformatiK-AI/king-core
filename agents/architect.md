@@ -107,8 +107,9 @@ Antes de ejecutar el CASTLE Assessment cualitativo de arquitectura:
 
 ### Architecture Patterns Knowledge (M-25)
 
-> Knowledge: `knowledge/domain/architecture-patterns.md` — trade-offs, cuándo usar / cuándo NO, combinaciones.
-> Skills de scaffolding: `/clean-arch-setup`, `/hexagonal-setup`, `/ddd-tactical`, `/cqrs-setup`, `/event-sourcing`.
+> Knowledge: `knowledge/domain/architecture-patterns.md` — trade-offs, cuándo usar / cuándo NO, combinaciones (queda en king-core).
+> Skills de scaffolding: `/clean-arch-setup`, `/hexagonal-setup`, `/ddd-tactical`, `/cqrs-setup`, `/event-sourcing` **(king-arch, si está instalado)**.
+> Degradación graceful: si king-arch no está instalado, recomiendo el patrón usando el knowledge local — el árbol de decisión sigue siendo válido; el scaffolding se ejecuta instalando king-arch o manualmente.
 
 Cuando el diseño requiere elegir un patrón arquitectónico, aplicar este árbol de decisión:
 
