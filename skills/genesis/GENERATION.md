@@ -610,11 +610,25 @@ Puedes habilitarlos despues con: /worktree init
    Archivo: `.king/sessions/YYYY-MM-DD-genesis.md`
    - Al crear la sesion exitosamente: si `.king/.genesis-merge-mode` existe → eliminarlo
 
+4. [ ] **Mostrar info de licencia (informativo, NO bloqueante)**
+   - Invocar `license-check` en modo verify (`/license-check --require pro`) para resolver el tier del entorno
+   - Si NO hay licencia activa (tier `core` o ausencia de observation): mostrar **una sola vez** el mensaje de
+     upgrade estandar (ver `knowledge/universal/license-management.md` §4):
+     ```
+     Estas usando King Core (gratis). Los skills premium requieren King Pro ($29/mes).
+     Activa tu licencia con: king-framework license activate <key>
+     Conseguila en: kingframework.dev/pro
+     ```
+   - Si hay licencia activa: no mostrar nada
+   - ⚠️ Este step es **informativo**: NUNCA bloquea ni aborta genesis. Si `license-check` falla o Engram no
+     responde, continuar en silencio (genesis termina con exito igual). Ver `skills/license-check/SKILL.md`
+
 ### CHECKPOINT
 > Verificar antes de finalizar
 
 - [ ] Usuario recibio resumen completo
 - [ ] Sesion registrada
+- [ ] Info de licencia mostrada si aplica (sin bloquear; omitible ante fallo de Engram)
 - [ ] Proximo paso comunicado
 
 ### OUTPUTS
