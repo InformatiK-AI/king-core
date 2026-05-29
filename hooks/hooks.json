@@ -83,6 +83,26 @@
             "async": false
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/logging-emit-check.sh",
+            "async": false
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/instrument-emit-check.sh",
+            "async": false
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
