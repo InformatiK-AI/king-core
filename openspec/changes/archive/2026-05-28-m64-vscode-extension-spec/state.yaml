@@ -15,8 +15,9 @@ phases:
   tasks: completed
   apply: completed
   verify: completed
-  archive: pending
+  archive: completed
 castle_verdict: PASS         # ~92/100 — spec-only aditivo, 59 tests verdes
+merge_commit: "baae738"
 verification:
   gherkin_coverage: "5/5"
   pytest: "59 passed"
