@@ -1,0 +1,27 @@
+change: "king-hub-client-plugin"
+backlog_item: "A7.1 (mitad cliente)"
+started: "2026-05-29"
+persistence: openspec
+owner_plugin: king-core
+source_of_truth: "king-hub-spec.md (§2/§4) + trust-model.md"
+deliverable: "repo standalone D:/King Framework/king-hub (plugin de 4 skills markdown)"
+design_decision: "Híbrido (RADAR): CLI king-framework skill * primario + fallback HTTP/GPG directo"
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: completed
+  verify: completed
+  archive: completed
+castle_verdict: FORTIFIED
+verification:
+  audit_self: "75.70 (5 skills, umbral 75) PASS — paridad king-arch 75.58/king-content 75.00"
+  check_api_version: "EXIT 0 (4 skills)"
+  json_valid: "plugin.json OK"
+  nature: "verificación estructural (skills markdown ejecutados por el agente, no runtime)"
+delivery:
+  push_github: "diferido — confirmar usuario (InformatiK-AI/king-hub)"
+last_updated: "2026-05-29"
