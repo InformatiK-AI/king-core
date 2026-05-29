@@ -1,0 +1,35 @@
+change: "a6-king-arch-decouple"
+backlog_item: "A6"
+risk: "medium"
+started: "2026-05-29"
+persistence: openspec
+source_of_truth: "post_m13_hardening (item A6) + plan aprobado enriquece-este-mensaje-paso-snoopy-squirrel.md"
+precedent: "A3 (decouple king-content/king-infra)"
+creates_repo: "king-arch"
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: completed
+  verify: completed
+  archive: completed
+castle_verdict: FORTIFIED
+verification:
+  pytest: "59 passed (cov 97.78%)"
+  audit_self_king_core: "82.60 (52 skills, threshold 80) PASS"
+  audit_self_king_arch: "75.58 (13 skills) — paridad con king-infra 76.22 / king-content 75.00"
+  check_api_version: "EXIT 0 (king-core y king-arch)"
+  json_valid: "4/4 (king-core plugin.json, hooks.json, king-arch plugin.json, marketplace.json)"
+  graceful_hooks: "resilience-check + api-change-check: WARNING con sufijo king-arch, EXIT 0"
+  no_regression: "requires inverso ABSENT; refs operativas del kernel todas graceful"
+  skills_count: "king-core 63→51; king-arch 12 (+_shared)"
+delivery:
+  execution_mode: auto
+  delivery_strategy: single-pr
+  size_exception: true
+  branch: "feature/a6-king-arch-decouple"
+  push_pr_merge: "DIFERIDO — pendiente confirmación del usuario (outward-facing)"
+last_updated: "2026-05-29"

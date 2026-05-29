@@ -43,7 +43,7 @@ if [ -f "$ROOT/.king/resilience.yaml" ]; then
   fi
 fi
 
-MSG="Llamada a servicio externo sin retry/timeout/circuit-breaker en ${FILE:-archivo}. Ejecutá /resilience-weave para tejer resiliencia (retry + CB + timeout + fallback). Ref: knowledge/domain/resilience-patterns.md"
+MSG="Llamada a servicio externo sin retry/timeout/circuit-breaker en ${FILE:-archivo}. Ejecutá /resilience-weave (king-arch, si está instalado) para tejer resiliencia (retry + CB + timeout + fallback). Ref: knowledge/domain/resilience-patterns.md"
 
 if [ "$ENFORCEMENT" = "block" ]; then
   echo "[King Resilience] BLOCKED: $MSG"
