@@ -76,7 +76,7 @@ E - Environment    → Ambientes, deploy, smoke tests, rollback
 | `fix` | - | ✓ | ✓ | ✓ | - | - | CONDITIONAL |
 | `plan` | ✓ | ✓ | ✓ | - | - | - | CONDITIONAL |
 | `create-issues` | ✓ | ✓ | - | - | - | - | CONDITIONAL |
-| `frontend-design` | - | ✓ | - | ✓ | - | - | CONDITIONAL |
+| `frontend-design` (king-content) | - | ✓ | - | ✓ | - | - | CONDITIONAL |
 | `test-plan` | ✓ | ✓ | ✓ | ✓ | - | - | CONDITIONAL |
 | `promote` | - | - | ✓ | - | - | ✓ | CONDITIONAL |
 | `/castle` (standalone) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | FORTIFIED |

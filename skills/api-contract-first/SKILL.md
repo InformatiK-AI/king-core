@@ -384,7 +384,7 @@ Recovery:
 | Stubs generados, falta implementar handlers | `/build` — implementar la lógica de los stubs respetando el contrato |
 | Contract tests generados | `/contract-test` o correr la suite contra el server/mock |
 | Breaking changes detectados (`HAS_BREAKING`) | `/release` con bump MAJOR + estrategia de versionado, o revisar la spec para evitar el breaking |
-| Mock levantado, falta consumirlo desde el front | `/frontend-design` o desarrollo del cliente contra el mock Prism |
+| Mock levantado, falta consumirlo desde el front | `/frontend-design` (king-content, si king-content está instalado) o desarrollo del cliente contra el mock Prism |
 | spectral reportó warnings | corregir la spec y re-`/api-contract-first <spec> --outputs ...` |
 | Todo generado y validado | continuar; integrar el arch-test de contrato en `/review` (CASTLE C) |
 
@@ -484,5 +484,5 @@ generación. La spec generada queda como artefacto (`openapi.yaml`) y se vuelve 
 
 `/api-contract-first` materializa el contrato de la API (CASTLE C). Se complementa con `/contract-test`
 (M05, correr/expandir la suite de contract tests), `/clean-arch-setup` (los stubs viven en la capa de
-delivery/presentation), y `/explain-query` (rendimiento de los handlers implementados). El delta spec
+delivery/presentation), y `/explain-query` (king-infra, si king-infra está instalado — rendimiento de los handlers implementados). El delta spec
 está en `openspec/changes/m04-architecture/specs/api-contract-first/spec.md`.

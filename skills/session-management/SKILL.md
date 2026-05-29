@@ -212,7 +212,7 @@ Antes de finalizar el session document, verificar si el skill ejecutado requiere
 | qa-batch | QA-Execution + Smoke-Test |
 | qa-env | Smoke-Test |
 | fix | Bug-Reproduction + Fix-Verification |
-| frontend-design | Smoke-Test (fullPage) |
+| frontend-design (king-content) | Smoke-Test (fullPage) |
 | review | Smoke-Test (solo si UI) |
 | refactor | Smoke-Test |
 | merge, promote, release | N/A |
@@ -279,7 +279,9 @@ Leer y actualizar `.king/workflows/[nombre]/context.md`:
 
 Fail-safe: errores se logean, pipeline nunca se interrumpe. Ejecutar DESPUÉS de N+1.2, ANTES de N+1.3.
 
-1. **Config** — Leer `.king/hooks/phase-transition.yaml`. Si no existe o `enabled: false` → saltar a N+1.3.
+1. **Config**
+   0. **Kill-switch global** — Si la variable de entorno `KING_JARVIS` está en `off`/`0`/`false`/`disabled` (case-insensitive), loguear `"Jarvis desactivado (KING_JARVIS)"` y saltar directamente a N+1.3 (omitir N+1.5 y N+1.5b).
+   - Leer `.king/hooks/phase-transition.yaml`. Si no existe o `enabled: false` → saltar a N+1.3.
 2. **Payload** (ENV VARS, nunca interpolar en shell):
    ```
    KING_FROM_PHASE   = skill recién completado

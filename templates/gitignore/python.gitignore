@@ -50,3 +50,10 @@ Thumbs.db
 .king/.genesis-merge-mode
 .env
 .env.*
+
+# King Framework — Modo Jarvis (artefactos efímeros/derivados, no versionar)
+.king/jarvis/project-roadmap.md
+.king/jarvis/observations.jsonl
+.king/jarvis/tech-debt.md
+.king/jarvis/perf.log
+# .king/jarvis/project-state.json → SÍ se versiona (estado reproducible: fingerprint + TTFC)

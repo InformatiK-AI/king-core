@@ -21,7 +21,7 @@ SKILLS               Core                    Especializados (si activos)
                        └── Siempre: decisiones de arquitectura
 
 /frontend-design  X    .    .    X     .     .      .    .     .    .
-                  │              │
+                  │              │   (king-content, si king-content esta instalado)
                   │              └── Patrones a11y para UI
                   └── Implementacion de codigo visual
 

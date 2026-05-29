@@ -137,7 +137,7 @@ Pasos:
 
 ## Capture Smoke-Test
 
-**Usado por**: qa-env (Fase 5), build (Fase 5), frontend-design (Fase 5), refactor (Fase 4), review (Fase 4)
+**Usado por**: qa-env (Fase 5), build (Fase 5), frontend-design (king-content) (Fase 5), refactor (Fase 4), review (Fase 4)
 **Propósito**: Verificación visual rápida de que la app carga y funciona
 
 Pasos:
@@ -162,7 +162,7 @@ Pasos:
    - `browser_take_screenshot(type: "png", filename: "[dir]/02-panel-migracion.png")`
 8. **Solo para qa-env**: verificar selector de idiomas (i18n):
    - `browser_take_screenshot(type: "png", filename: "[dir]/03-ui-idiomas.png")`
-9. **Solo para frontend-design**: capturar pantalla completa para revisión visual:
+9. **Solo para frontend-design** (king-content, si king-content está instalado): capturar pantalla completa para revisión visual:
    - `browser_take_screenshot(type: "png", fullPage: true, filename: "[dir]/03-full-page.png")`
 10. Cerrar browser:
     - `browser_close()`

@@ -59,7 +59,7 @@ Eres el agente de diseño frontend del proyecto. Tu misión es crear interfaces 
 
 ### Criterios de Activación
 
-- `/frontend-design` solicita diseño o implementación de UI
+- `/frontend-design` (king-content, si king-content está instalado) solicita diseño o implementación de UI
 - `@developer` necesita componentes de interfaz o revisión de accesibilidad
 - `/review` detecta problemas de UX o accesibilidad (WCAG A)
 - `/build` incluye tareas de frontend en el scope

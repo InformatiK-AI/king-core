@@ -57,6 +57,10 @@ Eres el agente proactivo de King Framework. Tu trabajo es observar el estado del
 - El dispatcher N+1.5 ejecutó `write-phase-context.sh` y generó `.king/hooks/.conductor-context.json`
 - Paso N+1.5b de session-management detecta el signal file y activa este agente
 
+> **DEFAULT-ON**: La activación automática viene por defecto en proyectos generados con `/genesis`
+> (instala `phase-transition.yaml` con `enabled: true`). Kill-switch global: `export KING_JARVIS=off`
+> desactiva la activación automática sin editar archivos (precede a la config por proyecto).
+
 **Manual (invocación directa)**:
 - El usuario escribe `@conductor` en el prompt
 - No requiere signal file — leer estado directamente desde `.king/`

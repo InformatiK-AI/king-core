@@ -21,7 +21,9 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 
 ## Skills (`skills/`)
 
-70 skills + 2 directorios de soporte (`_shared`, `_templates`). Agrupados por dominio.
+65 skills + 2 directorios de soporte (`_shared`, `_templates`). Agrupados por dominio.
+
+> Skills de diseño/accesibilidad (`frontend-design`, `a11y-audit`, `a11y-fix`) movidos a **king-content**; optimización de DB (`db-optimize`, `explain-query`) movida a **king-infra**. king-core los referencia de forma opcional (solo si esos plugins están instalados).
 
 ### SDLC / Orquestación
 
@@ -91,16 +93,8 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 |-------|-------------------|-------|
 | `/optimize` | knowledge/universal/performance.md | Optimización Big O |
 | `/refactor` | knowledge/_inject/* | Refactoring preservando comportamiento |
-| `/db-optimize` | knowledge/domain/orm-patterns.md | Optimización de queries |
-| `/explain-query` | knowledge/domain/orm-patterns.md | Análisis de plan de ejecución |
 
-### Frontend / Accesibilidad
-
-| Skill | Recursos cargados | Notas |
-|-------|-------------------|-------|
-| `/frontend-design` | docs/features/, knowledge/stacks/ | UI moderna con animaciones |
-| `/a11y-audit` | knowledge/universal/a11y-wcag22.md | Auditoría WCAG 2.2 |
-| `/a11y-fix` | knowledge/universal/a11y-wcag22.md | Correcciones de accesibilidad |
+> `/db-optimize` y `/explain-query` movidos a **king-infra**. `/frontend-design`, `/a11y-audit` y `/a11y-fix` movidos a **king-content**.
 
 ### Bugfix / Meta
 
@@ -147,7 +141,7 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 | @architect | /genesis, decisiones | knowledge/universal/*, ADRs, context7/library-registry.md |
 | @qa | /qa, /qa-batch | security/SECURITY-GATE |
 | @security | bajo demanda | knowledge/_inject/security-essentials.md, knowledge/domain/compliance/ |
-| @frontend | /qa, /a11y-* | knowledge/universal/accessibility.md, a11y-wcag22.md |
+| @frontend | /qa, /a11y-* (king-content) | knowledge/universal/accessibility.md, a11y-wcag22.md |
 | @devops | bajo demanda | knowledge/domain/infrastructure.md |
 | @api | bajo demanda | knowledge/_inject/api-design-essentials.md |
 | @performance | bajo demanda | knowledge/universal/performance.md |
@@ -176,7 +170,7 @@ Inventario y documentación de qué recursos se cargan en cada contexto, para op
 | Universal | `knowledge/universal/*.md` | api-design, accessibility, a11y-wcag22, performance, performance-budget, observability, coverage-gate, lighthouse-gate, testing, testing-pyramid, skill-versioning, deprecation-policy, git-mastery, framework-performance-targets, project-roadmap-template, **contributor-guide** |
 | Universal (M13) | `knowledge/universal/community-templates/` | 10 specs de community templates (M-61) |
 | Inyección (slim) | `knowledge/_inject/*.md` | Versiones slim para agentes: testing, security, api-design, devops, frontend, mobile, payments, auth, observability, prompt-engineering, audit-ledger, context7, design, seo, secrets, multi-tenancy, db-migrations, resilience, onboarding, sdd-boundary |
-| Dominio | `knowledge/domain/*.md` | architecture-patterns, distributed-systems, resilience-patterns, saga-patterns, multi-tenancy-patterns, orm-patterns, infrastructure + `compliance/` y `design/` |
+| Dominio | `knowledge/domain/*.md` | architecture-patterns, distributed-systems, resilience-patterns, saga-patterns, multi-tenancy-patterns, orm-patterns, infrastructure + `compliance/` (`design/` movido a **king-content**) |
 | Stacks | `knowledge/stacks/{node,python,go,java,rust,react}/` | Convenciones y patrones por stack |
 | Context7 | `knowledge/context7/` | library-registry.md (docs live vía MCP) |
 
