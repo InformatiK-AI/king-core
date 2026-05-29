@@ -15,8 +15,9 @@ phases:
   tasks: completed
   apply: completed
   verify: completed
-  archive: pending
+  archive: completed
 castle_verdict: PASS         # ~91/100 — anatomía v2.0, 59 tests verdes
+merge_commit: "05771cb"
 verification:
   gherkin_coverage: "6/6"
   pytest: "59 passed"
