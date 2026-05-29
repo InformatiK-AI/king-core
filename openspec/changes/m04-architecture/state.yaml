@@ -1,0 +1,20 @@
+change: "m04-architecture"
+started: "2026-05-28"
+persistence: openspec
+source_of_truth: "mejora/planes-detallados/M04-architecture-and-patterns.md"
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: in_progress
+  verify: pending
+  archive: pending
+delivery:
+  execution_mode: auto
+  delivery_strategy: single-pr
+  size_exception: true
+  chain_strategy: n/a
+last_updated: "2026-05-28"

@@ -1,0 +1,62 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Claude Code Plugin (king-core) — skills/agents/commands/hooks en Markdown+YAML, sin build step.
+  Python tooling para self-tests del framework (pytest, ruff).
+  Architecture: skill-based; SKILL.md anatomía canónica v2.0; agentes con contratos bilaterales; gates CASTLE.
+  Testing: pytest (tests/ unit+integration+benchmarks+snapshots); ruff lint; pytest-cov coverage.
+  Style: ruff (line-length 100, target py311); Conventional Commits.
+
+strict_tdd: false
+
+# Estrategia de entrega cacheada para esta sesión (decidida por el usuario):
+delivery:
+  execution_mode: auto          # ejecutar fases back-to-back, sin pausar entre fases
+  delivery_strategy: single-pr  # todo M04 en un PR; size:exception aceptada (scope grande, ~138h)
+  size_exception: true
+  rationale: "M04 = 14 skills + 5 knowledge + 2 hooks + 3 extensiones; merge unico a develop tras CASTLE FORTIFIED."
+
+testing:
+  strict_tdd_mode: disabled
+  detected: 2026-05-28
+  test_runner:
+    framework: pytest
+    command: "pytest"
+  layers:
+    unit: { available: true, tool: pytest }
+    integration: { available: true, tool: pytest }
+    e2e: { available: false, tool: "—" }
+  coverage:
+    available: true
+    command: "pytest --cov=src --cov=scripts"
+  quality_tools:
+    linter: { available: true, command: "ruff check" }
+    type_checker: { available: false, command: "—" }
+    formatter: { available: true, command: "ruff format" }
+  note: |
+    Los "tests" del framework validan estructura (frontmatter de SKILL.md, api_version,
+    hooks.json parseable, anatomía v2.0), no comportamiento runtime de los skills.
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected modules/packages
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Document architecture decisions with rationale
+    - Reference mejora/planes-detallados/M04-architecture-and-patterns.md as source of truth
+  tasks:
+    - Group tasks by phase (sprint)
+    - Use hierarchical numbering
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow existing skill anatomy v2.0 (skills/_shared/skill-anatomy.md)
+    - Extensions to existing files MUST be additive (never remove existing content)
+  verify:
+    - Verify structural conformance (no conventional runtime tests for Markdown skills)
+    - Compare implementation against every spec scenario
+    - test_command: "pytest"
+  archive:
+    - Warn before merging destructive deltas (large removals)
