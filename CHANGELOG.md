@@ -6,6 +6,21 @@ _(no changes yet)_
 
 ---
 
+## [1.11.0] — 2026-05-29
+
+### Added (A2 — Jarvis default-on)
+- Jarvis proactivo **activado por defecto**: `/genesis` instala `.king/hooks/phase-transition.yaml` (enabled) + `write-phase-context.sh`. Kill-switch global `KING_JARVIS=off` (en `session-management` N+1.5) y por proyecto (`enabled: false`).
+
+### Added (A4 — Jarvis M-81/82/83)
+- **M-81 Contextual Observer**: `knowledge/universal/jarvis-patterns.md` (13 patrones CASTLE) + `hooks/contextual-observer/` (observer.sh PostToolUse + emit-observations.sh deferred en UserPromptSubmit).
+- **M-82 Progress Tracking**: `project-roadmap-template.md` visible + semántica auto-update + `.gitignore`.
+- **M-83 Error Recovery**: `knowledge/universal/error-recovery-patterns.md` (5 templates) + `hooks/error-recovery/error-recovery.sh` (evento Stop, async:false).
+
+### Changed (A3 — desacople)
+- king-core **68→63 skills**: `frontend-design`, `a11y-audit`, `a11y-fix` movidos a **king-content**; `db-optimize`, `explain-query` a **king-infra**. Catálogo de diseño M09 → king-content. Refs reescritas graceful. LOAD-INDEX actualizado.
+
+---
+
 ## [1.10.0] — 2026-05-28
 
 ### Added (M13 — Ecosystem & Community, parte king-core)
