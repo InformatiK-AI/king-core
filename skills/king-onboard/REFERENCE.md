@@ -84,7 +84,7 @@ Para extender y operar King Framework mismo.
 |-------|--------------|
 | `/create-skill` | Cuando necesitás crear un skill nuevo que siga las convenciones king v2.0. Checklist y template. |
 | `/king-onboard` | Walkthrough guiado del SDLC completo para usuarios nuevos. Este skill. |
-| `/frontend-design` | Para la documentación web en `docs/`. Diseña y genera páginas con accesibilidad WCAG. |
+| `/frontend-design` (king-content, si king-content está instalado) | Para la documentación web en `docs/`. Diseña y genera páginas con accesibilidad WCAG. |
 
 ---
 

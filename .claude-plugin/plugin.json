@@ -1,7 +1,7 @@
 {
   "name": "king-core",
   "version": "1.10.0",
-  "description": "King Core: SDLC completo con 51 skills — genesis, brainstorm, plan, build, review, qa, contract/mutation/property/perf testing, merge, release y pipeline SDD. 10 agentes especializados. Base del ecosistema King Framework. Incluye knowledge de ecosistema y comunidad (trust model, CASTLE Spec v1.0, community templates, certification curriculum, King Hub spec, i18n, platform adapters).",
+  "description": "King Core: SDLC completo del ecosistema King Framework — genesis, brainstorm, plan, build, review, qa, contract/mutation/property/perf testing, arquitectura (clean/hexagonal/CQRS/DDD/sagas), merge, release y pipeline SDD. 10 agentes especializados, evaluación CASTLE y knowledge de ecosistema/comunidad (trust model, CASTLE Spec v1.0, community templates, certification curriculum, King Hub spec, i18n, platform adapters). Base sin dependencias inversas. Nota: skills de diseño/accesibilidad (frontend-design, a11y-*) ahora en king-content; optimización de DB (db-optimize, explain-query) en king-infra — king-core los referencia de forma opcional.",
   "author": {
     "name": "InformatiK-AI",
     "email": "j.salgado2k@gmail.com"

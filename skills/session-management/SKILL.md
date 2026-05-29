@@ -212,7 +212,7 @@ Antes de finalizar el session document, verificar si el skill ejecutado requiere
 | qa-batch | QA-Execution + Smoke-Test |
 | qa-env | Smoke-Test |
 | fix | Bug-Reproduction + Fix-Verification |
-| frontend-design | Smoke-Test (fullPage) |
+| frontend-design (king-content) | Smoke-Test (fullPage) |
 | review | Smoke-Test (solo si UI) |
 | refactor | Smoke-Test |
 | merge, promote, release | N/A |

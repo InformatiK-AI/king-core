@@ -534,7 +534,7 @@ Próximo paso: /brainstorm --feature {nombre} para diseñar tu primera feature
 
 > **Detección de señales UI**: Si el diseño incluye componentes de interfaz
 > (formularios, dashboards, landing pages, visualización de datos, flujos de onboarding),
-> sugerir `/frontend-design` como paso intermedio antes de `/create-issues`.
+> sugerir `/frontend-design` (king-content, si king-content está instalado) como paso intermedio antes de `/create-issues`.
 
 ```
 Brainstorming completado.
@@ -556,7 +556,7 @@ Progreso del flujo:
 Si señales UI detectadas en el diseño:
 ```
 Próximo paso sugerido: /frontend-design --feature {feature}
-   (para diseño visual de alta calidad antes de implementar)
+   (king-content, si king-content está instalado — diseño visual de alta calidad antes de implementar)
    Alternativa: /create-issues (si prefieres ir directo a implementación)
 ```
 

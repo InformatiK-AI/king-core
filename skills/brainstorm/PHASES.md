@@ -359,7 +359,7 @@ las preguntas de forma abreviada para llegar a PHASE 5 y completar los archivos 
 2. [ ] **Registrar sesión** via session-management Phase N+1 (ver `skills/_shared/lifecycle-outputs.md`)
 3. [ ] **Comunicar próximo paso:**
    - **Modo PROYECTO**: `/brainstorm --feature {nombre}` para diseñar la primera feature
-   - **Modo FEATURE con UI**: `/frontend-design --feature {feature}` (recomendado) o `/plan`
+   - **Modo FEATURE con UI**: `/frontend-design --feature {feature}` (king-content, si king-content está instalado; recomendado) o `/plan`
    - **Modo FEATURE sin UI**: `/plan`
 
 ### CHECKPOINT

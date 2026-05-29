@@ -163,13 +163,15 @@ Recovery:
 
 #### Phase 2b Extension: /a11y-audit Gate (M-28)
 
-> Extiende el Accessibility Gate cualitativo de arriba con el gate numérico `/a11y-audit`. Requiere que Phase 2b cualitativo haya pasado.
+> Extiende el Accessibility Gate cualitativo de arriba con el gate numérico `/a11y-audit` (king-content). Requiere que Phase 2b cualitativo haya pasado.
+> Este gate numérico solo aplica si king-content está instalado; si no lo está, se omite (SKIP) y vale el gate cualitativo de Phase 2b.
 
-1. Si `.king/castle/a11y-report.json` existe Y fue generado hace < 24h → usar el report existente
-2. Si no existe o es stale (>= 24h) → ejecutar `/a11y-audit`
-3. Si `violations.critical > 0 OR violations.serious > 0` → **BLOCK** Phase 2c y promote
-4. Si violations solo moderate/minor → WARN (no block), continuar a Phase 2c
-5. Mensaje de block: "A11y gate FAILED: {N} critical + {M} serious violations. Run /a11y-fix and re-promote."
+1. Si `/a11y-audit` no está disponible (king-content no instalado) → SKIP este gate y continuar a Phase 2c
+2. Si `.king/castle/a11y-report.json` existe Y fue generado hace < 24h → usar el report existente
+3. Si no existe o es stale (>= 24h) → ejecutar `/a11y-audit` (king-content, si king-content está instalado)
+4. Si `violations.critical > 0 OR violations.serious > 0` → **BLOCK** Phase 2c y promote
+5. Si violations solo moderate/minor → WARN (no block), continuar a Phase 2c
+6. Mensaje de block: "A11y gate FAILED: {N} critical + {M} serious violations. Run /a11y-fix (king-content) and re-promote."
 
 ---
 

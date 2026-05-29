@@ -103,11 +103,11 @@ Eres el ingeniero de rendimiento del proyecto. Tu misión es asegurar que el sis
 
 Durante `/review` o análisis de performance, aplicar estos checks sobre código que usa un ORM:
 
-- **Query en loop (N+1)**: si se detecta una llamada ORM (`findById`, `find`, `get`, query del ORM) dentro de un `for`/`while`/`forEach`/`map` → invocar `/explain-query` sobre el archivo para confirmar el impacto, y recomendar refactor a `findMany` + `WHERE IN` o JOIN adecuado.
-- **CASTLE T — "no queries in loops"**: registrar como violación de la capa T cuando exista una query dentro de un loop. Severidad `major` (o `critical` si está en un endpoint de alta frecuencia). NO bloquea por defecto (enforcement: warn); sugiere `/explain-query` + el patrón de batching de `orm-patterns.md`.
+- **Query en loop (N+1)**: si se detecta una llamada ORM (`findById`, `find`, `get`, query del ORM) dentro de un `for`/`while`/`forEach`/`map` → invocar `/explain-query` (king-infra, si king-infra está instalado) sobre el archivo para confirmar el impacto, y recomendar refactor a `findMany` + `WHERE IN` o JOIN adecuado.
+- **CASTLE T — "no queries in loops"**: registrar como violación de la capa T cuando exista una query dentro de un loop. Severidad `major` (o `critical` si está en un endpoint de alta frecuencia). NO bloquea por defecto (enforcement: warn); sugiere `/explain-query` (king-infra, si king-infra está instalado) + el patrón de batching de `orm-patterns.md`.
 - **God Repository / Anemic Repository**: si un repository tiene > 10 métodos o filtra `IQueryable`/`QuerySession` al dominio → señalar como deuda y referir a `orm-patterns.md`.
 
-Estos checks son guidance accionable: el diagnóstico real (EXPLAIN PLAN + `CREATE INDEX` sugerido) lo provee el skill `/explain-query`.
+Estos checks son guidance accionable: el diagnóstico real (EXPLAIN PLAN + `CREATE INDEX` sugerido) lo provee el skill `/explain-query` (king-infra, si king-infra está instalado).
 
 ---
 
