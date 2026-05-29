@@ -1,19 +1,69 @@
 id,category,guideline,animation_duration_ms,easing,reduced_motion_fallback
-1,transition,Page route transitions should feel snappy not slow; slide or fade content in from the direction of navigation,200,cubic-bezier(0.4,0,0.2,1),opacity 0 to 1 only; no translation
-2,transition,Modal and dialog entry should emerge from trigger element using scale+opacity for spatial continuity,250,cubic-bezier(0.34,1.56,0.64,1),opacity fade only; skip scale
-3,transition,Drawer/sheet slide-in from edge should match the edge it enters from (right drawer slides from right),300,cubic-bezier(0.32,0.72,0,1),instant show; no slide
-4,feedback,Button press feedback (active state) must be immediate and tactile; scale-down 96% on active,100,cubic-bezier(0.4,0,1,1),background color darken only; no scale
-5,feedback,Form field focus ring should animate in to draw attention; use outline-offset expansion,150,ease-out,static focus ring; no animation
-6,feedback,Success checkmark animation after form submit provides emotional reward and confirms action completed,400,cubic-bezier(0.34,1.56,0.64,1),static checkmark icon; no draw animation
-7,feedback,Error shake animation on wrong input (login fail) gives physical metaphor for rejection; 3 oscillations max,350,cubic-bezier(0.36,0.07,0.19,0.97),static error state; no shake
-8,loading,Skeleton screens should pulse with subtle opacity cycle 0.6 to 1.0; not a spinner for content loading,1500,ease-in-out,static gray placeholder; no pulse
-9,loading,Spinner rotation for async actions should be 360deg continuous loop; use CSS custom property for speed,1000,linear,text "Loading..." shown; no spinner
-10,loading,Progress bar fill should animate smoothly as progress updates; avoid jumpy discrete steps,300,ease-out,show numeric percentage; no bar fill animation
-11,micro-interaction,Toggle switch should animate thumb slide + background color in sync; do not animate independently,200,cubic-bezier(0.4,0,0.2,1),instant state change; no slide
-12,micro-interaction,Accordion expand/collapse should animate height via max-height or grid-template-rows trick,250,cubic-bezier(0.4,0,0.2,1),instant show/hide; no height animation
-13,micro-interaction,Tooltip appear should be delayed 500ms (prevent flash on cursor travel) and fade in,150,ease-out,static tooltip; no fade; remove delay
-14,micro-interaction,Chip/tag remove animation should scale-out the chip before DOM removal to avoid layout jump,200,cubic-bezier(0.4,0,1,1),instant removal; no scale-out
-15,navigation,Tab switching should slide content horizontally matching direction of tab (right tab = slide from right),200,cubic-bezier(0.4,0,0.2,1),opacity crossfade; no slide
-16,navigation,Floating Action Button should scale up on entry with slight overshoot spring; scale-down on hide,300,cubic-bezier(0.34,1.56,0.64,1),instant appear/hide; no scale
-17,navigation,Scroll-triggered sticky header should transition smoothly from transparent to opaque with shadow,200,ease-in-out,instant switch; no transition
-18,transition,Color theme switch (light/dark) should crossfade all surfaces to avoid jarring flash,300,ease-in-out,instant switch; no crossfade
+UX01,transition,Page route transitions should feel snappy not slow; slide or fade content in from the direction of navigation,200,"cubic-bezier(0.4,0,0.2,1)",opacity 0 to 1 only; no translation
+UX02,transition,Modal and dialog entry should emerge from trigger element using scale+opacity for spatial continuity,250,"cubic-bezier(0.34,1.56,0.64,1)",opacity fade only; skip scale
+UX03,transition,Drawer/sheet slide-in from edge should match the edge it enters from (right drawer slides from right),300,"cubic-bezier(0.32,0.72,0,1)",instant show; no slide
+UX04,transition,Color theme switch (light/dark) should crossfade all surfaces to avoid jarring flash,300,ease-in-out,instant switch; no crossfade
+UX05,transition,Shared-element transitions (Material container transform) morph a card into a detail view preserving bounds,300,"cubic-bezier(0.2,0,0,1)",cut to detail view; no morph
+UX06,transition,Hero/banner parallax on route entry should be subtle; cap translate to under 24px to avoid motion sickness,250,"cubic-bezier(0.4,0,0.2,1)",static hero; no parallax
+UX07,transition,List-to-detail expansion should grow from the tapped row anchor to keep spatial relationship clear,280,"cubic-bezier(0.2,0,0,1)",instant detail open; no grow
+UX08,transition,Onboarding step transitions should slide horizontally to reinforce linear progress through the flow,260,"cubic-bezier(0.4,0,0.2,1)",fade between steps; no slide
+UX09,transition,Backdrop/scrim behind modals should fade to its target opacity in parallel with the surface entering,250,ease-out,instant scrim at full opacity; no fade
+UX10,transition,Wizard/stepper back navigation should reverse the entry direction so motion mirrors the user mental model,260,"cubic-bezier(0.4,0,0.2,1)",fade only; no directional slide
+UX11,feedback,Button press feedback (active state) must be immediate and tactile; scale-down to 96% on active,100,"cubic-bezier(0.4,0,1,1)",background color darken only; no scale
+UX12,feedback,Form field focus ring should animate in to draw attention; use outline-offset expansion,150,ease-out,static focus ring; no animation
+UX13,feedback,Error shake animation on wrong input (login fail) gives physical metaphor for rejection; 3 oscillations max,140,"cubic-bezier(0.36,0.07,0.19,0.97)",static error state with red border; no shake
+UX14,feedback,Hover elevation on cards should lift shadow + translate up 2px to signal interactivity on pointer devices,120,ease-out,color or border highlight only; no lift
+UX15,feedback,Ripple/state-layer on tap (Material) should radiate from the touch point to confirm the hit target,130,"cubic-bezier(0.4,0,0.2,1)",solid pressed background fill; no ripple
+UX16,feedback,Switch and checkbox toggles should give an immediate snap so the state change reads as committed,100,"cubic-bezier(0.4,0,0.6,1)",instant checked state; no snap
+UX17,feedback,Copy-to-clipboard confirmation should flash a brief check or label swap so the action is acknowledged,150,ease-out,static Copied label swap; no flash
+UX18,feedback,Inline validation tick on a valid field should appear gently so it reassures without stealing focus,140,ease-out,static valid icon; no animation
+UX19,feedback,Drag handle grab feedback should subtly scale or shadow the item to signal it is now movable,120,ease-out,cursor change and static shadow only; no scale
+UX20,feedback,Disabled-action attempt should give a short non-jarring cue (e.g. micro nudge) instead of a full shake,140,"cubic-bezier(0.4,0,0.2,1)",static tooltip explaining why disabled; no nudge
+UX21,loading,Skeleton screens should pulse with a subtle opacity cycle 0.6 to 1.0; not a spinner for content loading,1500,ease-in-out,static gray placeholder; no pulse
+UX22,loading,Spinner rotation for async actions should be a 360deg continuous loop; expose speed via CSS custom property,1000,linear,text Loading shown; no spinner
+UX23,loading,Shimmer sweep over skeletons should move in the reading direction at a calm pace to imply progress,1400,ease-in-out,static placeholder block; no shimmer sweep
+UX24,loading,Indeterminate linear progress should sweep edge to edge so users know work is ongoing without a percentage,1200,"cubic-bezier(0.4,0,0.2,1)",static Loading label; no sweep
+UX25,loading,Lazy-loaded image fade-in (blur-up) should resolve from a low-res placeholder to ease perceived load,1000,ease-out,instant swap to final image; no blur-up fade
+UX26,loading,Pull-to-refresh spinner should reveal proportionally to drag then loop until the fetch resolves,1100,linear,static refresh control; no draw or loop
+UX27,loading,Optimistic-UI placeholder for a just-sent item should pulse gently until the server confirms,1300,ease-in-out,static pending badge; no pulse
+UX28,loading,Page-level loading bar (top of viewport) should creep forward then complete fast when the route resolves,1200,ease-out,static top loading label; no creep
+UX29,micro-interaction,Toggle switch should animate thumb slide + background color in sync; do not animate them independently,200,"cubic-bezier(0.4,0,0.2,1)",instant state change; no slide
+UX30,micro-interaction,Accordion expand/collapse should animate height via max-height or the grid-template-rows trick,250,"cubic-bezier(0.4,0,0.2,1)",instant show/hide; no height animation
+UX31,micro-interaction,Tooltip appear should be delayed ~500ms to prevent flash on cursor travel then fade in,150,ease-out,static tooltip; no fade; remove delay
+UX32,micro-interaction,Chip/tag remove animation should scale-out the chip before DOM removal to avoid a layout jump,200,"cubic-bezier(0.4,0,1,1)",instant removal; no scale-out
+UX33,micro-interaction,Like/favorite tap should give a small overshoot pop to make the interaction feel rewarding,250,"cubic-bezier(0.34,1.56,0.64,1)",instant filled icon; no pop
+UX34,micro-interaction,Segmented-control selection should slide an indicator pill to the chosen segment,200,"cubic-bezier(0.4,0,0.2,1)",instant active segment highlight; no pill slide
+UX35,micro-interaction,Dropdown/menu open should fade + scale from the anchor edge so it reads as attached to the trigger,150,ease-out,instant menu show anchored to trigger; no scale
+UX36,micro-interaction,Counter/number change should roll or tween between values so users notice the data updated,300,ease-out,instant number swap; no roll
+UX37,micro-interaction,Star-rating hover should fill stars progressively to preview the score before commit,120,ease-out,instant fill on hover; no progressive animation
+UX38,navigation,Tab switching should slide content horizontally matching the direction of the tab,200,"cubic-bezier(0.4,0,0.2,1)",opacity crossfade; no slide
+UX39,navigation,Floating Action Button should scale up on entry with a slight spring overshoot; scale-down on hide,300,"cubic-bezier(0.34,1.56,0.64,1)",instant appear/hide; no scale
+UX40,navigation,Scroll-triggered sticky header should transition smoothly from transparent to opaque with shadow,200,ease-in-out,instant switch; no transition
+UX41,navigation,Bottom navigation bar item selection should animate the active icon + label color and a small lift,200,"cubic-bezier(0.4,0,0.2,1)",instant active item color change; no lift
+UX42,navigation,Breadcrumb collapse/expand on small screens should reveal hidden crumbs with a short slide,200,ease-out,instant expand of hidden crumbs; no slide
+UX43,navigation,Back-button page exit should animate out in the reverse direction of how the page entered,250,"cubic-bezier(0.4,0,1,1)",instant page replace; no exit slide
+UX44,navigation,Mega-menu panel open should fade + drop a few px so the large surface does not appear abruptly,220,ease-out,instant panel show; no fade or drop
+UX45,gesture,Swipe-to-dismiss should follow the finger 1:1 then animate to rest or off-screen on release,250,"cubic-bezier(0.32,0.72,0,1)",provide a visible Dismiss button; no swipe tracking
+UX46,gesture,Swipe-to-reveal row actions should rubber-band at the limit so the gesture boundary is felt,260,"cubic-bezier(0.32,0.72,0,1)",show persistent action buttons; no swipe reveal
+UX47,gesture,Pinch-to-zoom should track the gesture live and settle with momentum within min/max bounds,280,"cubic-bezier(0.2,0,0,1)",provide zoom +/- buttons; no pinch tracking
+UX48,gesture,Long-press context menu should give a brief grow/haptic cue before the menu surface appears,200,ease-out,right-click or kebab-menu equivalent; no grow cue
+UX49,gesture,Drag-and-drop reorder should animate sibling items shifting to make room for the dragged element,220,"cubic-bezier(0.4,0,0.2,1)",keyboard move up/down controls; static reorder with no shift
+UX50,gesture,Carousel swipe should snap to the nearest slide with momentum proportional to flick velocity,260,"cubic-bezier(0.32,0.72,0,1)",prev/next arrow buttons; instant slide change with no momentum
+UX51,scroll,Scroll-reveal entrance for sections should fade + rise content ~16px as it enters the viewport,300,ease-out,content visible immediately at final position; no reveal
+UX52,scroll,Scrollytelling/scroll-linked animation should bind progress to scroll position not to a fixed timer,300,linear,show all states stacked statically; no scroll binding
+UX53,scroll,Scroll-to-top/anchor jumps should smooth-scroll a moderate distance but cut instantly for long pages,300,ease-in-out,instant jump to anchor; no smooth scroll
+UX54,scroll,Sticky-section pinning (scroll-snap) should ease into each snap point so it does not feel mechanical,280,"cubic-bezier(0.4,0,0.2,1)",normal free scrolling; no snap easing
+UX55,scroll,Infinite-scroll appended items should fade in so newly loaded content does not pop jarringly,260,ease-out,instant render of appended items; no fade
+UX56,scroll,Scroll progress indicator should update continuously and proportionally to scroll position,200,linear,static or numeric progress; no continuous bar animation
+UX57,form-validation,On-blur field validation should reveal the message with a short slide+fade so it reads as attached,150,ease-out,instant message show below the field; no slide
+UX58,form-validation,Error summary at submit should scroll to and briefly highlight the first invalid field for focus,300,ease-out,move keyboard focus to first invalid field; no scroll highlight
+UX59,form-validation,Password-strength meter should tween its fill/color as criteria are met to reward progress,200,ease-out,static strength label (Weak/Strong); no fill tween
+UX60,form-validation,Success checkmark after submit provides emotional reward and confirms the action completed,400,"cubic-bezier(0.34,1.56,0.64,1)",static success message and checkmark; no draw animation
+UX61,form-validation,Field-level success tick should fade in quietly so valid fields feel resolved without distraction,140,ease-out,static valid icon; no fade
+UX62,form-validation,Step-validation progress in a multi-step form should animate the completed step indicator filling,200,ease-out,instant completed-step marker; no fill animation
+UX63,notification,Toast/snackbar entry should slide up + fade from the screen edge then auto-dismiss after a timeout,250,"cubic-bezier(0.4,0,0.2,1)",instant show of static toast; no slide
+UX64,notification,Banner/alert appearance should slide down from the top so the priority message is noticed,250,ease-out,instant banner show; no slide
+UX65,notification,Notification-badge count change should give a small pop so the user notices the new count,200,"cubic-bezier(0.34,1.56,0.64,1)",instant badge count update; no pop
+UX66,notification,Toast dismissal (swipe or timeout) should fade + slide out so it clears predictably,200,"cubic-bezier(0.4,0,1,1)",instant removal of toast; no exit slide
+UX67,notification,Stacked-toast reflow should animate remaining toasts settling up when one is dismissed,220,"cubic-bezier(0.4,0,0.2,1)",instant reposition of remaining toasts; no settle
+UX68,notification,In-app status dot going online/offline should crossfade color rather than blink to avoid distraction,200,ease-in-out,instant color/label change; no crossfade
