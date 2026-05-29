@@ -85,6 +85,16 @@
         ]
       },
       {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/api-change-check.sh",
+            "async": true
+          }
+        ]
+      },
+      {
         "matcher": "Write",
         "hooks": [
           {
