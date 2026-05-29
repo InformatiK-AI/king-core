@@ -6,6 +6,13 @@ _(no changes yet)_
 
 ---
 
+## [1.11.1] — 2026-05-29
+
+### Fixed (A5a — a11y gate)
+- **`hooks/a11y-check.sh`**: de stub a gate WCAG 2.2 AA funcional. Checks estáticos (1.1.1 img alt, 3.1.1 html lang, 4.1.2 div onClick/inputs sin label, 2.4.3 tabindex+). Lee `file_path` del stdin de forma robusta y se movió de matcher `Bash` a `Write|Edit` (causa raíz de W-A2). Respeta `.king/accessibility.yaml`. Fail-safe.
+
+---
+
 ## [1.11.0] — 2026-05-29
 
 ### Added (A2 — Jarvis default-on)
