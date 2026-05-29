@@ -1,0 +1,25 @@
+change: "m64-vscode-extension-spec"
+started: "2026-05-28"
+persistence: openspec
+source_of_truth: "mejora/planes-detallados/M12-developer-experience-tooling.md"
+module: "M12 Developer Experience & Tooling"
+items: ["M-64 VS Code Extension"]
+nature: spec-only          # knowledge markdown; el código TS vive en repo externo king-framework/vscode-extension
+excludes: ["T49 package.json/extension.ts", "T50 Status Bar TS impl"]
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: completed
+  verify: completed
+  archive: pending
+castle_verdict: PASS         # ~92/100 — spec-only aditivo, 59 tests verdes
+verification:
+  gherkin_coverage: "5/5"
+  pytest: "59 passed"
+  scope_creep: "none (sin código TS; T49-T50 excluidas)"
+  adversarial_review: "0 críticos"
+last_updated: "2026-05-28"
