@@ -1,6 +1,6 @@
 # King Framework Core (king-core)
 
-King Framework plugin providing 49 skills for the complete SDLC pipeline.
+King Framework plugin providing 51 skills for the complete SDLC pipeline.
 
 ## Local Quality Gates
 
@@ -24,7 +24,7 @@ pre-commit run --all-files
 
 ## Architecture
 
-- `skills/` — 49 King skills (SKILL.md + sub-files)
+- `skills/` — 51 King skills (SKILL.md + sub-files)
 - `src/` — Python modules: score_calc, semver, changelog_formatter
 - `tests/` — pytest suite: unit, integration, snapshots, benchmarks
 - `scripts/` — automation tools: audit_self.py, add_api_version.py

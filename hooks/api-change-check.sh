@@ -38,5 +38,5 @@ for cand in openapi.yaml openapi.yml openapi.json api/openapi.yaml api/openapi.y
 done
 [ -z "$SPEC" ] && exit 0
 
-echo "[King API] WARNING: handler/controller modificado (${FILE}) con spec OpenAPI presente (${SPEC}). Validá el contrato con /api-contract-first ${SPEC} --compare-to <spec-anterior> para detectar breaking changes."
+echo "[King API] WARNING: handler/controller modificado (${FILE}) con spec OpenAPI presente (${SPEC}). Validá el contrato con /api-contract-first (king-arch, si está instalado) ${SPEC} --compare-to <spec-anterior> para detectar breaking changes."
 exit 0

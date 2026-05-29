@@ -6,6 +6,14 @@ _(no changes yet)_
 
 ---
 
+## [1.12.0] — 2026-05-29
+
+### Changed (A6 — desacople king-arch)
+- king-core **63→51 skills**: las 12 skills de arquitectura y sistemas distribuidos (`clean-arch-setup`, `hexagonal-setup`, `ddd-tactical`, `cqrs-setup`, `event-sourcing`, `saga-design`, `resilience-weave`, `idempotency`, `api-contract-first`, `contract-test-pact`, `microservice-extract`, `event-broker-setup`) + sus 12 commands + el knowledge exclusivo (`saga-patterns.md`, `distributed-systems.md`) movidos al nuevo plugin **king-arch** v1.0.0 (`requires: ["king-framework"]`).
+- Permanecen en king-core (kernel compartido, leídos cross-plugin): knowledge `architecture-patterns.md`/`resilience-patterns.md`/`orm-patterns.md`, los hooks `resilience-check.sh`/`api-change-check.sh` (solo cambia el texto del warning) y el roster de agentes. Refs reescritas **graceful** ("(king-arch, si está instalado)") en `agents/architect.md`, `skills/sdd-apply/SKILL.md`, `knowledge/domain/resilience-patterns.md` y los 2 hooks. `plugin.json`, `LOAD-INDEX.md` y `README.md` actualizados.
+
+---
+
 ## [1.11.1] — 2026-05-29
 
 ### Fixed (A5a — a11y gate)

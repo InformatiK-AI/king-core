@@ -1,7 +1,7 @@
 # Resilience Patterns — Guía de Tolerancia a Fallos
 
 > Versión completa. Para inyección en agents usar `knowledge/_inject/resilience.md`.
-> Base de conocimiento del skill `/resilience-weave` (M-10).
+> Base de conocimiento del skill `/resilience-weave` (M-10) — *skill en king-arch, si está instalado*. Este knowledge queda en king-core (lo consume `hooks/resilience-check.sh`).
 
 La resiliencia NO es "agregar retries". Es decidir, para CADA llamada externa, qué falla
 podemos tolerar y cómo degradar sin propagar el fallo al usuario. La regla de oro: un
@@ -394,7 +394,7 @@ patrones anteriores funcionan de verdad, antes de que un fallo real los ponga a 
 - **Sin steady state definido** → no sabes si el experimento "pasó".
 - En producción sin blast radius acotado ni botón de aborto → estás causando un incidente, no un experimento.
 
-### Ejemplo (tests de chaos generados por `/resilience-weave`)
+### Ejemplo (tests de chaos generados por `/resilience-weave`, king-arch si está instalado)
 
 ```typescript
 describe('chaos: payment-api', () => {

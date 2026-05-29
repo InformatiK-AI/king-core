@@ -37,7 +37,7 @@ Before writing code for a new service/bounded context:
 
 1. If `.king/knowledge/architecture.md` documents an architectural pattern → RESPECT IT (do not ask). Follow the project's established pattern.
 2. If NO pattern is documented AND the task creates a new service/module with domain logic → ask `@architect` (or the developer) which pattern to use:
-   - Options: Clean Architecture (`/clean-arch-setup`), Hexagonal (`/hexagonal-setup`), DDD Tactical (`/ddd-tactical`), CQRS (`/cqrs-setup`), or "follow the existing project pattern".
+   - Options: Clean Architecture (`/clean-arch-setup`), Hexagonal (`/hexagonal-setup`), DDD Tactical (`/ddd-tactical`), CQRS (`/cqrs-setup`) — *scaffolding skills en king-arch, si está instalado* —, or "follow the existing project pattern".
    - Use the decision tree in `knowledge/domain/architecture-patterns.md`.
 3. If the task modifies existing code (not a new service) → SKIP this step and continue to Step 1.
 
