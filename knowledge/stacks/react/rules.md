@@ -1,4 +1,4 @@
-﻿# React Best Practices
+# React Best Practices
 
 > Este archivo extiende las convenciones generales de `rules/code-style.md`.
 > Las reglas de React se aplican además de las reglas generales de código.

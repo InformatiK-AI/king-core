@@ -1,12 +1,10 @@
 ---
 name: sdd-verify
+version: 3.0
+api_version: 1.0.0
 description: >
   Validate that implementation matches specs, design, and tasks.
   Trigger: When the orchestrator launches you to verify a completed (or partially completed) change.
-license: MIT
-metadata:
-  author: gentleman-programming
-  version: "3.0"
 ---
 
 ## Purpose

@@ -1,7 +1,8 @@
-﻿---
+---
 name: promote
 description: "Promoción entre ambientes con worktree. Usar cuando se necesite: promover a QA, promover a producción, deploy entre ambientes, sincronizar worktrees, o mover código de develop a qa o de qa a prod."
 version: 2.0
+api_version: 1.0.0
 ---
 
 # Promote — Promoción entre Ambientes
@@ -45,9 +46,9 @@ Read the following files BEFORE Phase 1. If a file does not exist, log a warning
 
 ### PHASES OVERVIEW
 ```
-PHASE 1: Readiness → PHASE 1b: DR Gate → PHASE 1c: Health-Check → PHASE 2: Security → PHASE 2b: A11y → PHASE 3: DB Migration → PHASE 4: Env Config → PHASE 5: Deploy
-      |                    |                        |                    |                    |                   |                       |                   |
-  QA/CASTLE           DR config OK        Health endpoints OK      Security Gate       axe-core/WCAG        DB scripts            .env verified        git sync
+PHASE 1: Readiness → PHASE 1b: DR Gate → PHASE 1c: Health-Check → PHASE 2: Security → PHASE 2b: A11y → PHASE 2c: Lighthouse → PHASE 3: DB Migration → PHASE 4: Env Config → PHASE 5: Deploy
+      |                    |                        |                    |                    |                   |                           |                       |                   |
+  QA/CASTLE           DR config OK        Health endpoints OK      Security Gate       axe-core/WCAG     Lighthouse >95 CI-only       DB scripts            .env verified        git sync
       ↓
 PHASE 6: Setup → PHASE 7: Smoke Tests → PHASE 8: Health → PHASE 9: GitHub → PHASE 10: Report
 ```

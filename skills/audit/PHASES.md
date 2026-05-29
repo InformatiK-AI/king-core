@@ -128,10 +128,19 @@ grep -rli "graphql\|microservice\|api.gateway" . --include="*.md" --include="*.t
 | `validation/` | Capa de validacion (plugin) | [ ] |
 | `security/` | Gate de seguridad (plugin) | [ ] |
 
+#### 1.6 Sub-Dimension Scoring — Inventory Group
+
+- Score sub-dimensions I-01..I-04 per criteria in SUBDIMENSIONS.md. Record individual scores (0.0–1.0).
+- I-01: metadata-completeness (8%) — all required frontmatter fields present
+- I-02: description-quality (4%) — description is non-empty and meaningful
+- I-03: author-present (4%) — `author` field present and non-empty
+- I-04: license-declared (4%) — `license` field present and non-empty
+
 ### CHECKPOINT
 - [ ] Conteo de componentes encontrados vs esperados
 - [ ] Lista de componentes faltantes con severidad
 - [ ] `inventory_score` calculado (encontrados/esperados * 100)
+- [ ] Sub-dimension scores I-01..I-04 recorded (individual 0.0–1.0 values)
 
 ### IF FAILS
 ```
@@ -246,10 +255,20 @@ FORMAT: Skill no sigue v2.0
 - [ ] "Razon" explica el porque
 - [ ] "Cuando romper" documenta excepciones
 
+#### 2.4 Sub-Dimension Scoring — Format Group
+
+- Score sub-dimensions F-01..F-05 per criteria in SUBDIMENSIONS.md. Record individual scores (0.0–1.0).
+- F-01: directory-structure (5%) — required directories present per manifest
+- F-02: entrypoint-exists (5%) — declared entrypoint file exists and is non-empty
+- F-03: skill-file-present (4%) — SKILL.md exists in skill root
+- F-04: api-version-present (3%) — score 1.0 if api_version present and valid semver; 0.5 if present but invalid; null if absent
+- F-05: frontmatter-validity (3%) — frontmatter parses as valid YAML
+
 ### CHECKPOINT
 - [ ] Lista de skills no-compliant con detalle
 - [ ] Lista de agentes no-compliant con detalle
 - [ ] `format_score` calculado
+- [ ] Sub-dimension scores F-01..F-05 recorded (F-04 scored at 3%)
 
 ### IF FAILS
 ```
@@ -333,10 +352,19 @@ done
 # Potencialmente obsoletos o mal integrados
 ```
 
+#### 3.6 Sub-Dimension Scoring — Cross-refs Group
+
+- Score sub-dimensions X-01..X-04 per criteria in SUBDIMENSIONS.md. Record individual scores (0.0–1.0).
+- X-01: command-declarations (7%) — all commands declared in manifest present in skill files
+- X-02: command-descriptions (5%) — all declared commands have non-empty descriptions
+- X-03: command-examples (4%) — ≥1 usage example per command
+- X-04: hook-declarations (4%) — all declared hooks resolve to existing handler files
+
 ### CHECKPOINT
 - [ ] Lista de referencias rotas con source -> target
 - [ ] Lista de archivos huerfanos (sin referencias entrantes)
 - [ ] `cross_refs_score` calculado
+- [ ] Sub-dimension scores X-01..X-04 recorded (individual 0.0–1.0 values)
 
 ### IF FAILS
 ```
@@ -400,10 +428,19 @@ Si sistema de issues local activo:
 - [ ] Handoffs tienen destinatario claro
 - [ ] No hay instrucciones contradictorias
 
+#### 4.5 Sub-Dimension Scoring — Instructions Quality Group
+
+- Score sub-dimensions Q-01..Q-04 per criteria in SUBDIMENSIONS.md. Record individual scores (0.0–1.0).
+- Q-01: test-coverage-declared (5%) — test coverage target declared in project config
+- Q-02: test-runner-present (4%) — test runner config file exists
+- Q-03: changelog-present (3%) — CHANGELOG.md or HISTORY.md exists and is non-empty
+- Q-04: version-bump-consistency (3%) — version in frontmatter matches package.json/manifest
+
 ### CHECKPOINT
 - [ ] Lista de instrucciones ambiguas con ubicacion
 - [ ] Lista de blocking conditions no verificables
 - [ ] `instructions_quality_score` calculado
+- [ ] Sub-dimension scores Q-01..Q-04 recorded (individual 0.0–1.0 values)
 
 ### IF FAILS
 ```
@@ -494,11 +531,20 @@ Escenarios de colaboracion documentados:
 - [ ] Secuencia definida (quien primero)
 - [ ] Conflicto resolution documentado
 
+#### 5.5 Sub-Dimension Scoring — Communication Group
+
+- Score sub-dimensions C-01..C-04 per criteria in SUBDIMENSIONS.md. Record individual scores (0.0–1.0).
+- C-01: readme-present (5%) — README.md exists and is ≥50 lines
+- C-02: usage-examples-documented (4%) — README contains ≥1 usage example code block
+- C-03: api-reference-present (3%) — API reference section exists in docs or README
+- C-04: inline-comments-quality (3%) — inline comments cover non-obvious logic
+
 ### CHECKPOINT
 - [ ] Escalation matrix completa: Si/No
 - [ ] Handoffs con fallback: N/total
 - [ ] Invocaciones con Task tool: N/total
 - [ ] `communication_score` calculado
+- [ ] Sub-dimension scores C-01..C-04 recorded (individual 0.0–1.0 values)
 
 ### IF FAILS
 ```
@@ -584,12 +630,21 @@ Archivos que:
 - [ ] Agentes no cargan knowledge completo, solo _inject/
 - [ ] Rules son pequenas y especificas
 
+#### 6.5 Sub-Dimension Scoring — Efficiency Group
+
+- Score sub-dimensions E-01..E-04 per criteria in SUBDIMENSIONS.md. Record individual scores (0.0–1.0).
+- E-01: install-script-present (3%) — install script exists (install.sh, Makefile install, etc.)
+- E-02: uninstall-script-present (3%) — uninstall/cleanup script exists
+- E-03: dependency-manifest (2%) — dependency manifest exists and is non-empty
+- E-04: upgrade-notes-present (2%) — CHANGELOG or UPGRADE.md contains upgrade notes for latest version
+
 ### CHECKPOINT
 - [ ] Lista de duplicaciones con sugerencia de consolidacion
 - [ ] Performance Budget Gate ejecutado — resultado documentado (PASS / WARN / FAIL / UNKNOWN)
 - [ ] Lista de componentes sobre umbral de tokens (si aplica)
 - [ ] Lista de contenido huerfano
 - [ ] `efficiency_score` calculado (incluye resultado del Performance Budget Gate)
+- [ ] Sub-dimension scores E-01..E-04 recorded (individual 0.0–1.0 values)
 
 ### IF FAILS
 ```
@@ -637,6 +692,70 @@ penalties = (critical_count * 10) + (high_count * 3) + (medium_count * 1)
 final_score = max(0, base_score - penalties)
 ```
 
+#### 7.1b Sub-Dimension Score Aggregation
+
+> **NOTE**: The weighted formulas below SUPERSEDE the legacy ratio computations in Phase 7.1 (e.g., `componentes_encontrados / componentes_esperados * 100`). When sub-dimensions are scored, use ONLY the 7.1b formulas for all 6 dimension scores.
+
+- For each parent dimension, compute weighted sum from individual sub-dim scores (weights in SUBDIMENSIONS.md):
+  - `inventory_score = (I-01*8 + I-02*4 + I-03*4 + I-04*4) / 20 * 100`
+  - `format_score = (F-01*5 + F-02*5 + F-03*4 + F-04*3 + F-05*3) / 20 * 100`
+  - When F-04 is null (api_version absent): `format_score = (F-01*5 + F-02*5 + F-03*4 + F-05*3) / 17 * 100`
+  - `cross_refs_score = (X-01*7 + X-02*5 + X-03*4 + X-04*4) / 20 * 100`
+  - `instructions_quality_score = (Q-01*5 + Q-02*4 + Q-03*3 + Q-04*3) / 15 * 100`
+  - `communication_score = (C-01*5 + C-02*4 + C-03*3 + C-04*3) / 15 * 100`
+  - `efficiency_score = (E-01*3 + E-02*3 + E-03*2 + E-04*2) / 10 * 100`
+- Resulting 6 dimension scores feed the existing health_score formula unchanged
+
+#### 7.1c Trends Write (always, unless --dry-run)
+
+- Load TRENDS.md for write algorithm
+- Follow write algorithm in TRENDS.md:
+  1. Read `.king/docs/audits/trends.json` (create with `{"entries":[]}` if absent)
+  2. Build new entry: `{timestamp, health_score, subdimensions: {I-01..E-04}, flags, tag (if --tag passed)}`
+  3. Prepend to entries array (entries.unshift)
+  4. Write back to file
+- Create `.king/docs/audits/` directory if absent
+- Include all 25 current sub-dim scores in entry (F-04 scored, or null when api_version absent)
+
+#### 7.1d Baseline Diff (conditional: --compare-baseline {tag})
+
+- Load TRENDS.md for baseline diff algorithm
+- Follow baseline diff algorithm in TRENDS.md:
+  1. Search entries[] for most recent entry with `entry.tag === {tag}`
+  2. If not found: emit `ERROR: "Baseline tag '{tag}' not found in trends.json"` — exit non-zero — continue (non-blocking for report)
+  3. Compute delta per sub-dim: `current_score - baseline_score`
+  4. F-04: delta = current_score - baseline_score (or "N/A" if both null)
+- Append diff table to audit report under section "Baseline Diff — vs. {tag}"
+
+#### 7.1e CI Threshold Check (conditional: --ci-threshold {N})
+
+- IF health_score < N: append to report and Execution Summary:
+  ```
+  CI_RESULT: FAIL
+  EXIT_CODE: 1
+  CI_THRESHOLD: {N}
+  CI_HEALTH_SCORE: {health_score}
+  ```
+- IF health_score >= N: append to report and Execution Summary:
+  ```
+  CI_RESULT: PASS
+  EXIT_CODE: 0
+  ```
+- CI runner integration: `grep -q "EXIT_CODE: 1" output.log && exit 1 || exit 0`
+
+#### 7.1f Auto-Fix Trigger (conditional: --auto-fix)
+
+- Load AUTOFIX.md for fix catalog
+- For each issue in audit results with `autofix_class = auto` in AUTOFIX.md:
+  1. Check precondition (file/field truly absent — idempotence check)
+  2. Execute the additive fix operation
+  3. Re-score the affected sub-dimension
+  4. Record fix in report section "Auto-Fix Applied"
+- Skip `guided` and `manual` class fixes during auto execution
+  - Report `guided` fixes under "Guided Fix Suggestions"
+  - Report `manual` fixes under "Manual Fix Required"
+- If `--dry-run` is also active: simulate and list under "Would auto-fix:" — do NOT modify files
+
 #### 7.2 Generar Reporte de Auditoria
 
 **Path:** `.king/docs/audits/YYYY-MM-DD-audit-report.md`
@@ -659,6 +778,36 @@ final_score = max(0, base_score - penalties)
 | Instruction Quality | {N}% | {status} |
 | Communication | {N}% | {status} |
 | Efficiency | {N}% | {status} |
+
+### Sub-Dimension Breakdown
+
+| ID | Name | Parent | Score | Contribution | Autofix |
+|----|------|--------|-------|-------------|---------|
+| I-01 | metadata-completeness | Inventory | {score} | {score × 8%} | auto |
+| I-02 | description-quality | Inventory | {score} | {score × 4%} | guided |
+| I-03 | author-present | Inventory | {score} | {score × 4%} | auto |
+| I-04 | license-declared | Inventory | {score} | {score × 4%} | auto |
+| F-01 | directory-structure | Format | {score} | {score × 5%} | guided |
+| F-02 | entrypoint-exists | Format | {score} | {score × 5%} | auto |
+| F-03 | skill-file-present | Format | {score} | {score × 4%} | auto |
+| F-04 | api-version-present | Format | {score} | {score × 3%} | auto |
+| F-05 | frontmatter-validity | Format | {score} | {score × 3%} | guided |
+| X-01 | command-declarations | Cross-refs | {score} | {score × 7%} | manual |
+| X-02 | command-descriptions | Cross-refs | {score} | {score × 5%} | guided |
+| X-03 | command-examples | Cross-refs | {score} | {score × 4%} | guided |
+| X-04 | hook-declarations | Cross-refs | {score} | {score × 4%} | manual |
+| Q-01 | test-coverage-declared | Instructions Quality | {score} | {score × 5%} | guided |
+| Q-02 | test-runner-present | Instructions Quality | {score} | {score × 4%} | auto |
+| Q-03 | changelog-present | Instructions Quality | {score} | {score × 3%} | guided |
+| Q-04 | version-bump-consistency | Instructions Quality | {score} | {score × 3%} | manual |
+| C-01 | readme-present | Communication | {score} | {score × 5%} | guided |
+| C-02 | usage-examples-documented | Communication | {score} | {score × 4%} | guided |
+| C-03 | api-reference-present | Communication | {score} | {score × 3%} | guided |
+| C-04 | inline-comments-quality | Communication | {score} | {score × 3%} | manual |
+| E-01 | install-script-present | Efficiency | {score} | {score × 3%} | auto |
+| E-02 | uninstall-script-present | Efficiency | {score} | {score × 3%} | guided |
+| E-03 | dependency-manifest | Efficiency | {score} | {score × 2%} | auto |
+| E-04 | upgrade-notes-present | Efficiency | {score} | {score × 2%} | guided |
 
 ## Issues por Severidad
 

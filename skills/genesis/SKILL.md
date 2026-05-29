@@ -1,6 +1,7 @@
 ---
 name: genesis
 version: 2.0
+api_version: 1.0.0
 description: "Skill de genesis. Discovery estructurado que genera la infraestructura completa de Claude Code para un proyecto."
 ---
 
@@ -110,6 +111,7 @@ Antes de terminar, verificar:
 
 - [ ] CLAUDE.md existe y esta completo
 - [ ] `.gitignore` creado (si no existía) o preservado con warning (si ya existía)
+- [ ] `.env.example` generado con secciones de variables del stack detectado
 - [ ] `.king/knowledge/stack.md` creado y confirmado
 - [ ] `.king/knowledge/architecture.md` creado y confirmado
 - [ ] `.king/knowledge/conventions.md` creado y confirmado

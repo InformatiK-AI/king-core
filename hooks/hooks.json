@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "'${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd' session-start",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start",
             "async": false
           }
         ]
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '${CLAUDE_PLUGIN_ROOT}/hooks/recovery.sh'",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/recovery.sh",
             "async": false
           }
         ]
@@ -28,7 +28,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'INPUT=$(cat); CONTENT=$(echo \"$INPUT\" | jq -r \".content // .new_string // empty\" 2>/dev/null); if [ -z \"$CONTENT\" ]; then exit 0; fi; PATTERNS=\"sk-ant-api[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{36}|ghs_[0-9A-Za-z]{36}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|sk_live_[0-9A-Za-z]{24}|sk_test_[0-9A-Za-z]{24,}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59}\"; if echo \"$CONTENT\" | grep -qEe \"$PATTERNS\"; then echo \"[King Security] BLOCKED: Hardcoded secret pattern detected. Review content before writing.\"; exit 2; fi; exit 0'",
+            "command": "bash -c 'INPUT=$(cat); CONTENT=$(echo \"$INPUT\" | jq -r \".content // .new_string // empty\" 2>/dev/null); if [ -z \"$CONTENT\" ]; then exit 0; fi; PATTERNS=\"sk-ant-api[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{36}|ghs_[0-9A-Za-z]{36}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|sk_live_[0-9A-Za-z]{24}|sk_test_[0-9A-Za-z]{24,}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-[0-9]{10,12}-[0-9]{10,12}-[a-zA-Z0-9]{24,}|eyJ[A-Za-z0-9_-]{20,}\\.[A-Za-z0-9_-]{20,}\\.[A-Za-z0-9_-]{20,}\"; if echo \"$CONTENT\" | grep -qEe \"$PATTERNS\"; then echo \"[King Security] BLOCKED: Hardcoded secret pattern detected. Review content before writing.\"; exit 2; fi; exit 0'",
+            "async": false
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); CONTENT=$(echo \"$INPUT\" | jq -r \".content // .new_string // empty\" 2>/dev/null); if [ -z \"$CONTENT\" ]; then exit 0; fi; ROOT=$(git rev-parse --show-toplevel 2>/dev/null); if [ ! -f \"$ROOT/.king/knowledge/tenancy.md\" ]; then exit 0; fi; if ! echo \"$CONTENT\" | grep -qEi \"(SELECT|INSERT|UPDATE|DELETE)\"; then exit 0; fi; if echo \"$CONTENT\" | grep -q \"king-tenancy: cross-tenant\"; then exit 0; fi; if ! echo \"$CONTENT\" | grep -qi \"tenant_id\"; then echo \"[King Tenancy] BLOCKED: Query sin tenant_id. En proyectos multi-tenant, toda query debe filtrar por tenant_id. Bypass: agregar \\\"-- king-tenancy: cross-tenant\\\" para queries administrativas.\"; exit 2; fi; exit 0'",
             "async": false
           },
           {
@@ -38,9 +43,91 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/coverage-emit.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/a11y-check.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/perf-check.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/resilience-check.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/api-change-check.sh",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); FILE=$(echo \"$INPUT\" | jq -r \".path // empty\" 2>/dev/null); if [ -z \"$FILE\" ]; then exit 0; fi; case \"$FILE\" in *.sql) ;; *) exit 0 ;; esac; ROOT=$(git rev-parse --show-toplevel 2>/dev/null); if [ ! -f \"$ROOT/.king/knowledge/tenancy.md\" ]; then exit 0; fi; CONTENT=$(echo \"$INPUT\" | jq -r \".content // empty\" 2>/dev/null); if ! echo \"$CONTENT\" | grep -qi \"tenant_id\"; then exit 0; fi; if echo \"$CONTENT\" | grep -qiE \"ENABLE ROW LEVEL SECURITY|CREATE POLICY\"; then exit 0; fi; TABLE=$(echo \"$CONTENT\" | grep -ioE \"(CREATE TABLE|ALTER TABLE)[[:space:]]+[a-zA-Z_]+\" | head -1 | awk \"{print \\$NF}\"); echo \"[King Tenancy] BLOCKED: Migration con tenant_id en tabla ${TABLE:-desconocida} sin politica RLS. Agregar ENABLE ROW LEVEL SECURITY + CREATE POLICY.\"; exit 2'",
+            "async": false
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/logging-emit-check.sh",
+            "async": false
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/instrument-emit-check.sh",
+            "async": false
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
-        "matcher": "/genesis|/brainstorm|/plan|/create-issues|/build|/review|/qa(?!-)|/fix|/merge|/promote|/release|/castle|/radar|/refactor|/refine|/gitflow|/worktree|/audit|/github-ops|/pr|/commit|/frontend-design|/create-skill|/sdd|/blog-setup|/headless-cms-setup",
+        "matcher": "/genesis|/brainstorm|/plan|/create-issues|/build|/review|/qa(?!-)|/fix|/merge|/promote|/release|/castle|/radar|/refactor|/refine|/gitflow|/worktree|/audit|/github-ops|/pr|/commit|/frontend-design|/create-skill|/sdd|/blog-setup|/headless-cms-setup|/coverage-report|/a11y-audit|/a11y-fix|/optimize|/solid-check|/castle-report",
         "hooks": [
           {
             "type": "command",
@@ -53,7 +140,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "'${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd' conductor-invoke"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/conductor-invoke"
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); PROMPT=$(echo \"$INPUT\" | jq -r \".prompt // empty\" 2>/dev/null); if [ -z \"$PROMPT\" ]; then exit 0; fi; PATTERNS=\"sk-ant-api[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z]{36}|ghs_[0-9A-Za-z]{36}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|sk_live_[0-9A-Za-z]{24}|sk_test_[0-9A-Za-z]{24,}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-[0-9]{10,12}-[0-9]{10,12}-[a-zA-Z0-9]{24,}|eyJ[A-Za-z0-9_-]{20,}\\\\.[A-Za-z0-9_-]{20,}\\\\.[A-Za-z0-9_-]{20,}\"; if echo \"$PROMPT\" | grep -qEe \"$PATTERNS\"; then echo \"[King CASTLE E] WARNING: posible secret hardcodeado en prompt. Verificá que no estás exponiendo credenciales en la conversación.\"; fi; exit 0'",
+            "async": false
           }
         ]
       }

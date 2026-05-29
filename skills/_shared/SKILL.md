@@ -1,11 +1,9 @@
 ---
 name: _shared
+version: 1.0
+api_version: 1.0.0
 description: >
   Internal shared references for SDD skills. Not an invokable skill.
-license: MIT
-metadata:
-  author: gentleman-programming
-  version: "1.0"
 ---
 
 ## Purpose

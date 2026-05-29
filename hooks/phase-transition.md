@@ -1,4 +1,4 @@
-﻿# PhaseTransition Hook
+# PhaseTransition Hook
 
 > Mecanismo convention-based de King Framework para interceptar transiciones entre fases del pipeline.  
 > Implementado como dispatcher en `session-management/SKILL.md` (Paso N+1.5).  
@@ -188,6 +188,116 @@ Basado en `mejora/02-ventaja-competitiva.md §3.3`:
 | `dependency-validate` | Verifica inputs requeridos de la fase siguiente | `review->qa`, `qa->merge` |
 | `notify-slack` | Notificación de transición a canal del equipo | `build->review` |
 | `write-phase-context` | Escribe signal file para activar @conductor | Todas las transiciones |
+
+---
+
+## Handler: gate-enforcement
+
+Promueve a contrato documentado el handler listado arriba como propuesto. Verifica que la fase de origen produjo el artefacto requerido antes de registrar la transición.
+
+| Transición | Artefacto requerido | Verificación |
+|------------|---------------------|--------------|
+| `ideacion → spec` | Scaffold de proyecto | `/genesis` ejecutado (estructura base + `.king/`) |
+| `spec → mvp` | Código inicial | `commit_count > 0` |
+| `mvp → produccion` | Release candidato | git tag `v*` existe **y** CASTLE main = `FORTIFIED` |
+| `produccion → escala` | Madurez | `commit_count > 200` **y** ratio test/src > 0.6 |
+
+**Comportamiento ante fallo del gate**: NO bloquea. Emite `WARN` en el session document bajo `### PhaseTransition Hook` indicando el artefacto faltante, y el pipeline continúa. Coherente con el fail-safe global (ver "Comportamiento ante Errores"). El gate es **advisory**: informa, no impone.
+
+> Divergencia deliberada con `mejora/02-ventaja-competitiva.md §3.3`, que planteaba `gate-enforcement` como bloqueante. King prioriza el fail-safe: ningún hook detiene el pipeline.
+
+---
+
+## Handler: token-budget-check
+
+Ofrece compactar el contexto antes de fases largas si la sesión acumuló uso significativo de tokens.
+
+- **Threshold**: configurable, default **80%** del budget de la sesión.
+- **Disparo**: antes de fases largas — `build`, `sdd-ff`, `sdd-continue`, `sdd-apply`.
+- **Acción** (no bloqueante): si se supera el threshold, emitir al usuario:
+  > "La sesión ha acumulado un uso significativo de tokens. ¿Querés compactar antes de continuar?"
+- **Fail-safe**: si no hay dato de budget disponible, no-op silencioso.
+
+---
+
+## Schema project-state.json
+
+`project-state.json` es el estado serializado del Modo Jarvis para un proyecto. Vive en `.king/jarvis/project-state.json` y es la **fuente única** de la fase del ciclo de vida. Lo leen `@conductor` (banner + algoritmo de fase, ver `agents/conductor.md §3.bis`) y el ciclo de actualización del roadmap.
+
+```json
+{
+  "schema_version": "1.0",
+  "project_slug": "mi-proyecto",
+  "phase": "mvp",
+  "roadmap_percent": 45,
+  "next_skill": "/qa --standard",
+  "castle_score": { "C": 4, "A": 4, "S": 3, "T": 2, "L": 4, "E": 3 },
+  "castle_verdict": "CONDITIONAL",
+  "skills_executed": ["genesis", "build", "review"],
+  "transitions": [
+    { "from": "spec", "to": "mvp", "at": "2026-05-28T10:00:00Z", "status": "FORTIFIED" }
+  ],
+  "session_started_at": "2026-05-28T22:00:00Z",
+  "updated_at": "2026-05-28T22:33:55Z"
+}
+```
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `schema_version` | string | Versión del schema (`"1.0"`) — para evolución futura |
+| `project_slug` | string | Identificador del proyecto |
+| `phase` | string | Fase actual. Valores: `ideacion`, `spec`, `mvp`, `produccion`, `escala` |
+| `roadmap_percent` | number | Progreso 0-100 del pipeline |
+| `next_skill` | string | Próximo skill King sugerido |
+| `castle_score` | object | Las 6 capas CASTLE (Contracts, Architecture, Security, Testing, Logging, Environment), 0-5 cada una |
+| `castle_verdict` | string | `FORTIFIED` \| `CONDITIONAL` \| `BREACHED` (ausente si no hay assessment) |
+| `skills_executed` | string[] | Historial de skills ejecutados |
+| `transitions` | object[] | Historial de transiciones: `{from, to, at, status}` |
+| `session_started_at` | ISO 8601 | Inicio de la sesión actual (métrica TTFC) |
+| `updated_at` | ISO 8601 | Última actualización del estado |
+
+### Valores posibles de `phase`
+
+| Fase | Significado | Señal típica |
+|------|-------------|--------------|
+| `ideacion` | Sin scaffold | `/genesis` no ejecutado |
+| `spec` | Diseñando, sin código | genesis ejecutado, 0 commits |
+| `mvp` | Construyendo | build ejecutado + commits > 0 |
+| `produccion` | Release activo | git tag `v*` existe |
+| `escala` | Madurez/optimización | tag + CASTLE FORTIFIED + commits > 200 |
+
+### Inicialización
+Si `project-state.json` no existe, se crea con `schema_version: "1.0"`, `phase` derivada por el algoritmo de @conductor (ver `conductor.md §3.bis`), `skills_executed: []` y `transitions: []`.
+
+### Escritura atómica
+La escritura DEBE ser atómica: escribir a `.king/jarvis/project-state.json.tmp` y luego `mv` (rename) sobre el destino. El rename es atómico en el filesystem y evita estados parciales si el proceso se interrumpe. NUNCA editar el JSON in-place.
+
+### Merge ante conflicto
+Cuando varios worktrees comparten el mismo `.king/` (ver `workflow_id` del signal file): para campos escalares (`phase`, `roadmap_percent`, `next_skill`, `castle_*`) gana el registro con `updated_at` más reciente; `skills_executed` y `transitions` se **unionan con dedup** (no se sobreescriben).
+
+---
+
+## Directorio .king/jarvis/
+
+Estado runtime del Modo Jarvis en el proyecto del usuario. Se crea en ejecución (no vive en el repo de king-core).
+
+| Archivo | Escrito por | ¿Versionar? |
+|---------|-------------|-------------|
+| `project-state.json` | @conductor / ciclo de actualización | **SÍ** — estado reproducible |
+| `project-roadmap.md` | ciclo de actualización (desde el template) | NO — generado |
+| `observations.jsonl` | hook contextual-observer (M-81) | NO — generado |
+| `tech-debt.md` | @conductor (iteración futura) | NO — generado |
+| `perf.log` | hooks (instrumentación) | NO — generado |
+
+### .gitignore (aplicar en el proyecto que active Jarvis Mode)
+
+```gitignore
+.king/jarvis/project-roadmap.md
+.king/jarvis/observations.jsonl
+.king/jarvis/tech-debt.md
+.king/jarvis/perf.log
+# .king/jarvis/project-state.json  → SÍ se versiona (no ignorar)
+```
 
 ---
 

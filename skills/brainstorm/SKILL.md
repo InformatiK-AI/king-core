@@ -1,6 +1,7 @@
 ---
 name: brainstorm
 version: 2.0
+api_version: 1.0.0
 description: "Skill de ideación y diseño. Explora la intención del usuario, requisitos y diseño ANTES de planificar implementación. Consulta agentes especializados para enriquecer el diseño. En modo PROYECTO genera blueprint técnico completo (4 artefactos). Solo genera documentación, nunca ejecuta código."
 ---
 

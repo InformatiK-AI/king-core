@@ -1,6 +1,7 @@
 ---
 name: king-onboard
 version: 1.0
+api_version: 1.0.0
 description: >
   Guided end-to-end walkthrough of the King Framework SDLC using the real codebase.
   Trigger: When a user wants to learn King Framework, experience the full development

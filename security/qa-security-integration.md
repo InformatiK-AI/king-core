@@ -1,4 +1,4 @@
-﻿# QA-Security Integration Contract
+# QA-Security Integration Contract
 
 ## Propósito
 

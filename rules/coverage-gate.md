@@ -1,4 +1,4 @@
-﻿---
+---
 name: coverage-gate
 description: "Gate formal de cobertura de tests en /build y /promote. Bloquea o advierte si la cobertura cae bajo el threshold configurado."
 ---

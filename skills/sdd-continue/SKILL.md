@@ -2,6 +2,7 @@
 name: sdd-continue
 description: "Continuar el SDD en la siguiente fase disponible del DAG. Detecta automáticamente qué fases están listas para ejecutar."
 version: 1.0.0
+api_version: 1.0.0
 argument-hint: "[change-name]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Agent]
 ---

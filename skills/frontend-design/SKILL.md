@@ -1,7 +1,8 @@
-﻿---
+---
 name: frontend-design
 description: "Diseño de UI moderna e impactante. Usar cuando se necesite: diseñar una pantalla, crear interfaz de usuario, mejorar diseño visual, implementar animaciones, crear componentes UI modernos, o aplicar tendencias de diseño web 2026."
 version: "3.0"
+api_version: 1.0.0
 ---
 
 ## Knowledge Injection

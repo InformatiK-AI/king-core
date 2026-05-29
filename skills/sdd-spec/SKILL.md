@@ -1,12 +1,10 @@
 ---
 name: sdd-spec
+version: 2.0
+api_version: 1.0.0
 description: >
   Write specifications with requirements and scenarios (delta specs for changes).
   Trigger: When the orchestrator launches you to write or update specs for a change.
-license: MIT
-metadata:
-  author: gentleman-programming
-  version: "2.0"
 ---
 
 ## Purpose

@@ -1,6 +1,7 @@
 ---
 name: pr
 version: 2.0
+api_version: 1.0.0
 internal: true
 description: "Gestión de Pull Requests: crear PRs con template estándar, revisar código de un PR, o mergear PR con quality gates."
 ---

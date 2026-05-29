@@ -1,7 +1,8 @@
-﻿---
+---
 name: release
 description: "Release GitFlow completo. Usar cuando se necesite: crear un release, publicar una versión, hacer release vX.Y.Z, certificar y publicar una versión del proyecto."
 version: 2.0
+api_version: 1.0.0
 ---
 
 # Release — GitFlow Release Completo
@@ -175,25 +176,25 @@ Recovery:
 #### MUST DO
 > ⚠️ All actions are MANDATORY
 
-1. [ ] Generar CHANGELOG desde conventional commits:
-   ```bash
-   git log --oneline $(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD
-   ```
-2. [ ] Categorizar por tipo: Features, Fixes, Refactors, Breaking Changes
-3. [ ] Escribir/actualizar CHANGELOG.md
+1. [ ] Cargar `skills/release/CHANGELOG-GENERATOR.md` y seguir §1–§6 en orden.
+2. [ ] Categorizar commits en las 6 categorías Keep a Changelog: Added, Changed, Deprecated, Removed, Fixed, Security.
+3. [ ] Si `gh` CLI está disponible: enriquecer con issues/PRs cerrados del milestone (§3).
+4. [ ] Deduplicar commits e issues (§4).
+5. [ ] Prepend sección `## [X.Y.Z] — YYYY-MM-DD` a `CHANGELOG.md` (§6).
 
 #### CHECKPOINT
-- [ ] CHANGELOG.md updated with categorized changes for this release
+- [ ] `CHANGELOG.md` tiene una sección `## [X.Y.Z]` con al menos 1 de las 6 categorías Keep a Changelog.
 
 ### IF FAILS
-> ❌ What to do when CHECKPOINT fails
+> ❌ What to do when Phase 5 fails
 
-ERROR: Changelog could not be generated or written
-Cause: No conventional commits found in the range, CHANGELOG.md is write-protected, or the git log command failed.
+ERROR: CHANGELOG could not be generated
+Cause: gh CLI not authenticated, milestone not found, no commits in range, or CHANGELOG.md write error.
 Recovery:
-  [ ] Option A: If git log returns no commits, verify the tag range is correct — use `git log --oneline -20` to see recent commits and extract changes manually
-  [ ] Option B: If CHANGELOG.md cannot be written, check file permissions — create it if it does not exist (`touch CHANGELOG.md`) and retry
-  [ ] Option C: If commits are not in conventional format, categorize them manually by reading commit messages — do not skip the changelog for a release
+  [ ] Option A: gh CLI not authenticated — skip §3, complete with commits only; add comment `<!-- gh CLI unavailable: issue/PR enrichment skipped -->` in the CHANGELOG section
+  [ ] Option B: Milestone not found in GitHub — skip §3 issue enrichment; use git commits only for categorization
+  [ ] Option C: No commits in range — write `## [X.Y.Z] — YYYY-MM-DD\n\n_(no changes logged)_` and continue; do not fail the release for an empty changelog
+  [ ] Option D: CHANGELOG.md write error — check file permissions; if not writable create it with `touch CHANGELOG.md` and retry
 
 ### Fase 6: Build Verification
 

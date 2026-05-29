@@ -2,6 +2,7 @@
 name: session-management
 description: "Skill auxiliar interno. Proporciona instrucciones reutilizables para Phase 0 (Load Context), Phase N+1 (Write Session), y Phase N+2 (Guide Next Step). NO invocar directamente — es referenciado por los demás skills."
 version: 2.0
+api_version: 1.0.0
 internal: true
 user-invocable: false
 ---

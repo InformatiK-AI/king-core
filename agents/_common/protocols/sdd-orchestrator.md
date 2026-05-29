@@ -1,4 +1,4 @@
-﻿# SDD Orchestrator Protocol
+# SDD Orchestrator Protocol
 
 Structured Development Driver — protocolo para cambios complejos que requieren más de un ciclo de build.
 

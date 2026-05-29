@@ -1,7 +1,8 @@
-﻿---
+---
 name: qa
 description: "QA estándar para una feature o cambio individual. Usar cuando se necesite: ejecutar QA, verificar calidad de una feature, validar una implementación, o hacer quality assurance de un cambio."
 version: 2.0
+api_version: 1.0.0
 ---
 
 # QA Standard — Calidad por Feature
@@ -46,8 +47,8 @@ Read the following files BEFORE Phase 1. If a file does not exist, log a warning
 
 ### PHASES OVERVIEW
 ```
-Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 3b → Phase 4 → Phase 5 → Phase 6 → Phase 7 → Phase 8
-Load      Strategy  Execution  Coverage  SpecComp   SecGate   CASTLE   Report   Session   Guide
+Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 3b → Phase 4 → Phase 5 → Phase 6b → Phase 6 → Phase 7 → Phase 8
+Load      Strategy  Execution  Coverage  SpecComp   SecGate   CASTLE   CastleScore Report  Session   Guide
 ```
 
 ---
@@ -233,7 +234,15 @@ Recovery:
    - UNTESTED en Compliance Matrix → T: ⚠️ WARNING
    - FAILING en Compliance Matrix → T: ❌ BREACH
    - Todos COMPLIANT → T: ✅ PASS (combinado con Fase 3)
-3. [ ] Documentar resultado por capa
+   - **(M05) Mutation score**: si existe `.king/mutation/*-summary.md`, incorporar el último mutation score.
+     `mutation_score < mutation_score_threshold` (`.king/coverage.yaml`, default 80) → T: ⚠️ WARNING (o ❌ BREACH si `mutation_enforcement: block`)
+   - **(M05) Property evidence**: contraejemplos sin resolver de `/property-test` → T: ⚠️ WARNING
+3. [ ] **(M05)** Para capa C: si existe `.king/pact/contract-summary.md`, incorporar la cobertura de contratos.
+   Integración HTTP sin contrato → C: ⚠️ WARNING (`"Integration without contract detected"`)
+4. [ ] Documentar resultado por capa
+
+### CASTLE Assessment Enhancement (M-34)
+> Si `.king/castle/solid-report.json` existe, leer e incorporar como A2 sub-score en el CASTLE Assessment. Si no existe, continuar normalmente — el CASTLE Assessment procede sin el sub-score numérico de SOLID.
 
 #### CHECKPOINT
 - [ ] CASTLE C·A·S·T·L evaluado — veredicto determinado
@@ -307,10 +316,20 @@ Recovery:
 
 ---
 
+## Phase 6b: CASTLE Score Report
+
+> Ejecutar SIEMPRE al final del QA, después del CASTLE Assessment cualitativo, ANTES del cierre.
+
+1. Invocar `/castle-report`
+2. El score numérico complementa (no reemplaza) el veredicto cualitativo del CASTLE Assessment
+3. Si `castle_score < 60` (BREACHED): elevar como warning adicional al veredicto final
+
+---
+
 ## FINAL CHECKPOINT
 
 - [ ] TODOS los REQUIRED OUTPUTS existen
-- [ ] TODOS los CHECKPOINTS de cada fase pasaron
+- [ ] TODOS los CHECKPOINTS de cada fase pasaron (incluyendo Phase 6b)
 - [ ] Sesión registrada
 
 ---

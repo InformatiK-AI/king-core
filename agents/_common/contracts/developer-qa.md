@@ -1,4 +1,4 @@
-﻿# Developer-QA Contract
+# Developer-QA Contract
 
 ## Propósito
 Define el protocolo de interacción entre @developer y @qa para feedback de tests, correcciones y ciclos de re-validación.

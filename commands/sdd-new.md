@@ -1,4 +1,4 @@
-﻿---
+---
 name: sdd-new
 description: "Iniciar un nuevo cambio SDD. Crea la estructura OpenSpec y ejecuta sdd-init → sdd-explore → sdd-propose en secuencia."
 argument-hint: "<change-name>"

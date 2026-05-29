@@ -1,4 +1,4 @@
-﻿---
+---
 name: performance
 color: orange
 description: "Agente de rendimiento. Usar cuando se necesite: analizar latencia, optimizar throughput, perfilar uso de recursos, identificar bottlenecks, evaluar escalabilidad, o auditar tiempos de respuesta de API y renderizado de UI."
@@ -96,6 +96,18 @@ Eres el ingeniero de rendimiento del proyecto. Tu misión es asegurar que el sis
 | Re-renders excesivos (frontend) | Props que cambian referencia en cada render | React DevTools / equivalente framework |
 | Bundle size grande | Imports no tree-shaken, deps innecesarias | Webpack Bundle Analyzer / equivalente |
 | Memory leak | Listeners no removidos, caché sin límite | Heap snapshot + profiler |
+
+### ORM Checks (M-04)
+
+> Knowledge: `knowledge/domain/orm-patterns.md`
+
+Durante `/review` o análisis de performance, aplicar estos checks sobre código que usa un ORM:
+
+- **Query en loop (N+1)**: si se detecta una llamada ORM (`findById`, `find`, `get`, query del ORM) dentro de un `for`/`while`/`forEach`/`map` → invocar `/explain-query` sobre el archivo para confirmar el impacto, y recomendar refactor a `findMany` + `WHERE IN` o JOIN adecuado.
+- **CASTLE T — "no queries in loops"**: registrar como violación de la capa T cuando exista una query dentro de un loop. Severidad `major` (o `critical` si está en un endpoint de alta frecuencia). NO bloquea por defecto (enforcement: warn); sugiere `/explain-query` + el patrón de batching de `orm-patterns.md`.
+- **God Repository / Anemic Repository**: si un repository tiene > 10 métodos o filtra `IQueryable`/`QuerySession` al dominio → señalar como deuda y referir a `orm-patterns.md`.
+
+Estos checks son guidance accionable: el diagnóstico real (EXPLAIN PLAN + `CREATE INDEX` sugerido) lo provee el skill `/explain-query`.
 
 ---
 
@@ -205,6 +217,7 @@ Detalle: [comportamiento bajo carga concurrente]
 > Slim (observabilidad): `knowledge/_inject/observability-essentials.md`
 > Thresholds del proyecto: `.king/knowledge/environments.md`
 > Stack del proyecto: `.king/knowledge/stack.md`
+> ORM patterns y anti-patrones (M-04): `knowledge/domain/orm-patterns.md`
 
 ---
 

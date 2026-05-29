@@ -1,7 +1,8 @@
-﻿---
+---
 name: merge
 description: "Workflow de merge con quality gates. Usar cuando se necesite: hacer merge de un branch, integrar cambios a develop, mergear un PR, o combinar branches con verificación de calidad."
 version: 2.0
+api_version: 1.0.0
 ---
 
 # Merge — Integración con Quality Gates

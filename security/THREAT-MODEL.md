@@ -1,4 +1,4 @@
-﻿# Threat Model — King Framework
+# Threat Model — King Framework
 
 > Documentación de amenazas de seguridad identificadas en el framework King.
 > Última revisión: 2026-03-18

@@ -1,4 +1,4 @@
-﻿# Promote — Pre-Deploy Gates (v2.0)
+# Promote — Pre-Deploy Gates (v2.0)
 
 > Fases 1-3: gates de calidad antes del deploy. Entry point: [SKILL.md](SKILL.md)
 
@@ -158,6 +158,55 @@ Recovery:
   [ ] Option A: Document each violation with `element`, `impact`, `wcag`, `wcag_url` — return to @developer to fix on the feature branch, then re-run the Accessibility Gate before retrying promote
   [ ] Option B: If finding is a false positive (axe misidentified the element), document justification in `.king/a11y.yaml` under `exceptions` with required `approved_by` field and `expires` date — get explicit user approval before adding the exception
   [ ] Option C: Never promote with `critical` or `serious` violations — if the fix requires significant time, keep code in origin environment and schedule fixes before the next promote attempt
+
+---
+
+#### Phase 2b Extension: /a11y-audit Gate (M-28)
+
+> Extiende el Accessibility Gate cualitativo de arriba con el gate numérico `/a11y-audit`. Requiere que Phase 2b cualitativo haya pasado.
+
+1. Si `.king/castle/a11y-report.json` existe Y fue generado hace < 24h → usar el report existente
+2. Si no existe o es stale (>= 24h) → ejecutar `/a11y-audit`
+3. Si `violations.critical > 0 OR violations.serious > 0` → **BLOCK** Phase 2c y promote
+4. Si violations solo moderate/minor → WARN (no block), continuar a Phase 2c
+5. Mensaje de block: "A11y gate FAILED: {N} critical + {M} serious violations. Run /a11y-fix and re-promote."
+
+---
+
+### Phase 2c: Lighthouse Gate + Mobile-First (M-50+M-51)
+
+> Gate BLOQUEANTE en CI. Requiere que Phase 2b (a11y) haya pasado.
+> Si Phase 2b bloqueó → esta fase NO ejecuta (log: "Phase 2c skipped — Phase 2b blocked").
+
+#### Prerequisitos
+
+- `CI=true` (o `KING_LIGHTHOUSE=true`) — **solo ejecuta en CI**. En dev → exit 0 + WARN "Lighthouse gate skipped in non-CI environment"
+- Si `.king/lighthouse-baseline.json` NO existe → **grace period**: exit 0 + WARN "No Lighthouse baseline found — first /promote will create it. Run in CI to establish baseline."
+
+#### Mobile-First Check (ejecutar ANTES del audit de desktop)
+
+1. Verificar que el proyecto tiene `<meta name="viewport" content="width=device-width, initial-scale=1">` en todos los HTML/template entry points
+2. Verificar que los breakpoints CSS siguen mobile-first pattern (media queries `min-width`, no solo `max-width`)
+3. Si FALLA → BLOCK con mensaje: "Mobile-first check FAILED: {issue}. Fix before running Lighthouse."
+
+#### Lighthouse Audit
+
+1. Ejecutar Lighthouse CLI: `lighthouse {url} --output=json --quiet --chrome-flags="--headless --no-sandbox"`
+   - Si Lighthouse CLI no disponible → WARN "Lighthouse CLI not installed. Skip gate or run: npm i -g lighthouse" → exit 0
+2. Parsear score de `categories.performance.score * 100`
+3. Comparar vs threshold en `.king/lighthouse.yaml` (default: 95)
+4. Si score < threshold Y baseline existe → BLOCK: "Lighthouse score {actual} < required {threshold} (delta: -{gap})"
+5. Si score >= threshold Y NO hay baseline → crear `.king/lighthouse-baseline.json`:
+   ```json
+   { "score": X.X, "url": "...", "created_at": "ISO8601", "environment": "CI" }
+   ```
+6. Si score >= threshold Y hay baseline → actualizar baseline si mejora >= 2 puntos
+
+#### Mensajes
+
+- Block: `[King/Lighthouse] BLOCKED: Score {actual}/100 < required {threshold}/100 (delta: -{gap}). Run /optimize or check bundle size.`
+- Grace period: `[King/Lighthouse] WARN: No baseline found — establishing baseline on first successful run.`
+- Pass: `[King/Lighthouse] ✅ Lighthouse {actual}/100 (threshold: {threshold}) — PASS`
 
 ---
 

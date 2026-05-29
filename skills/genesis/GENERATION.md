@@ -1,4 +1,4 @@
-﻿# Genesis - Generation + Setup + Onboarding
+# Genesis - Generation + Setup + Onboarding
 
 > Fases 3-5 del skill `/genesis`. Router principal: [SKILL.md](SKILL.md)
 
@@ -99,6 +99,21 @@
    > **Idempotencia**: La garantía es la verificación de existencia en paso (a).
    > No se mergea contenido — si el archivo existe, se preserva intacto.
 
+   **Step 3g — Verificar bloque King Framework en `.gitignore`:**
+
+   Buscar `# King Framework` en el `.gitignore` generado o existente.
+   - Si NO está → agregar al final del archivo:
+     ```
+     # King Framework — archivos sensibles (no versionar)
+     .king/knowledge/environments.md
+     .king/sessions/
+     .king/.genesis-merge-mode
+     .env
+     .env.*
+     ```
+   - Si ya está → omitir (idempotente).
+   - Confirmar: "✓ Bloque King Framework verificado en .gitignore."
+
 3.5. [ ] **Generar `.env.example`**
 
    > Prerequisito: Step 3 completado (`.gitignore` ya cubre `.env`).
@@ -143,8 +158,34 @@
       ```
 
    > **Idempotencia**: Si `.env.example` existe, se preserva intacto. Mismo patrón que `.gitignore`.
-   > **Knowledge**: Referenciar `knowledge/_inject/secrets-management.md` en @developer para
-   > buenas prácticas de gestión de secretos (vault, rotación, 12-factor app).
+   > **Knowledge**: Referenciar `king-infra/knowledge/_inject/secrets-management.md` en @developer y @security para
+   > buenas prácticas de gestión de secretos (vault, rotación, 12-factor app). Ver Step 3.6 para inyección explícita.
+
+3.6. [ ] **Secrets Management Knowledge:**
+
+   Inyectar `secrets-management.md` en los agentes `@developer` y `@security` para esta sesión de genesis:
+
+   a. Verificar que `king-infra/knowledge/_inject/secrets-management.md` existe:
+      ```bash
+      ls knowledge/_inject/secrets-management.md 2>/dev/null && echo "EXISTS" || echo "MISSING"
+      ```
+
+   b. Si MISSING → advertir con mensaje accionable y NO continuar silenciosamente:
+      ```
+      ⚠️  king-infra/knowledge/_inject/secrets-management.md no encontrado.
+          Crear o restaurar el archivo antes de continuar la inyección de knowledge.
+          Path esperado: king-infra/knowledge/_inject/secrets-management.md
+      ```
+
+   c. Si EXISTS → marcar para inyección en Step 8/9 e informar al developer:
+      - "✓ Knowledge de Secrets Management disponible. Los agentes @developer y @security tienen acceso a patrones de providers (Doppler, Vault, AWS SM, SOPS) y anti-patterns. Referencia: `king-infra/knowledge/_inject/secrets-management.md`."
+      - Agregar `secrets-management` a la lista de knowledge files de `@developer`.
+      - Si `@security` está en el equipo confirmado → agregar también a `@security`.
+
+   d. Si el proyecto tiene `.king/knowledge/stack.md`, agregar una nota sobre el secrets provider elegido.
+
+   > El contenido se inyecta como subsección dentro de "## Conocimiento Experto" del agente,
+   > siguiendo el mismo mecanismo que Step 8.c (lectura + concat).
 
 4. [ ] **Generar `.king/knowledge/stack.md`**
 
@@ -368,6 +409,7 @@
 
 - [ ] CLAUDE.md creado y confirmado
 - [ ] `.gitignore` creado (si no existía previamente) o preservado con warning (si ya existía)
+- [ ] `.gitignore` contiene bloque King Framework (verificado por Step 3g)
 - [ ] `.env.example` creado con secciones activas según integraciones Q5 (o preservado si ya existía)
 - [ ] `.king/knowledge/stack.md` creado y confirmado
 - [ ] `.king/knowledge/architecture.md` creado y confirmado
@@ -568,11 +610,25 @@ Puedes habilitarlos despues con: /worktree init
    Archivo: `.king/sessions/YYYY-MM-DD-genesis.md`
    - Al crear la sesion exitosamente: si `.king/.genesis-merge-mode` existe → eliminarlo
 
+4. [ ] **Mostrar info de licencia (informativo, NO bloqueante)**
+   - Invocar `license-check` en modo verify (`/license-check --require pro`) para resolver el tier del entorno
+   - Si NO hay licencia activa (tier `core` o ausencia de observation): mostrar **una sola vez** el mensaje de
+     upgrade estandar (ver `knowledge/universal/license-management.md` §4):
+     ```
+     Estas usando King Core (gratis). Los skills premium requieren King Pro ($29/mes).
+     Activa tu licencia con: king-framework license activate <key>
+     Conseguila en: kingframework.dev/pro
+     ```
+   - Si hay licencia activa: no mostrar nada
+   - ⚠️ Este step es **informativo**: NUNCA bloquea ni aborta genesis. Si `license-check` falla o Engram no
+     responde, continuar en silencio (genesis termina con exito igual). Ver `skills/license-check/SKILL.md`
+
 ### CHECKPOINT
 > Verificar antes de finalizar
 
 - [ ] Usuario recibio resumen completo
 - [ ] Sesion registrada
+- [ ] Info de licencia mostrada si aplica (sin bloquear; omitible ante fallo de Engram)
 - [ ] Proximo paso comunicado
 
 ### OUTPUTS

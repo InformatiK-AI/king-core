@@ -2,6 +2,7 @@
 name: qa-env
 description: "QA con verificación de ambiente. Usar cuando se necesite: QA en un ambiente específico, verificar ambiente QA o producción, validar deploy, o hacer quality assurance con smoke tests de ambiente."
 version: 2.0
+api_version: 1.0.0
 internal: true
 ---
 

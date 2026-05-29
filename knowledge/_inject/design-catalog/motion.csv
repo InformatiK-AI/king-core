@@ -1,17 +1,36 @@
 id,name,css_keyframes,properties_used,duration_ms,reduced_motion_alt
-1,fade-in,opacity 0 to 1,opacity,200,instant show (no animation)
-2,fade-out,opacity 1 to 0,opacity,150,instant hide (no animation)
-3,slide-up-in,translateY(16px)+opacity 0 to translateY(0)+opacity 1,transform opacity,250,fade-in only (opacity 0 to 1)
-4,slide-down-in,translateY(-16px)+opacity 0 to translateY(0)+opacity 1,transform opacity,250,fade-in only
-5,slide-right-in,translateX(-24px)+opacity 0 to translateX(0)+opacity 1,transform opacity,300,fade-in only
-6,slide-left-in,translateX(24px)+opacity 0 to translateX(0)+opacity 1,transform opacity,300,fade-in only
-7,scale-in-spring,scale(0.85)+opacity 0 to scale(1)+opacity 1 with overshoot at 95ms to scale(1.03),transform opacity,350,opacity 0 to 1 only; skip scale
-8,scale-out,scale(1)+opacity 1 to scale(0.9)+opacity 0,transform opacity,200,opacity 1 to 0 only
-9,shimmer-skeleton,background-position from -200% to 200% on linear-gradient,background-position,1500,static gray fill; no animation (prefers-reduced-motion: no-preference check)
-10,spin-loader,rotate(0deg) to rotate(360deg) continuous,transform,1000,static partial-circle SVG; text "Loading"
-11,bounce-in,translateY(0) → translateY(-8px) → translateY(0) with 3 oscillations decreasing amplitude,transform,500,static appearance; no bounce
-12,toast-slide-up,translateY(100%)+opacity 0 to translateY(0)+opacity 1; exit reverses,transform opacity,300,opacity crossfade only; no translate
-13,drawer-slide-right,translateX(100%) to translateX(0); exit reverses,transform,300,opacity fade; instant clip
-14,progress-fill,width 0% to N% or transform scaleX(0) to scaleX(target),transform,300,instant jump to value; no fill animation
-15,count-up-number,custom JS interpolation from 0 to target value; not CSS; use requestAnimationFrame,JS animation,1200,show final number instantly; no count-up
-16,ripple-touch,scale(0) to scale(2.5) + opacity 0.3 to 0 from touch point,transform opacity,400,background-color darken on active; no ripple
+MO01,fade-in,opacity 0 to 1,opacity,200,instant show (no animation)
+MO02,fade-out,opacity 1 to 0,opacity,150,instant hide (no animation)
+MO03,slide-up-in,translateY(16px)+opacity 0 to translateY(0)+opacity 1,transform;opacity,250,fade-in only (opacity 0 to 1)
+MO04,slide-down-in,translateY(-16px)+opacity 0 to translateY(0)+opacity 1,transform;opacity,250,fade-in only
+MO05,slide-right-in,translateX(-24px)+opacity 0 to translateX(0)+opacity 1,transform;opacity,300,fade-in only
+MO06,slide-left-in,translateX(24px)+opacity 0 to translateX(0)+opacity 1,transform;opacity,300,fade-in only
+MO07,scale-in-spring,scale(0.85)+opacity 0 to scale(1)+opacity 1 with overshoot at 95ms to scale(1.03),transform;opacity,350,opacity 0 to 1 only; skip scale
+MO08,scale-out,scale(1)+opacity 1 to scale(0.9)+opacity 0,transform;opacity,200,opacity 1 to 0 only
+MO09,shimmer-skeleton,background-position from -200% to 200% on linear-gradient,background-position,1500,static gray fill; no animation
+MO10,spin-loader,rotate(0deg) to rotate(360deg) continuous,transform,1000,static partial-circle SVG; text "Loading"
+MO11,bounce-in,translateY(0) to translateY(-8px) to translateY(0) with 3 oscillations decreasing amplitude,transform,500,static appearance; no bounce
+MO12,toast-slide-up,translateY(100%)+opacity 0 to translateY(0)+opacity 1; exit reverses,transform;opacity,300,opacity crossfade only; no translate
+MO13,drawer-slide-right,translateX(100%) to translateX(0); exit reverses,transform,300,opacity fade; instant clip
+MO14,progress-fill,transform scaleX(0) to scaleX(target),transform,300,instant jump to value; no fill animation
+MO15,count-up-number,custom JS interpolation from 0 to target value; not CSS; use requestAnimationFrame,JS,1200,show final number instantly; no count-up
+MO16,ripple-touch,scale(0) to scale(2.5) + opacity 0.3 to 0 from touch point,transform;opacity,400,background-color darken on active; no ripple
+MO17,modal-scale-in,scale(0.96)+opacity 0 to scale(1)+opacity 1 (Material container transform emphasized),transform;opacity,250,opacity 0 to 1 only; no scale
+MO18,modal-scale-out,scale(1)+opacity 1 to scale(0.96)+opacity 0,transform;opacity,200,opacity 1 to 0 only; no scale
+MO19,backdrop-fade,opacity 0 to 0.5 scrim overlay (Material HIG dim),opacity,200,instant scrim at target opacity
+MO20,accordion-expand,transform scaleY(0) to scaleY(1) with transform-origin top,transform,250,instant reveal; no expand
+MO21,accordion-collapse,transform scaleY(1) to scaleY(0) with transform-origin top,transform,200,instant hide; no collapse
+MO22,tooltip-fade-scale,scale(0.92)+opacity 0 to scale(1)+opacity 1 (Apple HIG subtle pop),transform;opacity,120,opacity 0 to 1 only; instant
+MO23,button-press,scale(1) to scale(0.97) on active then back (Material state feedback),transform,100,no scale; rely on color state change
+MO24,checkbox-check,scale(0) to scale(1) on checkmark glyph,transform,150,instant checkmark; no scale
+MO25,page-shared-axis-x,translateX(30px)+opacity 0 to translateX(0)+opacity 1 (Material shared axis X),transform;opacity,300,opacity crossfade only; no translate
+MO26,page-fade-through,opacity 1 to 0 outgoing then opacity 0 to 1 incoming (Material fade through),opacity,300,instant swap; no crossfade
+MO27,card-hover-lift,translateY(0) to translateY(-4px) (elevation hint via transform),transform,150,no lift; rely on shadow or outline state
+MO28,fab-morph-in,scale(0)+opacity 0 to scale(1)+opacity 1 emphasized-decelerate,transform;opacity,300,opacity 0 to 1 only; no scale
+MO29,chip-dismiss,scale(1)+opacity 1 to scale(0.8)+opacity 0,transform;opacity,180,opacity 1 to 0 only; instant remove
+MO30,snackbar-slide-in,translateY(120%)+opacity 0 to translateY(0)+opacity 1 (Material standard),transform;opacity,250,opacity crossfade only; no translate
+MO31,pull-to-refresh-spin,rotate(0deg) to rotate(360deg) tied to scroll then continuous,transform,800,static spinner glyph; text "Refreshing"
+MO32,tab-indicator-slide,translateX between active tab positions + scaleX width match,transform,250,instant indicator jump; no slide
+MO33,segmented-thumb-slide,translateX of selected thumb between segments (Apple HIG),transform,200,instant thumb position; no slide
+MO34,skeleton-pulse,opacity 0.4 to 1 to 0.4 pulsing placeholder,opacity,1200,static gray fill; no pulse
+MO35,heart-burst,scale(1) to scale(1.3) to scale(1) on like with overshoot,transform,300,instant filled state; no burst

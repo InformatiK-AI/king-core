@@ -1,4 +1,4 @@
-﻿---
+---
 name: sdd-ff
 description: "Fast-forward SDD: ejecuta propose → spec → design → tasks en secuencia para cambios bien entendidos."
 argument-hint: "<change-name>"

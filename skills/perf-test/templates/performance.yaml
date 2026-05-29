@@ -1,0 +1,34 @@
+# .king/performance.yaml — Budgets de performance (M05 / perf-test)
+# Copiar a .king/performance.yaml en el proyecto y ajustar por endpoint group.
+
+budgets:
+  # Budget por defecto para endpoints de API HTTP
+  api:
+    p50_ms: 100
+    p95_ms: 500
+    p99_ms: 1000
+
+  # Overrides por endpoint group (opcional). El más específico gana.
+  # "POST /orders":
+  #   p95_ms: 800        # escritura más costosa que lectura
+  # "GET /health":
+  #   p95_ms: 50
+
+  # warn  → excedido = WARNING (CASTLE E CONDITIONAL), no bloquea
+  # block → excedido = veto en /promote a staging/prod
+  enforcement: warn
+
+# Parámetros de carga por escenario (consumidos por las plantillas k6)
+scenarios:
+  smoke:
+    vus: 1
+    duration: 30s
+  load:
+    target_vus: 50
+    ramp_up: 1m
+    steady: 5m
+    ramp_down: 30s
+  spike:
+    baseline_vus: 10
+    spike_vus: 100      # 10× el baseline
+    spike_duration: 30s

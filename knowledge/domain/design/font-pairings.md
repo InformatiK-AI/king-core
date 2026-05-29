@@ -63,5 +63,5 @@ entries: 56
 | FP052 | Kalam | Hind | caligráfico indio-neutral con sans diseñado para Devanagari | App india, plataforma bilingüe | indic,bilingual,multilingual,cultural |
 | FP053 | Noto Sans | Noto Serif | sistema Noto completo, máxima cobertura Unicode, soporte total | Plataforma global multilingüe | noto,global,unicode,complete |
 | FP054 | Literata | Literata | misma familia en distintos pesos, optimizada para lectura en ebook | Ebook reader, app de lectura | reading,ebook,single-family,optimized |
-| FP055 | Uncut Sans | Instrument Serif | sans recortado contemporáneo con serif instrumental, dúo editorial 2024 | Landing premium, marca creativa 2024 | contemporary,2024,premium,editorial |
-| FP056 | Cabinet Grotesk | Sentient | grotesco de alto contraste con serif variable orgánico, pairing variable | Portfolio de diseñador, agencia 2024 | variable,contrast,agency,2024 |
+| FP055 | Geist | Instrument Serif | sans geométrico contemporáneo con serif instrumental, dúo editorial moderno | Landing premium, marca creativa 2024 | contemporary,geometric,premium,editorial |
+| FP056 | Bricolage Grotesque | Fraunces | grotesco de alto contraste con serif óptico variable orgánico, pairing variable | Portfolio de diseñador, agencia 2024 | variable,contrast,agency,2024 |

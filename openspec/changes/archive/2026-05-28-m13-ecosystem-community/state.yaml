@@ -1,0 +1,29 @@
+change: "m13-ecosystem-community"
+started: "2026-05-28"
+base_branch: develop
+feature_branch: feature/m13-ecosystem-community
+persistence: openspec
+source_of_truth: "openspec/changes/m13-ecosystem-community/proposal.md"
+phases:
+  init: completed
+  explore: completed
+  proposal: completed
+  specs: completed
+  design: completed
+  tasks: completed
+  apply: completed
+  verify: completed
+  archive: completed
+delivery:
+  execution_mode: auto
+  delivery_strategy: single-pr
+  size_exception: true
+  chain_strategy: n/a
+blocks:
+  A1: completed
+  A2: completed
+  A3: completed
+  A4: completed
+  A5: completed
+  A6: completed
+last_updated: "2026-05-28"

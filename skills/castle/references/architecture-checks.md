@@ -1,4 +1,4 @@
-﻿# Capa A — Architecture Checks
+# Capa A — Architecture Checks
 
 ## A1: ADR Compliance
 **Severidad**: WARNING

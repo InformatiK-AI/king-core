@@ -1,4 +1,4 @@
-﻿# Secrets Detection
+# Secrets Detection
 
 ## Propósito
 Detectar secrets, credenciales y tokens en código antes de merge.

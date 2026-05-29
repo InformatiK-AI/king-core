@@ -1,4 +1,4 @@
-﻿---
+---
 name: dr-gate
 description: "Disaster Recovery prerequisite gate for /promote. Verifies that DR configuration (backup strategy, RTO/RPO, runbook) is in place before deploying to production."
 version: "1.0"

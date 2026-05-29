@@ -1,4 +1,4 @@
-﻿# Checklists Comunes
+# Checklists Comunes
 
 Checklists estándar aplicables a todos los agentes del framework.
 

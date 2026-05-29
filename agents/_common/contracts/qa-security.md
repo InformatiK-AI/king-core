@@ -1,4 +1,4 @@
-﻿# QA-Security Contract
+# QA-Security Contract
 
 ## Propósito
 Define el protocolo de interacción entre @qa y @security para coordinación del Security Gate, deep reviews, y gestión de findings de seguridad.

@@ -87,3 +87,39 @@ cat .king/docs/audits/$(ls -t .king/docs/audits/*-improvement-backlog.md | head 
 # Contar issues por severidad en backlog
 grep -c "CRITICAL\|HIGH\|MEDIUM\|LOW" .king/docs/audits/*-backlog.md
 ```
+
+---
+
+## Sub-Dimension Quick Reference
+
+> Lookup rápido de las 25 sub-dimensiones. Ver `SUBDIMENSIONS.md` para criterios de scoring completos.
+
+| ID | Name | Parent | Weight % | Autofix Class |
+|----|------|--------|----------|---------------|
+| I-01 | metadata-completeness | Inventory | 8% | auto |
+| I-02 | description-quality | Inventory | 4% | guided |
+| I-03 | author-present | Inventory | 4% | auto |
+| I-04 | license-declared | Inventory | 4% | auto |
+| F-01 | directory-structure | Format | 6% | guided |
+| F-02 | entrypoint-exists | Format | 6% | auto |
+| F-03 | skill-file-present | Format | 5% | auto |
+| F-04 | api-version-present | Format | 0%* | auto |
+| F-05 | frontmatter-validity | Format | 3% | guided |
+| X-01 | command-declarations | Cross-refs | 7% | manual |
+| X-02 | command-descriptions | Cross-refs | 5% | guided |
+| X-03 | command-examples | Cross-refs | 4% | guided |
+| X-04 | hook-declarations | Cross-refs | 4% | manual |
+| Q-01 | test-coverage-declared | Instructions Quality | 5% | guided |
+| Q-02 | test-runner-present | Instructions Quality | 4% | auto |
+| Q-03 | changelog-present | Instructions Quality | 3% | guided |
+| Q-04 | version-bump-consistency | Instructions Quality | 3% | manual |
+| C-01 | readme-present | Communication | 5% | guided |
+| C-02 | usage-examples-documented | Communication | 4% | guided |
+| C-03 | api-reference-present | Communication | 3% | guided |
+| C-04 | inline-comments-quality | Communication | 3% | manual |
+| E-01 | install-script-present | Efficiency | 3% | auto |
+| E-02 | uninstall-script-present | Efficiency | 3% | guided |
+| E-03 | dependency-manifest | Efficiency | 2% | auto |
+| E-04 | upgrade-notes-present | Efficiency | 2% | guided |
+
+> *F-04 `api-version-present` is WARNING-only (pending M-71). Weight = 0% — does NOT contribute to health_score.

@@ -2,6 +2,7 @@
 name: qa-batch
 description: "QA extensivo para batch de issues antes de promover a QA. Usar cuando se necesite: validar un conjunto de issues, QA para promote, verificar batch pre-promote, o evaluar múltiples cambios juntos antes de avanzar a QA."
 version: 2.0
+api_version: 1.0.0
 internal: true
 ---
 

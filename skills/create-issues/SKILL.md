@@ -2,6 +2,7 @@
 name: create-issues
 description: "Crear issues estructurados desde un plan de implementación. Usar cuando se necesite: crear issues desde un plan, generar epic y stories, crear issues con Gherkin, descomponer un plan en issues, o preparar backlog. Soporta GitHub Issues o tracking local en .king/issues/."
 version: 2.0
+api_version: 1.0.0
 pipeline_position: "optional — between /plan and /build"
 ---
 

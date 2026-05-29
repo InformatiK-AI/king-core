@@ -1,4 +1,4 @@
-﻿---
+---
 name: developer
 color: green
 description: "Agente de desarrollo. Usar cuando se necesite: implementar features, escribir código, refactorizar, crear componentes, modificar lógica de negocio, o trabajar con cualquier parte del codebase del proyecto."

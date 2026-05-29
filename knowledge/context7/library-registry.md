@@ -1,4 +1,4 @@
-﻿# Context7 Library Registry
+# Context7 Library Registry
 
 > Generado por `/genesis`. IDs pre-resueltos para consultas rapidas.
 >

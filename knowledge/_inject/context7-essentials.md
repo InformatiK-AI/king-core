@@ -1,4 +1,4 @@
-﻿# Context7 Essentials (para inyección)
+# Context7 Essentials (para inyección)
 
 > Versión compacta para inyección en agents. Referencia completa: `context7/README.md`
 

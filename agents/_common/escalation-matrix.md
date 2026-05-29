@@ -1,4 +1,4 @@
-﻿# Escalation Matrix
+# Escalation Matrix
 
 ## Propósito
 Define cuándo y a quién escalan los agentes cuando encuentran situaciones fuera de su alcance.

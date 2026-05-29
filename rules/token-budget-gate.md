@@ -1,4 +1,4 @@
-﻿---
+---
 name: token-budget-gate
 description: "Gate de token budget en /audit, /build y /review. Evalúa LOAD-INDEX.md y emite PASS/WARN/FAIL según umbrales configurables."
 ---
