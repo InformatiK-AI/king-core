@@ -5,6 +5,7 @@ version: 2.0
 api_version: 1.0.0
 internal: true
 user-invocable: false
+model: haiku
 ---
 
 # Visual Evidence — Captura de Evidencia Visual

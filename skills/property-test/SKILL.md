@@ -3,6 +3,7 @@ name: property-test
 version: 2.0
 api_version: 1.0.0
 description: "Genera property-based tests para funciones puras e invariantes de dominio. Usar cuando se necesite: property testing, property-based testing, generar tests con fast-check/hypothesis/jqwik/rapid, ejercitar boundary conditions, encontrar contraejemplos con shrinking, validar invariantes (round-trip, idempotencia, monotonía), o reforzar CASTLE T más allá de casos puntuales."
+model: sonnet
 ---
 
 # /property-test — Property-Based Testing

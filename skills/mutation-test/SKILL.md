@@ -3,6 +3,7 @@ name: mutation-test
 version: 2.0
 api_version: 1.0.0
 description: "Ejecuta mutation testing para validar que los tests detectan bugs reales. Usar cuando se necesite: mutation testing, medir mutation score, validar calidad de la suite de tests, detectar tests débiles (assert true), encontrar mutantes sobrevivientes, o elevar CASTLE T de coverage a gate cuantitativo de calidad."
+model: sonnet
 ---
 
 # /mutation-test — Mutation Testing

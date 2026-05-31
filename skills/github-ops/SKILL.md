@@ -4,6 +4,7 @@ description: "Automatización de operaciones GitHub. Usar cuando se necesite: cr
 version: 2.0
 api_version: 1.0.0
 internal: true
+model: haiku
 ---
 
 # GitHub Ops — Automatización GitHub

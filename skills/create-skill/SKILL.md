@@ -3,6 +3,7 @@ name: create-skill
 description: "Meta-skill para crear nuevos skills en el framework. Usar cuando se necesite: crear un skill nuevo, agregar un workflow, definir un nuevo flujo de trabajo automatizado, o extender el framework con nueva funcionalidad."
 version: 2.0
 api_version: 1.0.0
+model: sonnet
 ---
 
 # Create Skill — Crear Nuevos Skills

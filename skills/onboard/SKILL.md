@@ -3,6 +3,7 @@ name: onboard
 version: 2.0
 api_version: 1.0.0
 description: "Tutorial de adopción gamificado de King Framework en 5 niveles con validación de éxito por nivel, barra de progreso ASCII y persistencia en .king/onboard-progress.yaml. Incluye sub-comandos doctor (diagnóstico de setup), status (estado actual) y hint (próximo paso). Usar cuando se necesite: empezar con King, onboarding inicial, aprender los comandos básicos, primer contacto con el framework, tutorial paso a paso, /onboard, quickstart por persona (developer/entrepreneur/migración). TTFC objetivo < 5 minutos. Para el SDLC completo con un cambio real, ver king-onboard."
+model: haiku
 ---
 
 # /onboard — Tutorial de Adopción en 5 Niveles

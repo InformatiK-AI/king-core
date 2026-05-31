@@ -4,6 +4,7 @@ version: 2.0
 api_version: 1.0.0
 internal: true
 description: "Crear commits con conventional commits. Analiza los cambios staged y genera un mensaje de commit semántico."
+model: haiku
 ---
 
 # Commit — Conventional Commits

@@ -4,6 +4,7 @@ version: 2.0
 api_version: 1.0.0
 structure: command-based
 description: "Gestión de Git Worktrees para desarrollo aislado. Maneja ambientes permanentes (dev, qa, prod) y worktrees temporales por feature."
+model: haiku
 ---
 
 # Worktree - Gestión de Git Worktrees

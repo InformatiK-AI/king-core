@@ -3,6 +3,7 @@ name: license-check
 version: 2.0
 api_version: 1.0.0
 description: "Verifica si hay una licencia King activa con tier suficiente antes de ejecutar un skill premium, leyendo la observation `king-framework/license` en Engram. Retorna { tier, features_available[], upgrade_required }. En modo degradado (Engram no responde en ~3s) asume tier 'core' y NUNCA bloquea por error de infraestructura — solo por ausencia explícita de licencia. También gestiona la licencia desde CLI: `activate <key>` (valida y persiste), `status` (muestra tier/vencimiento/seats con la key enmascarada) y `deactivate`. NUNCA expone la key completa en output. Usar cuando: un skill premium arranca su Fase 0, el usuario activa/consulta/desactiva una licencia, o se necesita resolver el tier efectivo del entorno. Alimenta CASTLE S (Security)."
+model: haiku
 ---
 
 # /license-check — Verificación y Activación de Licencia King

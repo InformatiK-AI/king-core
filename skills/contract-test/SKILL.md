@@ -3,6 +3,7 @@ name: contract-test
 version: 2.0
 api_version: 1.0.0
 description: "Genera consumer-driven contracts con Pact entre servicios. Usar cuando se necesite: contract testing, verificar integración entre servicios, generar contratos Pact, detectar breaking changes entre consumer y provider, mocks de proveedor para tests del consumidor, o alimentar CASTLE C con evidencia de contratos."
+model: sonnet
 ---
 
 # /contract-test — Consumer-Driven Contracts (Pact)

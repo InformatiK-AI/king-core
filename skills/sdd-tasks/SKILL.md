@@ -5,6 +5,7 @@ api_version: 1.0.0
 description: >
   Break down a change into an implementation task checklist.
   Trigger: When the orchestrator launches you to create or update the task breakdown for a change.
+model: sonnet
 ---
 
 ## Purpose

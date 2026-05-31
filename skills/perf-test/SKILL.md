@@ -3,6 +3,7 @@ name: perf-test
 version: 2.0
 api_version: 1.0.0
 description: "Genera y ejecuta performance tests con gates p95/p99. Usar cuando se necesite: performance testing, load testing, smoke/load/spike tests, generar scripts k6/Artillery/Gatling, medir p50/p95/p99, gate de latencia que bloquea promote, o alimentar CASTLE E con evidencia de rendimiento."
+model: sonnet
 ---
 
 # /perf-test — Performance Testing con Gates p95/p99

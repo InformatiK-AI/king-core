@@ -4,6 +4,7 @@ description: "Crear issues estructurados desde un plan de implementación. Usar 
 version: 2.0
 api_version: 1.0.0
 pipeline_position: "optional — between /plan and /build"
+model: sonnet
 ---
 
 ## Knowledge Injection
