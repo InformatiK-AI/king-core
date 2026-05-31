@@ -6,6 +6,14 @@ _(no changes yet)_
 
 ---
 
+## [1.13.0] — 2026-05-31
+
+### Changed
+- **Tiering de modelo por agente**: los 10 agentes declaran `model:` por tier cognitivo con alias version-agnóstico (sigue la última versión de cada familia). `opus`: architect, security, performance, developer. `sonnet`: api, qa, devops, frontend, tenancy-enforcer. `haiku`: conductor. Antes todos en `model: inherit` (todo el pipeline corría en el modelo de sesión).
+- **genesis**: el generador propaga el tier al crear agentes de proyecto — `agents/templates/agent-radar-template.md` declara `model: {AGENT_MODEL}` y `skills/genesis/GENERATION.md` mapea cada agente a su tier. Proyectos nuevos ya no nacen en `inherit`.
+
+---
+
 ## [1.12.0] — 2026-05-29
 
 ### Changed (A6 — desacople king-arch)
