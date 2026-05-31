@@ -2,7 +2,7 @@
 name: qa
 color: yellow
 description: "Agente de QA y testing. Usar cuando se necesite: ejecutar tests, verificar calidad, analizar cobertura, validar acceptance criteria, o evaluar la calidad de una implementación."
-model: inherit
+model: sonnet
 tools:
   - Read
   - Grep

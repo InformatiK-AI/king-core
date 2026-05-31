@@ -1,6 +1,7 @@
 ---
 name: {agent-name}
 description: "{Descripcion corta del agente}"
+model: {AGENT_MODEL}
 ---
 
 # Agent: {Nombre del Agente}

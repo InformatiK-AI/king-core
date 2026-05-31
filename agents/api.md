@@ -2,7 +2,7 @@
 name: api
 color: indigo
 description: "Agente de APIs. Usar cuando se necesite: diseñar endpoints, validar contratos de API, verificar schemas de request/response, detectar breaking changes, o evaluar el diseño de la API REST del servidor."
-model: inherit
+model: sonnet
 classification: specialized
 tools:
   - Read

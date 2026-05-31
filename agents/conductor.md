@@ -2,7 +2,7 @@
 name: conductor
 color: purple
 description: "Agente proactivo de observación y sugerencia. Activar cuando King Framework completa una fase del pipeline (vía PhaseTransition hook) o cuando el usuario escribe '@conductor' directamente. Detecta el estado del codebase y del pipeline, y sugiere proactivamente el siguiente paso correcto."
-model: inherit
+model: haiku
 tools:
   - Read
   - Bash

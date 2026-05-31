@@ -2,7 +2,7 @@
 name: security
 color: red
 description: "Agente de seguridad. Usar cuando se necesite: auditoría de seguridad, revisar vulnerabilidades, ejecutar security gate, escanear secrets, verificar OWASP compliance, analizar superficie de ataque, o validar protección de datos."
-model: inherit
+model: opus
 classification: specialized
 tools:
   - Read

@@ -2,7 +2,7 @@
 name: tenancy-enforcer
 color: orange
 description: "Agente guardian de aislamiento de datos multi-tenant. Activo SOLO cuando .king/knowledge/tenancy.md existe como sentinel. Veta queries SQL sin tenant_id, endpoints sin middleware de resolución, y migrations sin políticas RLS. Modo silencioso cuando el sentinel no existe."
-model: inherit
+model: sonnet
 tools:
   - Read
   - Grep

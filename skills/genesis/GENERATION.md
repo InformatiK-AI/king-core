@@ -283,6 +283,17 @@
       - Reemplazar `{AGENT_NAME}` con nombre del agente
       - Reemplazar `{RESPONSIBILITIES}` con responsabilidades especificas
       - Reemplazar `{KNOWLEDGE}` con conocimiento inyectado (paso c)
+      - Reemplazar `{AGENT_MODEL}` con el alias de modelo segun el Model Tier (tabla abajo)
+
+   **Model Tiers (alias version-agnostico, sigue la ultima version de cada familia):**
+
+   | Tier | Alias | Agentes |
+   |------|-------|---------|
+   | Pensar (razonamiento, trade-offs, seguridad) | `opus` | architect, security, performance, developer, ml-engineer |
+   | Ejecutar (scaffolding, tests, config) | `sonnet` | api, qa, devops, frontend, mobile, tenancy-enforcer |
+   | Observar (proactivo, ligero) | `haiku` | conductor |
+
+   > Agentes nuevos no listados: `opus` si razona/decide; `sonnet` si ejecuta sobre templates; `haiku` si observa/clasifica. SIEMPRE alias, nunca IDs (claude-opus-4-8), para que el tier siga la ultima version solo.
    c. Inyectar knowledge (append al final del agente, en seccion "## Conocimiento Experto"):
       - Leer archivos de knowledge segun matriz (paso 1)
       - Usar version slim de `knowledge/_inject/` si existe

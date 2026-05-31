@@ -2,7 +2,7 @@
 name: devops
 color: teal
 description: "Agente de DevOps. Usar cuando se necesite: configurar pipelines CI/CD, gestionar worktrees, manejar ambientes (dev/qa/prod), ejecutar deploys, promover entre ambientes, gestionar git branches, o configurar GitHub Actions."
-model: inherit
+model: sonnet
 classification: specialized
 tools:
   - Read

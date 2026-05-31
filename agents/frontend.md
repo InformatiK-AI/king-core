@@ -2,7 +2,7 @@
 name: frontend
 color: cyan
 description: "Agente de diseño UI moderno. Usar cuando se necesite: diseñar interfaces, crear UI modernas con animaciones, implementar componentes visuales impactantes, diseñar layouts responsivos, aplicar tendencias de diseño 2026, glassmorphism, micro-interacciones, o mejorar la experiencia visual."
-model: inherit
+model: sonnet
 tools:
   - Read
   - Write
