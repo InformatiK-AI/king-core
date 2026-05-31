@@ -6,6 +6,13 @@ _(no changes yet)_
 
 ---
 
+## [1.14.0] - 2026-05-31
+
+### Changed
+- **Tiering de modelo por skill**: los skills que generan codigo/contenido inline declaran `model: sonnet`; los triviales (reportes/lookup) `model: haiku`. Orquestadores y skills de razonamiento heredan la sesion (sin campo) para evitar model-thrashing. Alias version-agnostico; criterio documentado para skills futuros.
+
+---
+
 ## [1.13.0] — 2026-05-31
 
 ### Changed
