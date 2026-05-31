@@ -6,6 +6,13 @@ _(no changes yet)_
 
 ---
 
+## [1.14.1] - 2026-05-31
+
+### Added
+- **Regla de tiering de modelo para skills nuevos**: `create-skill` documenta el árbol de decisión (`model:` opcional — workers-inline=sonnet, triviales=haiku, orquestadores/razonamiento=sin campo, nunca opus). El template `skill-template-v2.md` y `skill-anatomy.md` incorporan el campo `model` opcional. Evita que skills futuros nazcan sin tier (no fugas).
+
+---
+
 ## [1.14.0] - 2026-05-31
 
 ### Changed
