@@ -20,6 +20,7 @@
 name: skill-name
 version: 2.0
 description: "Descripción breve"
+# model: sonnet   # opcional — workers-inline=sonnet, triviales=haiku, orquestadores=sin campo. Nunca opus.
 ---
 
 # Skill Name

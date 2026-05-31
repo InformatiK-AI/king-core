@@ -109,6 +109,12 @@ completa. **Antes de crear cualquier archivo, detectar colisión de nombre.**
 | `{{VERSION}}` | `1.0.0` |
 | `{{API_VERSION}}` | `1.0.0` |
 
+**Model tier (opcional)** — decidí si el SKILL.md declara `model:` en el frontmatter:
+- ¿DELEGA el trabajo pesado a agentes/sub-skills (orquestador)? → SIN campo (hereda la sesión; evita model-thrashing).
+- ¿Solo LEE/REPORTA/FORMATEA (lookup, ledger, reporte, onboarding)? → `model: haiku`.
+- ¿GENERA mucho código/contenido INLINE (scaffolding, generadores)? → `model: sonnet`.
+- NUNCA `opus` en un skill: su override es temporal (por-turno) y corre inline → redundante con los reasoning skills que ya rían tu sesión. SIEMPRE alias (`sonnet`/`haiku`), nunca IDs con versión.
+
 3. [ ] Crear `skills/mi-nuevo-skill/references/.gitkeep` (directorio de referencias, inicialmente vacío).
 4. [ ] Crear `skills/mi-nuevo-skill/scripts/.gitkeep` (directorio de scripts, inicialmente vacío).
 5. [ ] Actualizar `LOAD-INDEX.md` añadiendo la entrada del nuevo skill en "Carga por skill".

@@ -10,7 +10,7 @@
 Every non-SDD skill MUST follow this layout (in order):
 
 ```
-1.  YAML Frontmatter           name, version, description
+1.  YAML Frontmatter           name, version, description, [model]
 2.  Knowledge Injection         → see knowledge-injection-contract.md
 3.  QUICK REFERENCE
     3a. BLOCKING CONDITIONS     Global pre-execution state gates
@@ -26,6 +26,8 @@ Every non-SDD skill MUST follow this layout (in order):
 10. Phase N+2                   Guide Next Step (flow table)
 11. REFERENCE                   Non-action context, edge cases, integrations
 ```
+
+> **`model`** (opcional): alias `sonnet` (workers que generan inline) o `haiku` (triviales: reportes/lookup); orquestadores y skills de razonamiento van SIN campo. Nunca `opus`. El override es por-turno y revierte al modelo de sesión. Regla de decisión completa en `create-skill`.
 
 ---
 
